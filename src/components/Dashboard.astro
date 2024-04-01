@@ -1,0 +1,188 @@
+---
+const defaultWeight = 63
+const defaultHeight = 169
+const defaultAge = 26
+---
+
+<div class='mx-auto flex w-full flex-col items-center justify-center gap-6 text-xl text-slate-800 md:w-1/2 lg:w-1/3 xl:w-1/4'>
+	<div class='flex w-full justify-start gap-6'>
+		<label class='radio-button'><input type='radio' name='radio' value='male' checked /> Male <span></span></label>
+		<label class='radio-button'><input type='radio' name='radio' value='female' /> Female <span></span></label>
+	</div>
+	<div class='flex w-full flex-col items-end gap-3'>
+		<label for='weightRangeInput'>
+			Weight:
+			<span id='weightRangeInputSelected' class='font-bold text-amber-600'> {defaultWeight} </span> kg</label
+		>
+		<input id='weightRangeInput' type='range' value={defaultWeight} min='0' max='200' />
+	</div>
+	<div class='flex w-full flex-col items-end gap-3'>
+		<label for='heightRangeInput'>
+			Height:
+			<span id='heightRangeInputSelected' class='font-bold text-amber-600'> {defaultHeight} </span> cm</label
+		>
+		<input id='heightRangeInput' type='range' value={defaultHeight} min='0' max='250' />
+	</div>
+	<div class='flex w-full flex-col items-end gap-3'>
+		<label for='ageRangeInput'>
+			Age:
+			<span id='ageRangeInputSelected' class='font-bold text-amber-600'> {defaultAge} </span></label
+		>
+		<input id='ageRangeInput' type='range' value={defaultAge} min='0' max='100' />
+	</div>
+
+	<style>
+		/*********** Baseline, reset styles ***********/
+		input[type='range'] {
+			-webkit-appearance: none;
+			appearance: none;
+			background: transparent;
+			cursor: pointer;
+			width: 100%;
+		}
+
+		/* Removes default focus */
+		input[type='range']:focus {
+			outline: none;
+		}
+
+		/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+		/* slider track */
+		input[type='range']::-webkit-slider-runnable-track {
+			@apply bg-amber-400;
+			border-radius: 1rem;
+			height: 1rem;
+		}
+
+		/* slider thumb */
+		input[type='range']::-webkit-slider-thumb {
+			-webkit-appearance: none; /* Override default look */
+			appearance: none;
+			margin-top: -8px; /* Centers thumb on the track */
+			@apply bg-amber-600;
+			border-radius: 1rem;
+			height: 2rem;
+			width: 2rem;
+		}
+
+		input[type='range']:focus::-webkit-slider-thumb {
+			outline: 3px solid rgb(217 119 6 / var(--tw-bg-opacity));
+			outline-offset: 0.125rem;
+		}
+
+		/*********** Firefox styles ***********/
+		/* slider track */
+		input[type='range']::-moz-range-track {
+			@apply bg-amber-400;
+			border-radius: 1rem;
+			height: 1rem;
+		}
+
+		/* slider thumb */
+		input[type='range']::-moz-range-thumb {
+			@apply bg-amber-400;
+			border: none; /*Removes extra border that FF applies*/
+			border-radius: 1rem;
+			height: 2rem;
+			width: 2rem;
+		}
+
+		input[type='range']:focus::-moz-range-thumb {
+			outline: 3px solid rgb(217 119 6 / var(--tw-bg-opacity));
+			outline-offset: 0.125rem;
+		}
+		.radio-button {
+			@apply w-fit;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			flex-direction: row-reverse;
+			font-size: 18px;
+			cursor: pointer;
+		}
+		.radio-button input {
+			display: none;
+			width: 0;
+			height: 0;
+		}
+		.radio-button span {
+			width: 40px;
+			height: 40px;
+			position: relative;
+			margin-right: 5px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			background-color: #bdbdbd;
+		}
+		.radio-button input:checked + span:after {
+			content: '';
+			display: block;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			@apply bg-amber-400;
+		}
+		.radio-button input:checked + span {
+			@apply bg-amber-600;
+		}
+		.radio-button input:disabled + span {
+			background-color: #e5e5e5;
+		}
+		.radio-button span:before {
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			border-radius: 50%;
+			@apply bg-amber-600;
+		}
+		.radio-button input:checked + span:before {
+			animation: growAndFade 0.2s ease-out;
+		}
+		@keyframes growAndFade {
+			0% {
+				opacity: 1;
+				transform: scale(1);
+			}
+			50% {
+				opacity: 0.5;
+				transform: scale(1.5);
+			}
+			100% {
+				opacity: 0;
+				transform: scale(2);
+			}
+		}
+	</style>
+	<script>
+		const weightRangeInput = document.querySelector<HTMLInputElement>('#weightRangeInput')
+		const weightRangeInputSelected = document.querySelector('#weightRangeInputSelected')
+
+		weightRangeInput?.addEventListener('input', ({ target }) => {
+			if (weightRangeInputSelected?.textContent && target instanceof HTMLInputElement) {
+				weightRangeInputSelected.textContent = target.value
+			}
+		})
+
+		const heightRangeInput = document.querySelector<HTMLInputElement>('#heightRangeInput')
+		const heightRangeInputSelected = document.querySelector('#heightRangeInputSelected')
+
+		heightRangeInput?.addEventListener('input', ({ target }) => {
+			if (heightRangeInputSelected?.textContent && target instanceof HTMLInputElement) {
+				heightRangeInputSelected.textContent = target.value
+			}
+		})
+
+		const ageRangeInput = document.querySelector<HTMLInputElement>('#ageRangeInput')
+		const ageRangeInputSelected = document.querySelector('#ageRangeInputSelected')
+
+		ageRangeInput?.addEventListener('input', ({ target }) => {
+			if (ageRangeInputSelected?.textContent && target instanceof HTMLInputElement) {
+				ageRangeInputSelected.textContent = target.value
+			}
+		})
+	</script>
+</div>
