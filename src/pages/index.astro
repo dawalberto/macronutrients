@@ -1,5 +1,5 @@
 ---
-import Dashboard from '@components/Dashboard.astro'
+import Dashboard from '@components/Dashboard'
 ---
 
 <html lang='en'>
@@ -10,6 +10,27 @@ import Dashboard from '@components/Dashboard.astro'
 		<meta name='generator' content={Astro.generator} />
 	</head>
 	<body>
-		<Dashboard />
+		<Dashboard client:load />
+		<h1 id='genre'></h1>
+		<h1 id='weight'></h1>
+		<h1 id='height'></h1>
+		<h1 id='age'></h1>
 	</body>
 </html>
+<script>
+	import { $userAttributes } from '@store/user-attributes'
+	const userGenre = document.querySelector<HTMLInputElement>('#genre') as HTMLInputElement
+	const userWeight = document.querySelector<HTMLInputElement>('#weight') as HTMLInputElement
+	const userHeight = document.querySelector<HTMLInputElement>('#height') as HTMLInputElement
+	const userAge = document.querySelector<HTMLInputElement>('#age') as HTMLInputElement
+
+	$userAttributes.subscribe((userAttributes) => {
+		console.log('userAttributes', userAttributes)
+		const { genre, weight, height, age } = userAttributes
+
+		userGenre.textContent = genre
+		userWeight.textContent = weight + ''
+		userHeight.textContent = height + ''
+		userAge.textContent = age + ''
+	})
+</script>
