@@ -1,5 +1,6 @@
 ---
 import Dashboard from '@components/Dashboard'
+import LBM from '@components/LBM'
 ---
 
 <html lang='en'>
@@ -10,7 +11,12 @@ import Dashboard from '@components/Dashboard'
 		<meta name='generator' content={Astro.generator} />
 	</head>
 	<body>
-		<Dashboard client:load />
+		<div>
+			<Dashboard client:load />
+		</div>
+		<div>
+			<LBM client:load />
+		</div>
 		<h1 id='genre'></h1>
 		<h1 id='weight'></h1>
 		<h1 id='height'></h1>
