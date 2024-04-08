@@ -1,0 +1,125 @@
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  @apply bg-amber-400;
+  border-radius: 1rem;
+  height: 1rem;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -8px; /* Centers thumb on the track */
+  @apply bg-amber-600;
+  border-radius: 1rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 3px solid rgb(217 119 6 / var(--tw-bg-opacity));
+  outline-offset: 0.125rem;
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  @apply bg-amber-400;
+  border-radius: 1rem;
+  height: 1rem;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  @apply bg-amber-400;
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 1rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  outline: 3px solid rgb(217 119 6 / var(--tw-bg-opacity));
+  outline-offset: 0.125rem;
+}
+.radio-button {
+  @apply w-fit;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  font-size: 18px;
+  cursor: pointer;
+}
+.radio-button input {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.radio-button span {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #bdbdbd;
+  @apply drop-shadow-xl;
+}
+.radio-button input:checked + span:after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  @apply bg-amber-400;
+}
+.radio-button input:checked + span {
+  @apply bg-amber-600;
+}
+.radio-button input:disabled + span {
+  background-color: #e5e5e5;
+}
+.radio-button span:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border-radius: 50%;
+  @apply bg-amber-600;
+}
+.radio-button input:checked + span:before {
+  animation: growAndFade 0.2s ease-out;
+}
+@keyframes growAndFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
