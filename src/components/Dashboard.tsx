@@ -1,46 +1,51 @@
-import { updateUserAge, updateUserGenre, updateUserHeight, updateUserWeight } from '@store/user-attributes'
+import { useStore } from '@nanostores/react'
+import { $userAttributes, updateUserAge, updateUserGenre, updateUserHeight, updateUserLBM, updateUserWeight } from '@store/user-attributes'
 import '@styles/dashboard.css'
-import { calculateAge } from '@utils/index'
-import React, { useState } from 'react'
-import type { Genre, UserAttributes } from 'src/types'
-
-const defaultWeight = 63
-const defaultHeight = 169
-const defaultAge = calculateAge('1997-12-30')
-const defaultGenre = 'male'
+import { calculateLBM } from '@utils/functions'
+import React, { useCallback } from 'react'
+import type { Genre } from 'src/types'
 
 const Dashboard = () => {
-	const [weight, setWeight] = useState<Pick<UserAttributes, 'weight'>['weight']>(defaultWeight)
-	const [height, setHeight] = useState<Pick<UserAttributes, 'height'>['height']>(defaultHeight)
-	const [age, setAge] = useState<Pick<UserAttributes, 'age'>['age']>(defaultAge)
-	const [genre, setGenre] = useState<Genre>(defaultGenre)
+	const { weight, height, age, genre, lbm } = useStore($userAttributes)
 
-	const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = parseInt(event.target.value)
-		setWeight(value)
-		updateUserWeight(value)
-	}
+	const handleWeightChange = useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>) => {
+			const value = parseInt(event.target.value)
+			updateUserWeight(value)
+			calculateLBM({ height, weight, genre, formulaLBMSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
+		},
+		[height, weight, genre, lbm]
+	)
 
-	const handleHeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = parseInt(event.target.value)
-		setHeight(value)
-		updateUserHeight(value)
-	}
+	const handleHeightChange = useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>) => {
+			const value = parseInt(event.target.value)
+			updateUserHeight(value)
+			calculateLBM({ height, weight, genre, formulaLBMSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
+		},
+		[height, weight, genre, lbm]
+	)
 
-	const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = parseInt(event.target.value)
-		setAge(value)
-		updateUserAge(value)
-	}
+	const handleAgeChange = useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>) => {
+			const value = parseInt(event.target.value)
+			updateUserAge(value)
+			calculateLBM({ height, weight, genre, formulaLBMSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
+		},
+		[height, weight, genre, lbm]
+	)
 
-	const handleGenreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = event.target.value as Genre
-		setGenre(value)
-		updateUserGenre(value)
-	}
+	const handleGenreChange = useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>) => {
+			const value = event.target.value as Genre
+			updateUserGenre(value)
+			calculateLBM({ height, weight, genre, formulaLBMSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
+		},
+		[height, weight, genre, lbm]
+	)
 
 	return (
-		<div className='mx-auto flex w-full flex-col items-center justify-center gap-6 text-xl text-slate-800 md:w-1/2 lg:w-1/3 xl:w-1/4'>
+		<div className='mx-auto flex w-full flex-col items-center justify-center gap-6 text-xl text-slate-800'>
 			<div className='flex w-full justify-start gap-6'>
 				<label className='radio-button'>
 					<input type='radio' name='genre' value='male' checked={genre === 'male'} onChange={handleGenreChange} />
