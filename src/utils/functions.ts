@@ -1,4 +1,4 @@
-import type { Genre, Height, LBM, Weight } from 'src/types'
+import type { FormulaLBM, Genre, Height, LBM, Weight } from 'src/types'
 
 export const calculateAge = (birthDate: string) => {
 	const today = new Date()
@@ -21,7 +21,7 @@ export const calculateLBM = ({
 	height,
 	callbackWithLBMCalculated,
 }: {
-	formulaLBMSelected: Pick<LBM, 'formula'>['formula']
+	formulaLBMSelected: FormulaLBM
 	genre: Genre
 	weight: Weight
 	height: Height
