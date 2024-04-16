@@ -12,7 +12,7 @@ const Dashboard = () => {
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = parseInt(event.target.value)
 			updateUserWeight(value)
-			calculateLBM({ height, weight, genre, formulaLBMSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
+			calculateLBM({ height, weight, genre, LBMFormulaSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
 		},
 		[height, weight, genre, lbm]
 	)
@@ -21,7 +21,7 @@ const Dashboard = () => {
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = parseInt(event.target.value)
 			updateUserHeight(value)
-			calculateLBM({ height, weight, genre, formulaLBMSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
+			calculateLBM({ height, weight, genre, LBMFormulaSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
 		},
 		[height, weight, genre, lbm]
 	)
@@ -30,7 +30,7 @@ const Dashboard = () => {
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = parseInt(event.target.value)
 			updateUserAge(value)
-			calculateLBM({ height, weight, genre, formulaLBMSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
+			calculateLBM({ height, weight, genre, LBMFormulaSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
 		},
 		[height, weight, genre, lbm]
 	)
@@ -39,7 +39,7 @@ const Dashboard = () => {
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value as Genre
 			updateUserGenre(value)
-			calculateLBM({ height, weight, genre, formulaLBMSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
+			calculateLBM({ height, weight, genre, LBMFormulaSelected: lbm.formula, callbackWithLBMCalculated: updateUserLBM })
 		},
 		[height, weight, genre, lbm]
 	)

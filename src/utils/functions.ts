@@ -1,4 +1,4 @@
-import type { FormulaLBM, Genre, Height, LBM, Weight } from 'src/types'
+import type { ExerciseMultiplier, Genre, Height, LBM, LBMFormula, Weight } from 'src/types'
 
 export const calculateAge = (birthDate: string) => {
 	const today = new Date()
@@ -15,20 +15,20 @@ export const calculateAge = (birthDate: string) => {
 }
 
 export const calculateLBM = ({
-	formulaLBMSelected,
+	LBMFormulaSelected,
 	genre,
 	weight,
 	height,
 	callbackWithLBMCalculated,
 }: {
-	formulaLBMSelected: FormulaLBM
+	LBMFormulaSelected: LBMFormula
 	genre: Genre
 	weight: Weight
 	height: Height
 	callbackWithLBMCalculated: (lbm: LBM) => void
 }): void => {
 	let lbm
-	switch (formulaLBMSelected) {
+	switch (LBMFormulaSelected) {
 		case 'Boer':
 			lbm = calculateLBMBoer({ weight, height, genre })
 			callbackWithLBMCalculated(lbm)
@@ -92,5 +92,20 @@ const calculateLBMHume = ({ genre, weight, height }: { genre: Genre; weight: Wei
 		lbmKg: Number(lbm.toFixed(1)),
 		lbmPercentage: Math.round((lbm / weight) * 100),
 		bodyFatPercentage: Math.round(((weight - lbm) / weight) * 100),
+	}
+}
+
+export const getExerciseMultiplierValue = (exerciseMultiplier: ExerciseMultiplier) => {
+	switch (exerciseMultiplier) {
+		case 'Sedentary':
+			return 1.2
+		case 'Lightly active':
+			return 1.375
+		case 'Moderately active':
+			return 1.55
+		case 'Very active':
+			return 1.725
+		case 'Extremely active':
+			return 1.9
 	}
 }

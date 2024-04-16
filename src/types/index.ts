@@ -3,36 +3,27 @@ export type UserAttributes = {
 	weight: number
 	age: number
 	genre: Genre
-	lbm: {
-		formula: FormulaLBM
-		lbmKg: number
-		lbmPercentage: number
-		bodyFatPercentage: number
-	}
+	lbm: LBM
+	bmrAndExercise: BMRAndExercise
 }
 
 export type Height = number
 export type Weight = number
 export type Age = number
 export type Genre = 'male' | 'female'
-
-export type FormulaLBM = 'Boer' | 'James' | 'Hume' | 'Manual'
 export type LBM = {
-	formula: FormulaLBM
+	formula: LBMFormula
 	lbmKg: number
 	lbmPercentage: number
 	bodyFatPercentage: number
 }
-// export type CalculateLBM =
-// 	| {
-// 			formulaLBMSelected: Exclude<FormulaLBM, Exclude<FormulaLBM, 'Manual'>>
-// 			lbmKg: number
-// 			callbackWithLBMCalculated: (lbm: LBM) => void
-// 	  }
-// 	| {
-// 			formulaLBMSelected: Exclude<FormulaLBM, 'Manual'>
-// 			genre: Genre
-// 			weight: Weight
-// 			height: Height
-// 			callbackWithLBMCalculated: (lbm: LBM) => void
-// 	  }
+export type BMRAndExercise = {
+	equation: BMREquation
+	exerciseMultiplier: ExerciseMultiplier
+	kcalPerDay: number
+	kcalPerDayMultipliedByExercise: number
+}
+
+export type LBMFormula = 'Boer' | 'James' | 'Hume' | 'Manual'
+export type BMREquation = 'Mifflin St Jeor' | 'Revised Harris-Benedict' | 'Katch-McArdle'
+export type ExerciseMultiplier = 'Sedentary' | 'Lightly active' | 'Moderately active' | 'Very active' | 'Extremely active'

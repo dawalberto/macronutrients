@@ -3,17 +3,17 @@ import { $userAttributes, updateUserLBM } from '@store/user-attributes'
 import { calculateLBM } from '@utils/functions'
 import clsx from 'clsx'
 import { useCallback, useState } from 'react'
-import type { FormulaLBM } from 'src/types'
+import type { LBMFormula } from 'src/types'
 
 export const LBMSelector = () => {
 	const { height, weight, genre } = useStore($userAttributes)
 	const [showManualLBMInput, setShowManualLBMInput] = useState(false)
 
-	const handleFormulaLBMChange = useCallback(
+	const handleLBMFormulaChange = useCallback(
 		(event: React.ChangeEvent<HTMLSelectElement>) => {
-			const formulaLBMSelected: FormulaLBM = event.target.value as unknown as FormulaLBM
-			setShowManualLBMInput(formulaLBMSelected === 'Manual')
-			calculateLBM({ height, weight, genre, formulaLBMSelected: formulaLBMSelected, callbackWithLBMCalculated: updateUserLBM })
+			const LBMFormulaSelected: LBMFormula = event.target.value as unknown as LBMFormula
+			setShowManualLBMInput(LBMFormulaSelected === 'Manual')
+			calculateLBM({ height, weight, genre, LBMFormulaSelected: LBMFormulaSelected, callbackWithLBMCalculated: updateUserLBM })
 		},
 		[height, weight, genre]
 	)
@@ -32,13 +32,13 @@ export const LBMSelector = () => {
 
 	return (
 		<div className='w-full'>
-			<label htmlFor='formulaLBM' className='mb-2 block text-sm font-medium text-amber-900'>
+			<label htmlFor='LBMFormula' className='mb-2 block text-sm font-medium text-amber-900'>
 				LBM formula
 			</label>
 			<div className='flex gap-2'>
 				<select
-					onChange={handleFormulaLBMChange}
-					id='formulaLBM'
+					onChange={handleLBMFormulaChange}
+					id='LBMFormula'
 					className={clsx(
 						showManualLBMInput ? 'w-3/5 md:w-3/4' : 'w-full',
 						'block w-full rounded-lg border border-amber-300 bg-amber-50 p-2.5 text-sm text-amber-900 focus:border-amber-500 focus:ring-amber-500'

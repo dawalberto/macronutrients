@@ -1,5 +1,5 @@
-import type { Age, Genre, Height, LBM } from 'src/types'
-import { calculateAge } from './functions'
+import type { Age, BMRAndExercise, ExerciseMultiplier, Genre, Height, LBM } from 'src/types'
+import { calculateAge, getExerciseMultiplierValue } from './functions'
 
 export const defaultWeight: Height = 63
 export const defaultHeight: Height = 169
@@ -11,4 +11,12 @@ export const defaultLbm: LBM = {
 	lbmKg: Number(lbm.toFixed(1)),
 	lbmPercentage: Math.round((lbm / defaultWeight) * 100),
 	bodyFatPercentage: Math.round(((defaultWeight - lbm) / defaultWeight) * 100),
+}
+const defaultExerciseMultiplier: ExerciseMultiplier = 'Moderately active'
+const kcalPerDay = 370 + 21.6 * (1 - defaultLbm.bodyFatPercentage / 100) * defaultWeight
+export const defaultBMRAndExercise: BMRAndExercise = {
+	equation: 'Katch-McArdle',
+	exerciseMultiplier: defaultExerciseMultiplier,
+	kcalPerDay: Math.round(kcalPerDay),
+	kcalPerDayMultipliedByExercise: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier)),
 }
