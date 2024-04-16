@@ -1,4 +1,4 @@
-import { defaultAge, defaultBMRAndExercise, defaultGenre, defaultHeight, defaultLbm, defaultWeight } from '@utils/constants'
+import { defaultAge, defaultBMRAndExercise, defaultGenre, defaultHeight, defaultLbm, defaultWeight } from '@utils/defaults'
 import { map } from 'nanostores'
 import type { Age, BMRAndExercise, Genre, Height, LBM, UserAttributes, Weight } from 'src/types'
 
