@@ -15,7 +15,7 @@ export const defaultLbm: LBM = {
 }
 
 const defaultBMREquation: BMREquation = 'Katch-McArdle'
-const defaultExerciseMultiplier: ExerciseMultiplier = 'Moderately active'
+export const defaultExerciseMultiplier: ExerciseMultiplier = 'Moderately active'
 const kcalPerDay = 370 + 21.6 * (1 - defaultLbm.bodyFatPercentage / 100) * defaultWeight
 export const defaultBMRAndExercise: BMRAndExercise = {
 	equation: defaultBMREquation,

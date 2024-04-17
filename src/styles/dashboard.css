@@ -16,19 +16,19 @@ input[type="range"]:focus {
 /* slider track */
 input[type="range"]::-webkit-slider-runnable-track {
   @apply bg-amber-400;
-  border-radius: 1rem;
-  height: 1rem;
+  /* border-radius: 1rem; */
+  height: 0.8rem;
 }
 
 /* slider thumb */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  margin-top: -8px; /* Centers thumb on the track */
+  margin-top: -0.4rem;
   @apply bg-amber-600;
-  border-radius: 1rem;
-  height: 2rem;
-  width: 2rem;
+  /* border-radius: 1rem; */
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 input[type="range"]:focus::-webkit-slider-thumb {
@@ -40,17 +40,17 @@ input[type="range"]:focus::-webkit-slider-thumb {
 /* slider track */
 input[type="range"]::-moz-range-track {
   @apply bg-amber-400;
-  border-radius: 1rem;
-  height: 1rem;
+  /* border-radius: 1rem; */
+  height: 0.8rem;
 }
 
 /* slider thumb */
 input[type="range"]::-moz-range-thumb {
   @apply bg-amber-400;
   border: none; /*Removes extra border that FF applies*/
-  border-radius: 1rem;
-  height: 2rem;
-  width: 2rem;
+  /* border-radius: 1rem; */
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 input[type="range"]:focus::-moz-range-thumb {
@@ -72,8 +72,8 @@ input[type="range"]:focus::-moz-range-thumb {
   height: 0;
 }
 .radio-button span {
-  width: 40px;
-  height: 40px;
+  width: 1.5rem;
+  height: 1.5rem;
   position: relative;
   margin-right: 5px;
   display: flex;
@@ -86,8 +86,8 @@ input[type="range"]:focus::-moz-range-thumb {
 .radio-button input:checked + span:after {
   content: "";
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 0.9rem;
+  height: 0.9rem;
   border-radius: 50%;
   @apply bg-amber-400;
 }
@@ -107,7 +107,7 @@ input[type="range"]:focus::-moz-range-thumb {
   @apply bg-amber-600;
 }
 .radio-button input:checked + span:before {
-  animation: growAndFade 0.2s ease-out;
+  animation: growAndFade 0.4s ease-out;
 }
 @keyframes growAndFade {
   0% {

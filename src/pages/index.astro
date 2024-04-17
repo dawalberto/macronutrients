@@ -1,4 +1,5 @@
 ---
+import { BMRSelector } from '@components/BMRSelector'
 import Dashboard from '@components/Dashboard'
 import { Development } from '@components/Development'
 import LBMSelector from '@components/LBMSelector'
@@ -19,6 +20,9 @@ import LBMSelector from '@components/LBMSelector'
 				</div>
 				<div>
 					<LBMSelector client:load />
+				</div>
+				<div>
+					<BMRSelector client:load />
 				</div>
 			</div>
 			<Development client:load />

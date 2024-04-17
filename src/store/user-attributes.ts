@@ -31,6 +31,7 @@ export const updateUserLBM = (lbm: LBM) => {
 	$userAttributes.setKey('lbm', lbm)
 }
 
+// TODO
 export const updateUserBMRAndExercise = (bmrAndExercise: BMRAndExercise) => {
 	$userAttributes.setKey('bmrAndExercise', bmrAndExercise)
 }

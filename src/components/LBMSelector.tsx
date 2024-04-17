@@ -32,17 +32,14 @@ export const LBMSelector = () => {
 
 	return (
 		<div className='w-full'>
-			<label htmlFor='LBMFormula' className='mb-2 block text-sm font-medium text-amber-900'>
+			<label htmlFor='LBMFormula' className='mb-2 block text-sm font-medium text-lime-900'>
 				LBM formula
 			</label>
 			<div className='flex gap-2'>
 				<select
 					onChange={handleLBMFormulaChange}
 					id='LBMFormula'
-					className={clsx(
-						showManualLBMInput ? 'w-3/5 md:w-3/4' : 'w-full',
-						'block w-full rounded-lg border border-amber-300 bg-amber-50 p-2.5 text-sm text-amber-900 focus:border-amber-500 focus:ring-amber-500'
-					)}
+					className={clsx(showManualLBMInput ? 'w-3/5' : 'w-full', 'block border border-lime-300 bg-lime-50 p-2.5 text-sm text-lime-900 focus:border-lime-500 focus:ring-lime-500')}
 				>
 					<option selected value='Boer'>
 						Boer
@@ -56,10 +53,7 @@ export const LBMSelector = () => {
 					name='manualLBMInput'
 					onChange={handleManualLBMInputChange}
 					placeholder='LBM in Kg'
-					className={clsx(
-						showManualLBMInput ? 'block w-2/5 md:w-1/4' : 'hidden',
-						'block rounded-lg border border-amber-300 bg-amber-50 p-2.5 text-sm text-amber-900 focus:border-amber-500 focus:ring-amber-500'
-					)}
+					className={clsx(showManualLBMInput ? 'block w-2/5' : 'hidden', 'block border border-lime-300 bg-lime-50 p-2.5 text-sm text-lime-900 focus:border-lime-500 focus:ring-lime-500')}
 				/>
 			</div>
 		</div>
