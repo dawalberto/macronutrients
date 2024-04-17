@@ -74,13 +74,13 @@ export const BMRSelector = () => {
 					id='exerciseMultiplier'
 					className='block w-full border border-sky-300 bg-sky-50 p-2.5 text-sm text-sky-900 focus:border-sky-500 focus:ring-sky-500'
 				>
-					<option value='Sedentary'>Sedentary 🥱</option>
-					<option value='Lightly active'>Lightly active 🏃‍♂️</option>
+					<option value='Sedentary'>🥱 Sedentary</option>
+					<option value='Lightly active'>🏃‍♂️ Lightly active</option>
 					<option selected value='Moderately active'>
-						Moderately active 💪
+						💪 Moderately active
 					</option>
-					<option value='Very active'>Very active 🏋️‍♀️</option>
-					<option value='Extremely active'>Extremely active 🔥</option>
+					<option value='Very active'>🏋️‍♀️ Very active</option>
+					<option value='Extremely active'>🔥 Extremely active</option>
 				</select>
 			</div>
 		</div>
