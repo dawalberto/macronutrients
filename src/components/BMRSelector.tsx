@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react'
 import { $userAttributes, updateUserBMRAndExercise } from '@store/user-attributes'
-import { defaultExerciseMultiplier } from '@utils/defaults'
+import { defaultBMREquation, defaultExerciseMultiplier } from '@utils/defaults'
 import { getExerciseMultiplierValue } from '@utils/functions'
 import { useCallback, useState } from 'react'
 import type { BMREquation, ExerciseMultiplier } from 'src/types'
@@ -59,26 +59,26 @@ export const BMRSelector = () => {
 		<div className='flex w-full flex-col gap-4'>
 			<div>
 				<h1 className='mb-2 block text-sm font-medium text-sky-900'>BMRSelector</h1>
-				<select onChange={handleBMREquationChange} id='BMREquation' className='block w-full border border-sky-300 bg-sky-50 p-2.5 text-sm text-sky-900 focus:border-sky-500 focus:ring-sky-500'>
+				<select
+					defaultValue={defaultBMREquation}
+					onChange={handleBMREquationChange}
+					className='block w-full border border-sky-300 bg-sky-50 p-2.5 text-sm text-sky-900 focus:border-sky-500 focus:ring-sky-500'
+				>
 					<option value='Mifflin St Jeor'>Mifflin St Jeor</option>
 					<option value='Revised Harris-Benedict'>Revised Harris-Benedict</option>
-					<option selected value='Katch-McArdle'>
-						Katch-McArdle
-					</option>
+					<option value='Katch-McArdle'>Katch-McArdle</option>
 				</select>
 			</div>
 			<div>
 				<h1 className='mb-2 block text-sm font-medium text-sky-900'>Exercise multiplier</h1>
 				<select
+					defaultValue={defaultExerciseMultiplier}
 					onChange={handleExerciseMultiplierChange}
-					id='exerciseMultiplier'
 					className='block w-full border border-sky-300 bg-sky-50 p-2.5 text-sm text-sky-900 focus:border-sky-500 focus:ring-sky-500'
 				>
 					<option value='Sedentary'>🥱 Sedentary</option>
 					<option value='Lightly active'>🏃‍♂️ Lightly active</option>
-					<option selected value='Moderately active'>
-						💪 Moderately active
-					</option>
+					<option value='Moderately active'>💪 Moderately active</option>
 					<option value='Very active'>🏋️‍♀️ Very active</option>
 					<option value='Extremely active'>🔥 Extremely active</option>
 				</select>

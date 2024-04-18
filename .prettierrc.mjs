@@ -5,7 +5,7 @@ const config = {
 	semi: false,
 	singleQuote: true,
 	jsxSingleQuote: true,
-	printWidth: 200,
+	printWidth: 150,
 }
 
 export default {

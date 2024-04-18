@@ -1,4 +1,6 @@
+import { $userAttributes } from '@store/user-attributes'
 import type { ExerciseMultiplier, Genre, Height, LBM, LBMFormula, Weight } from 'src/types'
+import { defaultLbm } from './defaults'
 
 export const calculateAge = (birthDate: string) => {
 	const today = new Date()
@@ -14,34 +16,24 @@ export const calculateAge = (birthDate: string) => {
 	return age
 }
 
-export const calculateLBM = ({
-	LBMFormulaSelected,
-	genre,
-	weight,
-	height,
-	callbackWithLBMCalculated,
-}: {
-	LBMFormulaSelected: LBMFormula
-	genre: Genre
-	weight: Weight
-	height: Height
-	callbackWithLBMCalculated: (lbm: LBM) => void
-}): void => {
-	let lbm
+export const calculateLBM = ({ LBMFormulaSelected, callbackOnCalculate }: { LBMFormulaSelected: LBMFormula; callbackOnCalculate: (lbm: LBM) => void }): void => {
+	const { weight, height, genre } = $userAttributes.get()
+	const dataToCalculateLBM = { weight, height, genre }
+	let lbm: LBM = defaultLbm
+
 	switch (LBMFormulaSelected) {
 		case 'Boer':
-			lbm = calculateLBMBoer({ weight, height, genre })
-			callbackWithLBMCalculated(lbm)
-			return
+			lbm = calculateLBMBoer(dataToCalculateLBM)
+			break
 		case 'James':
-			lbm = calculateLBMJames({ weight, height, genre })
-			callbackWithLBMCalculated(lbm)
-			return
+			lbm = calculateLBMJames(dataToCalculateLBM)
+			break
 		case 'Hume':
-			lbm = calculateLBMHume({ weight, height, genre })
-			callbackWithLBMCalculated(lbm)
-			return
+			lbm = calculateLBMHume(dataToCalculateLBM)
+			break
 	}
+
+	callbackOnCalculate(lbm)
 }
 
 const calculateLBMBoer = ({ genre, weight, height }: { genre: Genre; weight: Weight; height: Height }): LBM => {

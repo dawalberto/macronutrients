@@ -1,5 +1,6 @@
 import { defaultAge, defaultBMRAndExercise, defaultGenre, defaultHeight, defaultLbm, defaultWeight } from '@utils/defaults'
-import { map } from 'nanostores'
+import { calculateLBM } from '@utils/functions'
+import { listenKeys, map } from 'nanostores'
 import type { Age, BMRAndExercise, Genre, Height, LBM, UserAttributes, Weight } from 'src/types'
 
 export const $userAttributes = map<UserAttributes>({
@@ -31,7 +32,19 @@ export const updateUserLBM = (lbm: LBM) => {
 	$userAttributes.setKey('lbm', lbm)
 }
 
-// TODO
 export const updateUserBMRAndExercise = (bmrAndExercise: BMRAndExercise) => {
 	$userAttributes.setKey('bmrAndExercise', bmrAndExercise)
 }
+
+// $userAttributes.subscribe((value, oldValue) => {
+// 	console.log('🦊 value', value)
+// 	console.log('🦊 oldValue', oldValue)
+// 	const { genre, height, weight, lbm } = value
+// 	const updatedLBM = calculateLBM({ genre, height, weight, LBMFormulaSelected: lbm.formula })
+// 	console.log('🦊 updatedLBM', updatedLBM)
+// })
+
+listenKeys($userAttributes, ['weight', 'height', 'genre'], ({ lbm }) => {
+	console.log('🦊 lbm', lbm)
+	calculateLBM({ LBMFormulaSelected: lbm.formula, callbackOnCalculate: updateUserLBM })
+})
