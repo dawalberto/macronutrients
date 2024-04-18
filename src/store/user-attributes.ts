@@ -1,6 +1,6 @@
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
 import { defaultAge, defaultBMRAndExercise, defaultGenre, defaultHeight, defaultLbm, defaultWeight } from '@utils/defaults'
-import { calculateLBM } from '@utils/lbm-functions'
+import { calculateAndUpdateLBM } from '@utils/lbm-functions'
 import { listenKeys, map } from 'nanostores'
 import type { Age, BMRAndExercise, Genre, Height, LBM, UserAttributes, Weight } from 'src/types'
 
@@ -37,8 +37,8 @@ export const $updateUserBMRAndExercise = (bmrAndExercise: BMRAndExercise) => {
 	$userAttributes.setKey('bmrAndExercise', bmrAndExercise)
 }
 
-listenKeys($userAttributes, ['weight', 'height', 'genre'], ({ lbm }) => {
-	calculateLBM({ LBMFormulaSelected: lbm.formula, callbackOnCalculate: $updateUserLBM })
+listenKeys($userAttributes, ['weight', 'height', 'genre'], () => {
+	calculateAndUpdateLBM({})
 })
 
 listenKeys($userAttributes, ['weight', 'height', 'genre', 'age', 'lbm'], () => {

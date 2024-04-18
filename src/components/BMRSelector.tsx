@@ -1,24 +1,24 @@
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
 import { defaultBMREquation, defaultExerciseMultiplier } from '@utils/defaults'
-import { useCallback } from 'react'
 import type { BMREquation, ExerciseMultiplier } from 'src/types'
 
 export const BMRSelector = () => {
-	const handleBMREquationChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleBMREquationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const equation: BMREquation = event.target.value as unknown as BMREquation
 		calculateAndUpdateBMR({ equation })
-	}, [])
+	}
 
-	const handleExerciseMultiplierChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleExerciseMultiplierChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const exerciseMultiplier = event.target.value as unknown as ExerciseMultiplier
 		calculateAndUpdateBMR({ exerciseMultiplier })
-	}, [])
+	}
 
 	return (
 		<div className='flex w-full flex-col gap-4'>
 			<div>
 				<h1 className='mb-2 block text-sm font-medium text-sky-900'>BMR equation</h1>
 				<select
+					name='BMREquation'
 					defaultValue={defaultBMREquation}
 					onChange={handleBMREquationChange}
 					className='block w-full border border-sky-300 bg-sky-50 p-2.5 text-sm text-sky-900 focus:border-sky-500 focus:ring-sky-500'
@@ -31,6 +31,7 @@ export const BMRSelector = () => {
 			<div>
 				<h1 className='mb-2 block text-sm font-medium text-sky-900'>Exercise multiplier</h1>
 				<select
+					name='exerciseMultiplier'
 					defaultValue={defaultExerciseMultiplier}
 					onChange={handleExerciseMultiplierChange}
 					className='block w-full border border-sky-300 bg-sky-50 p-2.5 text-sm text-sky-900 focus:border-sky-500 focus:ring-sky-500'

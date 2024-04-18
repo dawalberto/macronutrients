@@ -1,19 +1,13 @@
-import { $userAttributes } from '@store/user-attributes'
+import { $updateUserLBM, $userAttributes } from '@store/user-attributes'
 import type { Genre, Height, LBM, LBMFormula, Weight } from 'src/types'
 import { defaultLbm } from './defaults'
 
-export const calculateLBM = ({
-	LBMFormulaSelected,
-	callbackOnCalculate,
-}: {
-	LBMFormulaSelected: LBMFormula
-	callbackOnCalculate: (lbm: LBM) => void
-}): void => {
+export const calculateAndUpdateLBM = ({ formula, lbmManual }: { formula?: LBMFormula; lbmManual?: number }): void => {
 	const { weight, height, genre, lbm: $lbm } = $userAttributes.get()
 	const dataToCalculateLBM = { weight, height, genre }
 	let lbm: LBM = defaultLbm
 
-	switch (LBMFormulaSelected) {
+	switch (formula ?? $lbm.formula) {
 		case 'Boer':
 			lbm = calculateLBMBoer(dataToCalculateLBM)
 			break
@@ -24,11 +18,11 @@ export const calculateLBM = ({
 			lbm = calculateLBMHume(dataToCalculateLBM)
 			break
 		case 'Manual':
-			lbm = calculateLBMManual({ weight, lbm: $lbm.lbmKg })
+			lbm = calculateLBMManual({ weight, lbm: lbmManual ?? $lbm.lbmKg })
 			break
 	}
 
-	callbackOnCalculate(lbm)
+	$updateUserLBM(lbm)
 }
 
 const calculateLBMBoer = ({ genre, weight, height }: { genre: Genre; weight: Weight; height: Height }): LBM => {

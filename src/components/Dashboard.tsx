@@ -33,34 +33,41 @@ const Dashboard = () => {
 	return (
 		<div className='mx-auto flex w-full flex-col items-center justify-center gap-6 text-sm font-medium text-amber-900'>
 			<div className='flex w-full justify-center gap-6'>
-				<label className='radio-button'>
-					<input type='radio' name='genre' value='male' checked={genre === 'male'} onChange={handleUserAttributeChange} />
+				<label className='radio-button' htmlFor='genreMale'>
+					<input type='radio' id='genreMale' name='genre' value='male' checked={genre === 'male'} onChange={handleUserAttributeChange} />
 					🙋‍♂️ Male
 					<span />
 				</label>
-				<label className='radio-button'>
-					<input type='radio' name='genre' value='female' checked={genre === 'female'} onChange={handleUserAttributeChange} />
+				<label className='radio-button' htmlFor='genreFemale'>
+					<input
+						type='radio'
+						id='genreFemale'
+						name='genre'
+						value='female'
+						checked={genre === 'female'}
+						onChange={handleUserAttributeChange}
+					/>
 					🙋‍♀️ Female
 					<span />
 				</label>
 			</div>
 			<div className='flex w-full flex-col items-start gap-3'>
-				<label htmlFor='weightRangeInput'>
+				<label htmlFor='weight'>
 					Weight: <span className='font-bold text-amber-600'>{weight}</span> kg
 				</label>
-				<input type='range' name='weight' value={weight} min='0' max='200' onChange={handleUserAttributeChange} />
+				<input type='range' id='weight' name='weight' value={weight} min='0' max='200' onChange={handleUserAttributeChange} />
 			</div>
 			<div className='flex w-full flex-col items-start gap-3'>
-				<label htmlFor='heightRangeInput'>
+				<label htmlFor='height'>
 					Height: <span className='font-bold text-amber-600'>{height}</span> cm
 				</label>
-				<input type='range' name='height' value={height} min='0' max='250' onChange={handleUserAttributeChange} />
+				<input type='range' id='height' name='height' value={height} min='0' max='250' onChange={handleUserAttributeChange} />
 			</div>
 			<div className='flex w-full flex-col items-start gap-3'>
-				<label htmlFor='ageRangeInput'>
+				<label htmlFor='age'>
 					Age: <span className='font-bold text-amber-600'>{age}</span>
 				</label>
-				<input type='range' name='age' value={age} min='0' max='100' onChange={handleUserAttributeChange} />
+				<input type='range' id='age' name='age' value={age} min='0' max='100' onChange={handleUserAttributeChange} />
 			</div>
 		</div>
 	)

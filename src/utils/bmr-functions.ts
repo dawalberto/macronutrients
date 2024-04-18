@@ -4,8 +4,6 @@ import { defaultBMRAndExercise } from './defaults'
 import { getExerciseMultiplierValue } from './global-functions'
 
 export const calculateAndUpdateBMR = ({ equation, exerciseMultiplier }: { equation?: BMREquation; exerciseMultiplier?: ExerciseMultiplier }) => {
-	console.log('🦊 equation', equation)
-	console.log('🦊 exerciseMultiplier', exerciseMultiplier)
 	const { bmrAndExercise } = $userAttributes.get()
 	let bmr: BMRAndExercise = defaultBMRAndExercise
 

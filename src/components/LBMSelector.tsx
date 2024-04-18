@@ -1,35 +1,24 @@
-import { useStore } from '@nanostores/react'
-import { $updateUserLBM, $userAttributes } from '@store/user-attributes'
 import { defaultLBMFormula } from '@utils/defaults'
-import { calculateLBM } from '@utils/lbm-functions'
+import { calculateAndUpdateLBM } from '@utils/lbm-functions'
 import clsx from 'clsx'
 import { useCallback, useState } from 'react'
 import type { LBMFormula } from 'src/types'
 
 export const LBMSelector = () => {
-	const { weight } = useStore($userAttributes)
 	const [showManualLBMInput, setShowManualLBMInput] = useState(false)
 
 	const handleLBMFormulaChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
-		const LBMFormulaSelected: LBMFormula = event.target.value as unknown as LBMFormula
-		setShowManualLBMInput(LBMFormulaSelected === 'Manual')
-		calculateLBM({ LBMFormulaSelected: LBMFormulaSelected, callbackOnCalculate: $updateUserLBM })
+		const formula: LBMFormula = event.target.value as unknown as LBMFormula
+		setShowManualLBMInput(formula === 'Manual')
+		calculateAndUpdateLBM({ formula })
 	}, [])
 
-	const handleManualLBMInputChange = useCallback(
-		(event: React.ChangeEvent<HTMLInputElement>) => {
-			const lbm: number = Number(event.target.value as string)
-			if (!isNaN(lbm)) {
-				$updateUserLBM({
-					formula: 'Manual',
-					lbmKg: Number(lbm.toFixed(1)),
-					lbmPercentage: Math.round((lbm / weight) * 100),
-					bodyFatPercentage: Math.round(((weight - lbm) / weight) * 100),
-				})
-			}
-		},
-		[weight]
-	)
+	const handleManualLBMInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+		const lbmManual: number = Number(event.target.value as string)
+		if (!isNaN(lbmManual)) {
+			calculateAndUpdateLBM({ lbmManual })
+		}
+	}, [])
 
 	return (
 		<div className='w-full'>
@@ -38,6 +27,7 @@ export const LBMSelector = () => {
 			</label>
 			<div className='flex gap-2'>
 				<select
+					name='LBMFormula'
 					defaultValue={defaultLBMFormula}
 					onChange={handleLBMFormulaChange}
 					className={clsx(
