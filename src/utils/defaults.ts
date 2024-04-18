@@ -15,12 +15,16 @@ export const defaultLbm: LBM = {
 	bodyFatPercentage: Math.round(((defaultWeight - lbm) / defaultWeight) * 100),
 }
 
-export const defaultBMREquation: BMREquation = 'Katch-McArdle'
 export const defaultExerciseMultiplier: ExerciseMultiplier = 'Moderately active'
-const kcalPerDay = 370 + 21.6 * (1 - defaultLbm.bodyFatPercentage / 100) * defaultWeight
+export const defaultBMREquation: BMREquation = 'Katch-McArdle'
+const kcalPerDay = 370 + 21.6 * (1 - defaultLbm.bodyFatPercentage / 100) * defaultWeight // 'Katch-McArdle' equation calculation
+export const defaultSurplus = 300
+export const defaultDeficit = 300
 export const defaultBMRAndExercise: BMRAndExercise = {
 	equation: defaultBMREquation,
 	exerciseMultiplier: defaultExerciseMultiplier,
 	kcalPerDay: Math.round(kcalPerDay),
-	kcalPerDayMultipliedByExercise: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier)),
+	kcalPerDayToMaintain: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier)),
+	kcalPerDayToSurplus: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier) + defaultSurplus),
+	kcalPerDayToDeficit: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier) - defaultDeficit),
 }

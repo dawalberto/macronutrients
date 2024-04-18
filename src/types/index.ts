@@ -21,7 +21,9 @@ export type BMRAndExercise = {
 	equation: BMREquation
 	exerciseMultiplier: ExerciseMultiplier
 	kcalPerDay: number
-	kcalPerDayMultipliedByExercise: number
+	kcalPerDayToMaintain: number
+	kcalPerDayToSurplus: number
+	kcalPerDayToDeficit: number
 }
 
 export type LBMFormula = 'Boer' | 'James' | 'Hume' | 'Manual'
