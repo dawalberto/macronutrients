@@ -2,6 +2,7 @@
 import { BMRSelector } from '@components/BMRSelector'
 import Dashboard from '@components/Dashboard'
 import { Development } from '@components/Development'
+import { GoalSelector } from '@components/GoalSelector'
 import LBMSelector from '@components/LBMSelector'
 ---
 
@@ -17,6 +18,9 @@ import LBMSelector from '@components/LBMSelector'
 			<div class='flex flex-col gap-6'>
 				<div>
 					<Dashboard client:load />
+				</div>
+				<div>
+					<GoalSelector client:load />
 				</div>
 				<div>
 					<LBMSelector client:load />
