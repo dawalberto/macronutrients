@@ -27,6 +27,7 @@ export const LBMSelector = () => {
 			</label>
 			<div className='flex gap-2'>
 				<select
+					id='LBMFormula'
 					name='LBMFormula'
 					defaultValue={defaultLBMFormula}
 					onChange={handleLBMFormulaChange}

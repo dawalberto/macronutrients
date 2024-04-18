@@ -16,8 +16,11 @@ export const BMRSelector = () => {
 	return (
 		<div className='flex w-full flex-col gap-4'>
 			<div>
-				<h1 className='mb-2 block text-sm font-medium text-sky-900'>BMR equation</h1>
+				<label htmlFor='BMREquation' className='mb-2 block text-sm font-medium text-sky-900'>
+					BMR equation
+				</label>
 				<select
+					id='BMREquation'
 					name='BMREquation'
 					defaultValue={defaultBMREquation}
 					onChange={handleBMREquationChange}
@@ -29,8 +32,11 @@ export const BMRSelector = () => {
 				</select>
 			</div>
 			<div>
-				<h1 className='mb-2 block text-sm font-medium text-sky-900'>Exercise multiplier</h1>
+				<label htmlFor='exerciseMultiplier' className='mb-2 block text-sm font-medium text-sky-900'>
+					Exercise multiplier
+				</label>
 				<select
+					id='exerciseMultiplier'
 					name='exerciseMultiplier'
 					defaultValue={defaultExerciseMultiplier}
 					onChange={handleExerciseMultiplierChange}

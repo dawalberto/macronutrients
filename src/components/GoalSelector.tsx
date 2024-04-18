@@ -11,8 +11,11 @@ export const GoalSelector = () => {
 	return (
 		<div className='flex w-full flex-col gap-4'>
 			<div>
-				<h1 className='mb-2 block text-sm font-medium text-pink-900'>Goal</h1>
+				<label htmlFor='goal' className='mb-2 block text-sm font-medium text-pink-900'>
+					Goal
+				</label>
 				<select
+					id='goal'
 					name='goal'
 					defaultValue={defaultGoal}
 					onChange={handleGoalChange}
