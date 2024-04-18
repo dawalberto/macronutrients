@@ -33,9 +33,7 @@ const calculateBMRMifflin = ({ exerciseMultiplier }: { exerciseMultiplier?: Exer
 		bmr = 10 * weight + 6.25 * height - 5 * age - 161
 	}
 
-	const kcalPerDayToMaintain = bmr * exerciseMultiplierValue
-	const kcalPerDayToSurplus = bmr * exerciseMultiplierValue + defaultSurplus
-	const kcalPerDayToDeficit = bmr * exerciseMultiplierValue - defaultDeficit
+	const { kcalPerDayToMaintain, kcalPerDayToSurplus, kcalPerDayToDeficit } = getKcalPerDay({ bmr, exerciseMultiplierValue })
 
 	return {
 		equation: 'Mifflin St Jeor',
@@ -57,10 +55,7 @@ const calculateBMRRevisedHarris = ({ exerciseMultiplier }: { exerciseMultiplier?
 	} else {
 		bmr = 9.247 * weight + 3.098 * height - 4.33 * age + 447.593
 	}
-
-	const kcalPerDayToMaintain = bmr * exerciseMultiplierValue
-	const kcalPerDayToSurplus = bmr * exerciseMultiplierValue + defaultSurplus
-	const kcalPerDayToDeficit = bmr * exerciseMultiplierValue - defaultDeficit
+	const { kcalPerDayToMaintain, kcalPerDayToSurplus, kcalPerDayToDeficit } = getKcalPerDay({ bmr, exerciseMultiplierValue })
 
 	return {
 		equation: 'Revised Harris-Benedict',
@@ -76,10 +71,7 @@ const calculateBMRKatch = ({ exerciseMultiplier }: { exerciseMultiplier?: Exerci
 	const { weight, lbm, bmrAndExercise } = $userAttributes.get()
 	const exerciseMultiplierValue = getExerciseMultiplierValue(exerciseMultiplier ?? bmrAndExercise.exerciseMultiplier)
 	const bmr = 370 + 21.6 * (1 - lbm.bodyFatPercentage / 100) * weight
-
-	const kcalPerDayToMaintain = bmr * exerciseMultiplierValue
-	const kcalPerDayToSurplus = bmr * exerciseMultiplierValue + defaultSurplus
-	const kcalPerDayToDeficit = bmr * exerciseMultiplierValue - defaultDeficit
+	const { kcalPerDayToMaintain, kcalPerDayToSurplus, kcalPerDayToDeficit } = getKcalPerDay({ bmr, exerciseMultiplierValue })
 
 	return {
 		equation: 'Katch-McArdle',
@@ -88,5 +80,23 @@ const calculateBMRKatch = ({ exerciseMultiplier }: { exerciseMultiplier?: Exerci
 		kcalPerDayToMaintain: Math.round(kcalPerDayToMaintain),
 		kcalPerDayToSurplus: Math.round(kcalPerDayToSurplus),
 		kcalPerDayToDeficit: Math.round(kcalPerDayToDeficit),
+	}
+}
+
+const getKcalPerDay = ({
+	bmr,
+	exerciseMultiplierValue,
+}: {
+	bmr: number
+	exerciseMultiplierValue: number
+}): Pick<BMRAndExercise, 'kcalPerDayToMaintain' | 'kcalPerDayToSurplus' | 'kcalPerDayToDeficit'> => {
+	const kcalPerDayToMaintain = bmr * exerciseMultiplierValue
+	const kcalPerDayToSurplus = bmr * exerciseMultiplierValue + defaultSurplus
+	const kcalPerDayToDeficit = bmr * exerciseMultiplierValue - defaultDeficit
+
+	return {
+		kcalPerDayToMaintain,
+		kcalPerDayToSurplus,
+		kcalPerDayToDeficit,
 	}
 }
