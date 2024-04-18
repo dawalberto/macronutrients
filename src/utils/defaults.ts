@@ -1,5 +1,5 @@
 import type { Age, BMRAndExercise, BMREquation, ExerciseMultiplier, Genre, Height, LBM, LBMFormula } from 'src/types'
-import { calculateAge, getExerciseMultiplierValue } from './functions'
+import { calculateAge, getExerciseMultiplierValue } from './global-functions'
 
 export const defaultWeight: Height = 63
 export const defaultHeight: Height = 169

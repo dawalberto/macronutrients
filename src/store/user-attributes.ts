@@ -1,5 +1,6 @@
+import { calculateAndUpdateBMR } from '@utils/bmr-functions'
 import { defaultAge, defaultBMRAndExercise, defaultGenre, defaultHeight, defaultLbm, defaultWeight } from '@utils/defaults'
-import { calculateLBM } from '@utils/functions'
+import { calculateLBM } from '@utils/lbm-functions'
 import { listenKeys, map } from 'nanostores'
 import type { Age, BMRAndExercise, Genre, Height, LBM, UserAttributes, Weight } from 'src/types'
 
@@ -12,39 +13,34 @@ export const $userAttributes = map<UserAttributes>({
 	bmrAndExercise: defaultBMRAndExercise,
 })
 
-export const updateUserHeight = (height: Height) => {
+export const $updateUserHeight = (height: Height) => {
 	$userAttributes.setKey('height', height)
 }
 
-export const updateUserWeight = (weight: Weight) => {
+export const $updateUserWeight = (weight: Weight) => {
 	$userAttributes.setKey('weight', weight)
 }
 
-export const updateUserAge = (age: Age) => {
+export const $updateUserAge = (age: Age) => {
 	$userAttributes.setKey('age', age)
 }
 
-export const updateUserGenre = (genre: Genre) => {
+export const $updateUserGenre = (genre: Genre) => {
 	$userAttributes.setKey('genre', genre)
 }
 
-export const updateUserLBM = (lbm: LBM) => {
+export const $updateUserLBM = (lbm: LBM) => {
 	$userAttributes.setKey('lbm', lbm)
 }
 
-export const updateUserBMRAndExercise = (bmrAndExercise: BMRAndExercise) => {
+export const $updateUserBMRAndExercise = (bmrAndExercise: BMRAndExercise) => {
 	$userAttributes.setKey('bmrAndExercise', bmrAndExercise)
 }
 
-// $userAttributes.subscribe((value, oldValue) => {
-// 	console.log('🦊 value', value)
-// 	console.log('🦊 oldValue', oldValue)
-// 	const { genre, height, weight, lbm } = value
-// 	const updatedLBM = calculateLBM({ genre, height, weight, LBMFormulaSelected: lbm.formula })
-// 	console.log('🦊 updatedLBM', updatedLBM)
-// })
-
 listenKeys($userAttributes, ['weight', 'height', 'genre'], ({ lbm }) => {
-	console.log('🦊 lbm', lbm)
-	calculateLBM({ LBMFormulaSelected: lbm.formula, callbackOnCalculate: updateUserLBM })
+	calculateLBM({ LBMFormulaSelected: lbm.formula, callbackOnCalculate: $updateUserLBM })
+})
+
+listenKeys($userAttributes, ['weight', 'height', 'genre', 'age', 'lbm'], () => {
+	calculateAndUpdateBMR({})
 })

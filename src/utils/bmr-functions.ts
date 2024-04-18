@@ -1,0 +1,76 @@
+import { $updateUserBMRAndExercise, $userAttributes } from '@store/user-attributes'
+import type { BMRAndExercise, BMREquation, ExerciseMultiplier } from 'src/types'
+import { defaultBMRAndExercise } from './defaults'
+import { getExerciseMultiplierValue } from './global-functions'
+
+export const calculateAndUpdateBMR = ({ equation, exerciseMultiplier }: { equation?: BMREquation; exerciseMultiplier?: ExerciseMultiplier }) => {
+	console.log('🦊 equation', equation)
+	console.log('🦊 exerciseMultiplier', exerciseMultiplier)
+	const { bmrAndExercise } = $userAttributes.get()
+	let bmr: BMRAndExercise = defaultBMRAndExercise
+
+	switch (equation ?? bmrAndExercise.equation) {
+		case 'Mifflin St Jeor':
+			bmr = calculateBMRMifflin({ exerciseMultiplier })
+			break
+		case 'Revised Harris-Benedict':
+			bmr = calculateBMRRevisedHarris({ exerciseMultiplier })
+			break
+		case 'Katch-McArdle':
+			bmr = calculateBMRKatch({ exerciseMultiplier })
+			break
+	}
+
+	$updateUserBMRAndExercise(bmr)
+}
+
+const calculateBMRMifflin = ({ exerciseMultiplier }: { exerciseMultiplier?: ExerciseMultiplier | undefined }): BMRAndExercise => {
+	const { weight, height, genre, age, bmrAndExercise } = $userAttributes.get()
+	const exerciseMultiplierValue = getExerciseMultiplierValue(exerciseMultiplier ?? bmrAndExercise.exerciseMultiplier)
+	let bmr = 0
+
+	if (genre === 'male') {
+		bmr = 10 * weight + 6.25 * height - 5 * age + 5
+	} else {
+		bmr = 10 * weight + 6.25 * height - 5 * age - 161
+	}
+
+	return {
+		equation: 'Mifflin St Jeor',
+		exerciseMultiplier: exerciseMultiplier ?? bmrAndExercise.exerciseMultiplier,
+		kcalPerDay: Math.round(bmr),
+		kcalPerDayMultipliedByExercise: Math.round(bmr * exerciseMultiplierValue),
+	}
+}
+
+const calculateBMRRevisedHarris = ({ exerciseMultiplier }: { exerciseMultiplier?: ExerciseMultiplier | undefined }): BMRAndExercise => {
+	const { weight, height, genre, age, bmrAndExercise } = $userAttributes.get()
+	const exerciseMultiplierValue = getExerciseMultiplierValue(exerciseMultiplier ?? bmrAndExercise.exerciseMultiplier)
+	let bmr = 0
+
+	if (genre === 'male') {
+		bmr = 13.397 * weight + 4.799 * height - 5.677 * age + 88.362
+	} else {
+		bmr = 9.247 * weight + 3.098 * height - 4.33 * age + 447.593
+	}
+
+	return {
+		equation: 'Revised Harris-Benedict',
+		exerciseMultiplier: exerciseMultiplier ?? bmrAndExercise.exerciseMultiplier,
+		kcalPerDay: Math.round(bmr),
+		kcalPerDayMultipliedByExercise: Math.round(bmr * exerciseMultiplierValue),
+	}
+}
+
+const calculateBMRKatch = ({ exerciseMultiplier }: { exerciseMultiplier?: ExerciseMultiplier | undefined }): BMRAndExercise => {
+	const { weight, lbm, bmrAndExercise } = $userAttributes.get()
+	const exerciseMultiplierValue = getExerciseMultiplierValue(exerciseMultiplier ?? bmrAndExercise.exerciseMultiplier)
+	const bmr = 370 + 21.6 * (1 - lbm.bodyFatPercentage / 100) * weight
+
+	return {
+		equation: 'Katch-McArdle',
+		exerciseMultiplier: exerciseMultiplier ?? bmrAndExercise.exerciseMultiplier,
+		kcalPerDay: Math.round(bmr),
+		kcalPerDayMultipliedByExercise: Math.round(bmr * exerciseMultiplierValue),
+	}
+}

@@ -1,64 +1,23 @@
-import { useStore } from '@nanostores/react'
-import { $userAttributes, updateUserBMRAndExercise } from '@store/user-attributes'
+import { calculateAndUpdateBMR } from '@utils/bmr-functions'
 import { defaultBMREquation, defaultExerciseMultiplier } from '@utils/defaults'
-import { getExerciseMultiplierValue } from '@utils/functions'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import type { BMREquation, ExerciseMultiplier } from 'src/types'
 
 export const BMRSelector = () => {
-	const { height, weight, genre, age, bmrAndExercise, lbm } = useStore($userAttributes)
-	const [exerciseMultiplier, setExerciseMultiplier] = useState({
-		label: defaultExerciseMultiplier,
-		value: getExerciseMultiplierValue(defaultExerciseMultiplier),
-	})
+	const handleBMREquationChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+		const equation: BMREquation = event.target.value as unknown as BMREquation
+		calculateAndUpdateBMR({ equation })
+	}, [])
 
-	const handleBMREquationChange = useCallback(
-		(event: React.ChangeEvent<HTMLSelectElement>) => {
-			const BMREquationSelected: BMREquation = event.target.value as unknown as BMREquation
-			let bmr = 0
-			switch (BMREquationSelected) {
-				case 'Mifflin St Jeor':
-					if (genre === 'male') {
-						bmr = 10 * weight + 6.25 * height - 5 * age + 5
-					} else {
-						bmr = 10 * weight + 6.25 * height - 5 * age - 161
-					}
-					break
-				case 'Revised Harris-Benedict':
-					if (genre === 'male') {
-						bmr = 13.397 * weight + 4.799 * height - 5.677 * age + 88.362
-					} else {
-						bmr = 9.247 * weight + 3.098 * height - 4.33 * age + 447.593
-					}
-					break
-				case 'Katch-McArdle':
-					bmr = 370 + 21.6 * (1 - lbm.bodyFatPercentage / 100) * weight
-					break
-			}
-			updateUserBMRAndExercise({
-				equation: BMREquationSelected,
-				exerciseMultiplier: exerciseMultiplier.label,
-				kcalPerDay: Math.round(bmr),
-				kcalPerDayMultipliedByExercise: Math.round(bmr * exerciseMultiplier.value),
-			})
-		},
-		[weight, height, age, lbm, exerciseMultiplier]
-	)
-
-	const handleExerciseMultiplierChange = useCallback(
-		(event: React.ChangeEvent<HTMLSelectElement>) => {
-			const exerciseLabel = event.target.value as unknown as ExerciseMultiplier
-			const exerciseValue = getExerciseMultiplierValue(exerciseLabel)
-			setExerciseMultiplier({ label: exerciseLabel, value: exerciseValue })
-			updateUserBMRAndExercise({ ...bmrAndExercise, kcalPerDayMultipliedByExercise: Math.round(bmrAndExercise.kcalPerDay * exerciseValue) })
-		},
-		[bmrAndExercise]
-	)
+	const handleExerciseMultiplierChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+		const exerciseMultiplier = event.target.value as unknown as ExerciseMultiplier
+		calculateAndUpdateBMR({ exerciseMultiplier })
+	}, [])
 
 	return (
 		<div className='flex w-full flex-col gap-4'>
 			<div>
-				<h1 className='mb-2 block text-sm font-medium text-sky-900'>BMRSelector</h1>
+				<h1 className='mb-2 block text-sm font-medium text-sky-900'>BMR equation</h1>
 				<select
 					defaultValue={defaultBMREquation}
 					onChange={handleBMREquationChange}

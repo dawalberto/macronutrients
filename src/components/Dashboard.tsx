@@ -1,5 +1,5 @@
 import { useStore } from '@nanostores/react'
-import { $userAttributes, updateUserAge, updateUserGenre, updateUserHeight, updateUserWeight } from '@store/user-attributes'
+import { $updateUserAge, $updateUserGenre, $updateUserHeight, $updateUserWeight, $userAttributes } from '@store/user-attributes'
 import '@styles/dashboard.css'
 import React, { useCallback } from 'react'
 import type { Genre, UserAttributesNamesDashboard } from 'src/types'
@@ -16,16 +16,16 @@ const Dashboard = () => {
 
 		switch (attribute) {
 			case 'weight':
-				updateUserWeight(value as number)
+				$updateUserWeight(value as number)
 				return
 			case 'height':
-				updateUserHeight(value as number)
+				$updateUserHeight(value as number)
 				return
 			case 'age':
-				updateUserAge(value as number)
+				$updateUserAge(value as number)
 				return
 			case 'genre':
-				updateUserGenre(value as Genre)
+				$updateUserGenre(value as Genre)
 				return
 		}
 	}, [])

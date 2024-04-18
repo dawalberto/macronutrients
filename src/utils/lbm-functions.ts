@@ -1,23 +1,15 @@
 import { $userAttributes } from '@store/user-attributes'
-import type { ExerciseMultiplier, Genre, Height, LBM, LBMFormula, Weight } from 'src/types'
+import type { Genre, Height, LBM, LBMFormula, Weight } from 'src/types'
 import { defaultLbm } from './defaults'
 
-export const calculateAge = (birthDate: string) => {
-	const today = new Date()
-	const dob = new Date(birthDate)
-
-	let age = today.getFullYear() - dob.getFullYear()
-	const monthDiff = today.getMonth() - dob.getMonth()
-
-	if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-		age--
-	}
-
-	return age
-}
-
-export const calculateLBM = ({ LBMFormulaSelected, callbackOnCalculate }: { LBMFormulaSelected: LBMFormula; callbackOnCalculate: (lbm: LBM) => void }): void => {
-	const { weight, height, genre } = $userAttributes.get()
+export const calculateLBM = ({
+	LBMFormulaSelected,
+	callbackOnCalculate,
+}: {
+	LBMFormulaSelected: LBMFormula
+	callbackOnCalculate: (lbm: LBM) => void
+}): void => {
+	const { weight, height, genre, lbm: $lbm } = $userAttributes.get()
 	const dataToCalculateLBM = { weight, height, genre }
 	let lbm: LBM = defaultLbm
 
@@ -30,6 +22,9 @@ export const calculateLBM = ({ LBMFormulaSelected, callbackOnCalculate }: { LBMF
 			break
 		case 'Hume':
 			lbm = calculateLBMHume(dataToCalculateLBM)
+			break
+		case 'Manual':
+			lbm = calculateLBMManual({ weight, lbm: $lbm.lbmKg })
 			break
 	}
 
@@ -87,17 +82,11 @@ const calculateLBMHume = ({ genre, weight, height }: { genre: Genre; weight: Wei
 	}
 }
 
-export const getExerciseMultiplierValue = (exerciseMultiplier: ExerciseMultiplier) => {
-	switch (exerciseMultiplier) {
-		case 'Sedentary':
-			return 1.2
-		case 'Lightly active':
-			return 1.375
-		case 'Moderately active':
-			return 1.55
-		case 'Very active':
-			return 1.725
-		case 'Extremely active':
-			return 1.9
+const calculateLBMManual = ({ weight, lbm }: { weight: Weight; lbm: number }): LBM => {
+	return {
+		formula: 'Manual',
+		lbmKg: Number(lbm.toFixed(1)),
+		lbmPercentage: Math.round((lbm / weight) * 100),
+		bodyFatPercentage: Math.round(((weight - lbm) / weight) * 100),
 	}
 }
