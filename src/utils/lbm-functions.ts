@@ -1,31 +1,37 @@
 import { $updateUserLBM, $userAttributes } from '@store/user-attributes'
-import type { Genre, Height, LBM, LBMFormula, Weight } from 'src/types'
+import type { LBMFormula } from 'src/types'
 import { defaultLbm } from './defaults'
 
 export const calculateAndUpdateLBM = ({ formula, lbmManual }: { formula?: LBMFormula; lbmManual?: number }): void => {
-	const { weight, height, genre, lbm: $lbm } = $userAttributes.get()
-	const dataToCalculateLBM = { weight, height, genre }
-	let lbm: LBM = defaultLbm
+	const { weight, lbm: $lbm } = $userAttributes.get()
+	const updatedFormula = formula ?? $lbm.formula
+	let lbm: number = defaultLbm.lbmKg
 
-	switch (formula ?? $lbm.formula) {
+	switch (updatedFormula) {
 		case 'Boer':
-			lbm = calculateLBMBoer(dataToCalculateLBM)
+			lbm = calculateLBMBoer()
 			break
 		case 'James':
-			lbm = calculateLBMJames(dataToCalculateLBM)
+			lbm = calculateLBMJames()
 			break
 		case 'Hume':
-			lbm = calculateLBMHume(dataToCalculateLBM)
+			lbm = calculateLBMHume()
 			break
 		case 'Manual':
-			lbm = calculateLBMManual({ weight, lbm: lbmManual ?? $lbm.lbmKg })
+			lbm = lbmManual ?? $lbm.lbmKg
 			break
 	}
 
-	$updateUserLBM(lbm)
+	$updateUserLBM({
+		formula: updatedFormula,
+		lbmKg: Number(lbm.toFixed(1)),
+		lbmPercentage: Math.round((lbm / weight) * 100),
+		bodyFatPercentage: Math.round(((weight - lbm) / weight) * 100),
+	})
 }
 
-const calculateLBMBoer = ({ genre, weight, height }: { genre: Genre; weight: Weight; height: Height }): LBM => {
+const calculateLBMBoer = (): number => {
+	const { weight, height, genre } = $userAttributes.get()
 	let lbm = 0
 
 	if (genre === 'male') {
@@ -34,15 +40,12 @@ const calculateLBMBoer = ({ genre, weight, height }: { genre: Genre; weight: Wei
 		lbm = 0.252 * weight + 0.473 * height - 48.3
 	}
 
-	return {
-		formula: 'Boer',
-		lbmKg: Number(lbm.toFixed(1)),
-		lbmPercentage: Math.round((lbm / weight) * 100),
-		bodyFatPercentage: Math.round(((weight - lbm) / weight) * 100),
-	}
+	return lbm
 }
 
-const calculateLBMJames = ({ genre, weight, height }: { genre: Genre; weight: Weight; height: Height }): LBM => {
+const calculateLBMJames = (): number => {
+	const { weight, height, genre } = $userAttributes.get()
+
 	let lbm = 0
 
 	if (genre === 'male') {
@@ -51,15 +54,12 @@ const calculateLBMJames = ({ genre, weight, height }: { genre: Genre; weight: We
 		lbm = 1.07 * weight - 148 * (weight / height) ** 2
 	}
 
-	return {
-		formula: 'James',
-		lbmKg: Number(lbm.toFixed(1)),
-		lbmPercentage: Math.round((lbm / weight) * 100),
-		bodyFatPercentage: Math.round(((weight - lbm) / weight) * 100),
-	}
+	return lbm
 }
 
-const calculateLBMHume = ({ genre, weight, height }: { genre: Genre; weight: Weight; height: Height }): LBM => {
+const calculateLBMHume = (): number => {
+	const { weight, height, genre } = $userAttributes.get()
+
 	let lbm = 0
 
 	if (genre === 'male') {
@@ -68,19 +68,5 @@ const calculateLBMHume = ({ genre, weight, height }: { genre: Genre; weight: Wei
 		lbm = 0.29569 * weight + 0.41813 * height - 43.2933
 	}
 
-	return {
-		formula: 'Hume',
-		lbmKg: Number(lbm.toFixed(1)),
-		lbmPercentage: Math.round((lbm / weight) * 100),
-		bodyFatPercentage: Math.round(((weight - lbm) / weight) * 100),
-	}
-}
-
-const calculateLBMManual = ({ weight, lbm }: { weight: Weight; lbm: number }): LBM => {
-	return {
-		formula: 'Manual',
-		lbmKg: Number(lbm.toFixed(1)),
-		lbmPercentage: Math.round((lbm / weight) * 100),
-		bodyFatPercentage: Math.round(((weight - lbm) / weight) * 100),
-	}
+	return lbm
 }
