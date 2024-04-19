@@ -4,7 +4,7 @@ import '@styles/dashboard.css'
 import React, { useCallback } from 'react'
 import type { Genre, UserAttributesNamesDashboard } from 'src/types'
 
-const Dashboard = () => {
+export const Dashboard = () => {
 	const { weight, height, age, genre } = useStore($userAttributes)
 
 	const handleUserAttributeChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,5 +72,3 @@ const Dashboard = () => {
 		</div>
 	)
 }
-
-export default Dashboard

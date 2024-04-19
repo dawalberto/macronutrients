@@ -1,9 +1,10 @@
 ---
 import { BMRSelector } from '@components/BMRSelector'
-import Dashboard from '@components/Dashboard'
+import ChartMacros from '@components/ChartMacros.astro'
+import { Dashboard } from '@components/Dashboard'
 import { Development } from '@components/Development'
 import { GoalSelector } from '@components/GoalSelector'
-import LBMSelector from '@components/LBMSelector'
+import { LBMSelector } from '@components/LBMSelector'
 ---
 
 <html lang='en'>
@@ -21,6 +22,9 @@ import LBMSelector from '@components/LBMSelector'
 				</div>
 				<div>
 					<GoalSelector client:load />
+				</div>
+				<div>
+					<ChartMacros />
 				</div>
 				<div>
 					<LBMSelector client:load />

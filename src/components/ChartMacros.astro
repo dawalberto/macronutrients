@@ -1,0 +1,63 @@
+---
+
+---
+
+<div class='mx-auto w-full'><canvas id='chart'></canvas></div>
+<script>
+	import { $userAttributes } from '@store/user-attributes'
+	import Chart, { type ChartItem } from 'chart.js/auto'
+	import { listenKeys } from 'nanostores'
+	const chartElement = document.getElementById('chart') as ChartItem
+
+	const chart = new Chart(chartElement, {
+		type: 'pie',
+		data: {
+			labels: ['🍚 Carbs', '🥑 Fat', '🍣 Protein'],
+			datasets: [
+				{
+					// label: 'My First Dataset',
+					data: [300, 50, 100],
+					backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+					hoverOffset: 4,
+				},
+			],
+		},
+	})
+	// }
+
+	listenKeys($userAttributes, ['goal', 'lbm', 'bmrAndExercise'], ({ bmrAndExercise, lbm, goal }) => {
+		// console.log('🦊 bmrAndExercise', bmrAndExercise)
+		// console.log('🦊 lbm', lbm)
+		let proteins = 0
+		let fats = 0
+		let carbs = 0
+
+		switch (goal) {
+			case 'Maintain':
+				proteins = 1.8 * lbm.lbmKg
+				fats = lbm.lbmKg
+				carbs = (bmrAndExercise.kcalPerDayToMaintain - (proteins * 4 + fats * 9)) / 4
+				break
+			case 'Surplus':
+				proteins = 2 * lbm.lbmKg
+				fats = (0.25 * bmrAndExercise.kcalPerDayToSurplus) / 9
+				carbs = (bmrAndExercise.kcalPerDayToSurplus - (proteins * 4 + fats * 9)) / 4
+				break
+			case 'Deficit':
+				proteins = 2.5 * lbm.lbmKg
+				fats = 0.9 * lbm.lbmKg
+				carbs = (bmrAndExercise.kcalPerDayToDeficit - (proteins * 4 + fats * 9)) / 4
+				break
+		}
+
+		console.log('🦊 goal', goal)
+		console.log('🍚 carbs', carbs)
+		console.log('🥑 fats', fats)
+		console.log('🍣 proteins', proteins)
+
+		if (chart.data.datasets[0]?.data) {
+			chart.data.datasets[0].data = [carbs, fats, proteins]
+			chart.update()
+		}
+	})
+</script>

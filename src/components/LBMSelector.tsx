@@ -55,5 +55,3 @@ export const LBMSelector = () => {
 		</div>
 	)
 }
-
-export default LBMSelector
