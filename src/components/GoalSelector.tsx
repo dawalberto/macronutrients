@@ -1,5 +1,5 @@
+import { defaultGoal } from '@lib/defaults'
 import { $updateUserGoal } from '@store/user-attributes'
-import { defaultGoal } from '@utils/defaults'
 import type { Goal } from 'src/types'
 
 export const GoalSelector = () => {
@@ -23,7 +23,7 @@ export const GoalSelector = () => {
 				>
 					<option value='Maintain'>Maintain</option>
 					<option value='Surplus'>Surplus</option>
-					<option value='Deficit'>Deficit</option>
+					<option value='Definition'>Definition</option>
 				</select>
 			</div>
 		</div>

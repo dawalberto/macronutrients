@@ -6,9 +6,17 @@ export const Development = () => {
 	const { height, weight, genre, age, lbm, bmrAndExercise, goal } = useStore($userAttributes)
 	return (
 		<Draggable>
-			<div className='fixed -bottom-6 -left-12 cursor-move p-8 font-semibold active:shadow-xl'>
-				<div className='w-full text-amber-900'>
+			<div className='fixed -right-40 bottom-2 cursor-move p-8 font-semibold active:shadow-xl'>
+				<div className='w-full text-red-600'>
 					<code>
+						<pre>TODO</pre>
+						<ul>
+							<li>👉 Default proteins, fats, carbs</li>
+							<li>👉 Default proteins and fats values to multiply by</li>
+							<li>👉 Refactor Chart</li>
+							<li>👉 Chart responsive, labels and colors</li>
+						</ul>
+						<br />
 						<pre className='text-amber-600'> height: {height},</pre>
 						<pre className='text-amber-600'> weight: {weight},</pre>
 						<pre className='text-amber-600'> age: {age},</pre>

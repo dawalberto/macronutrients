@@ -1,6 +1,7 @@
+import { kcalForDefinition, kcalForSurplus } from '@lib/settings'
 import { $updateUserBMRAndExercise, $userAttributes } from '@store/user-attributes'
 import type { BMRAndExercise, BMREquation, ExerciseMultiplier } from 'src/types'
-import { defaultBMRAndExercise, defaultDeficit, defaultSurplus } from './defaults'
+import { defaultBMRAndExercise } from '../lib/defaults'
 import { getExerciseMultiplierValue } from './global-functions'
 
 export const calculateAndUpdateBMR = ({ equation, exerciseMultiplier }: { equation?: BMREquation; exerciseMultiplier?: ExerciseMultiplier }) => {
@@ -21,7 +22,10 @@ export const calculateAndUpdateBMR = ({ equation, exerciseMultiplier }: { equati
 			break
 	}
 
-	const { kcalPerDayToMaintain, kcalPerDayToSurplus, kcalPerDayToDeficit } = getKcalPerDay({ bmr, exerciseMultiplier: updatedExerciseMultiplier })
+	const { kcalPerDayToMaintain, kcalPerDayToSurplus, kcalPerDayToDefinition } = getKcalPerDay({
+		bmr,
+		exerciseMultiplier: updatedExerciseMultiplier,
+	})
 
 	$updateUserBMRAndExercise({
 		equation: updatedEquation,
@@ -29,7 +33,7 @@ export const calculateAndUpdateBMR = ({ equation, exerciseMultiplier }: { equati
 		kcalPerDay: Math.round(bmr),
 		kcalPerDayToMaintain: Math.round(kcalPerDayToMaintain),
 		kcalPerDayToSurplus: Math.round(kcalPerDayToSurplus),
-		kcalPerDayToDeficit: Math.round(kcalPerDayToDeficit),
+		kcalPerDayToDefinition: Math.round(kcalPerDayToDefinition),
 	})
 }
 
@@ -72,12 +76,12 @@ const getKcalPerDay = ({
 }: {
 	bmr: number
 	exerciseMultiplier: ExerciseMultiplier
-}): Pick<BMRAndExercise, 'kcalPerDayToMaintain' | 'kcalPerDayToSurplus' | 'kcalPerDayToDeficit'> => {
+}): Pick<BMRAndExercise, 'kcalPerDayToMaintain' | 'kcalPerDayToSurplus' | 'kcalPerDayToDefinition'> => {
 	const exerciseMultiplierValue = getExerciseMultiplierValue(exerciseMultiplier)
 
 	return {
 		kcalPerDayToMaintain: bmr * exerciseMultiplierValue,
-		kcalPerDayToSurplus: bmr * exerciseMultiplierValue + defaultSurplus,
-		kcalPerDayToDeficit: bmr * exerciseMultiplierValue - defaultDeficit,
+		kcalPerDayToSurplus: bmr * exerciseMultiplierValue + kcalForSurplus,
+		kcalPerDayToDefinition: bmr * exerciseMultiplierValue - kcalForDefinition,
 	}
 }

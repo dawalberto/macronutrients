@@ -1,6 +1,6 @@
 import { $updateUserLBM, $userAttributes } from '@store/user-attributes'
 import type { LBMFormula } from 'src/types'
-import { defaultLbm } from './defaults'
+import { defaultLbm } from '../lib/defaults'
 
 export const calculateAndUpdateLBM = ({ formula, lbmManual }: { formula?: LBMFormula; lbmManual?: number }): void => {
 	const { weight, lbm: $lbm } = $userAttributes.get()

@@ -1,5 +1,6 @@
+import { calculateAge, getExerciseMultiplierValue } from '@utils/global-functions'
 import type { Age, BMRAndExercise, BMREquation, ExerciseMultiplier, Genre, Goal, Height, LBM, LBMFormula } from 'src/types'
-import { calculateAge, getExerciseMultiplierValue } from './global-functions'
+import { kcalForDefinition, kcalForSurplus } from './settings'
 
 export const defaultWeight: Height = 63
 export const defaultHeight: Height = 169
@@ -18,14 +19,17 @@ export const defaultLbm: LBM = {
 export const defaultExerciseMultiplier: ExerciseMultiplier = 'Moderately active'
 export const defaultBMREquation: BMREquation = 'Katch-McArdle'
 const kcalPerDay = 370 + 21.6 * (1 - defaultLbm.bodyFatPercentage / 100) * defaultWeight // 'Katch-McArdle' equation calculation
-export const defaultSurplus = 300
-export const defaultDeficit = 300
+
 export const defaultBMRAndExercise: BMRAndExercise = {
 	equation: defaultBMREquation,
 	exerciseMultiplier: defaultExerciseMultiplier,
 	kcalPerDay: Math.round(kcalPerDay),
 	kcalPerDayToMaintain: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier)),
-	kcalPerDayToSurplus: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier) + defaultSurplus),
-	kcalPerDayToDeficit: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier) - defaultDeficit),
+	kcalPerDayToSurplus: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier) + kcalForSurplus),
+	kcalPerDayToDefinition: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier) - kcalForDefinition),
 }
 export const defaultGoal: Goal = 'Maintain'
+// Default macros for Maintain goal
+export const defaultProteins = Math.round(1.8 * defaultLbm.lbmKg)
+export const defaultFats = Math.round(defaultLbm.lbmKg)
+export const defaultCarbs = Math.round((defaultBMRAndExercise.kcalPerDayToMaintain - (defaultProteins * 4 + defaultFats * 9)) / 4)

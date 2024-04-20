@@ -1,5 +1,5 @@
+import { defaultBMREquation, defaultExerciseMultiplier } from '@lib/defaults'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
-import { defaultBMREquation, defaultExerciseMultiplier } from '@utils/defaults'
 import type { BMREquation, ExerciseMultiplier } from 'src/types'
 
 export const BMRSelector = () => {

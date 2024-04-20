@@ -1,5 +1,5 @@
+import { defaultAge, defaultBMRAndExercise, defaultGenre, defaultGoal, defaultHeight, defaultLbm, defaultWeight } from '@lib/defaults'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
-import { defaultAge, defaultBMRAndExercise, defaultGenre, defaultGoal, defaultHeight, defaultLbm, defaultWeight } from '@utils/defaults'
 import { calculateAndUpdateLBM } from '@utils/lbm-functions'
 import { listenKeys, map } from 'nanostores'
 import type { Age, BMRAndExercise, Genre, Goal, Height, LBM, UserAttributes, Weight } from 'src/types'

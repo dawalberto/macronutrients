@@ -4,6 +4,14 @@
 
 <div class='mx-auto w-full'><canvas id='chart'></canvas></div>
 <script>
+	import { defaultCarbs, defaultFats, defaultProteins } from '@lib/defaults'
+	import {
+		gramsOfFatsInDefinition,
+		gramsOfProteinsInDefinition,
+		gramsOfProteinsInMaintain,
+		gramsOfProteinsInSurplus,
+		percentageOfFatsInSurplus,
+	} from '@lib/settings'
 	import { $userAttributes } from '@store/user-attributes'
 	import Chart, { type ChartItem } from 'chart.js/auto'
 	import { listenKeys } from 'nanostores'
@@ -16,44 +24,40 @@
 			datasets: [
 				{
 					// label: 'My First Dataset',
-					data: [300, 50, 100],
+					data: [defaultCarbs, defaultFats, defaultProteins],
 					backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
 					hoverOffset: 4,
 				},
 			],
 		},
 	})
-	// }
 
 	listenKeys($userAttributes, ['goal', 'lbm', 'bmrAndExercise'], ({ bmrAndExercise, lbm, goal }) => {
-		// console.log('🦊 bmrAndExercise', bmrAndExercise)
-		// console.log('🦊 lbm', lbm)
 		let proteins = 0
 		let fats = 0
 		let carbs = 0
 
 		switch (goal) {
 			case 'Maintain':
-				proteins = 1.8 * lbm.lbmKg
+				proteins = gramsOfProteinsInMaintain * lbm.lbmKg
 				fats = lbm.lbmKg
 				carbs = (bmrAndExercise.kcalPerDayToMaintain - (proteins * 4 + fats * 9)) / 4
 				break
 			case 'Surplus':
-				proteins = 2 * lbm.lbmKg
-				fats = (0.25 * bmrAndExercise.kcalPerDayToSurplus) / 9
+				proteins = gramsOfProteinsInSurplus * lbm.lbmKg
+				fats = (percentageOfFatsInSurplus * bmrAndExercise.kcalPerDayToSurplus) / 9
 				carbs = (bmrAndExercise.kcalPerDayToSurplus - (proteins * 4 + fats * 9)) / 4
 				break
-			case 'Deficit':
-				proteins = 2.5 * lbm.lbmKg
-				fats = 0.9 * lbm.lbmKg
-				carbs = (bmrAndExercise.kcalPerDayToDeficit - (proteins * 4 + fats * 9)) / 4
+			case 'Definition':
+				proteins = gramsOfProteinsInDefinition * lbm.lbmKg
+				fats = gramsOfFatsInDefinition * lbm.lbmKg
+				carbs = (bmrAndExercise.kcalPerDayToDefinition - (proteins * 4 + fats * 9)) / 4
 				break
 		}
 
-		console.log('🦊 goal', goal)
-		console.log('🍚 carbs', carbs)
-		console.log('🥑 fats', fats)
-		console.log('🍣 proteins', proteins)
+		proteins = Math.round(proteins)
+		fats = Math.round(fats)
+		carbs = Math.round(carbs)
 
 		if (chart.data.datasets[0]?.data) {
 			chart.data.datasets[0].data = [carbs, fats, proteins]

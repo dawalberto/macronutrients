@@ -1,4 +1,4 @@
-import { defaultLBMFormula } from '@utils/defaults'
+import { defaultLBMFormula } from '@lib/defaults'
 import { calculateAndUpdateLBM } from '@utils/lbm-functions'
 import clsx from 'clsx'
 import { useCallback, useState } from 'react'
