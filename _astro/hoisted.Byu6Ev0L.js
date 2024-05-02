@@ -1,4 +1,4 @@
-import{m as Fi,n as Ii,o as zi,p as lo,l as co,q as ho,r as uo,s as fo,t as go,u as po,d as mo}from"./user-attributes.DFe-KFPC.js";/*!
+import{j as Fi,k as Ii,m as zi,n as lo,l as co,o as ho,p as uo,q as fo,r as go,s as po,d as mo}from"./user-attributes.D0Ug1cFK.js";/*!
  * @kurkle/color v0.3.2
  * https://github.com/kurkle/color#readme
  * (c) 2023 Jukka Kurkela
