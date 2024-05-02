@@ -1,4 +1,5 @@
 import { defaultLBMFormula } from '@lib/defaults'
+import { selectStyles } from '@styles/selects'
 import { calculateAndUpdateLBM } from '@utils/lbm-functions'
 import clsx from 'clsx'
 import { useCallback, useState } from 'react'
@@ -32,8 +33,9 @@ export const LBMSelector = () => {
 					defaultValue={defaultLBMFormula}
 					onChange={handleLBMFormulaChange}
 					className={clsx(
+						selectStyles,
 						showManualLBMInput ? 'w-3/5' : 'w-full',
-						'block border border-lime-300 bg-lime-50 p-2.5 text-sm text-lime-900 focus:border-lime-500 focus:ring-lime-500'
+						'border-lime-300 bg-lime-50 text-lime-900 focus:border-lime-500 focus:ring-lime-500'
 					)}
 				>
 					<option value='Boer'>Boer</option>
@@ -48,7 +50,7 @@ export const LBMSelector = () => {
 					placeholder='LBM in Kg'
 					className={clsx(
 						showManualLBMInput ? 'block w-2/5' : 'hidden',
-						'block border border-lime-300 bg-lime-50 p-2.5 text-sm text-lime-900 focus:border-lime-500 focus:ring-lime-500'
+						'block h-10 max-h-12 min-h-9 rounded-none border border-lime-300 bg-lime-50 p-2.5 text-sm text-lime-900 focus:border-lime-500 focus:ring-lime-500'
 					)}
 				/>
 			</div>

@@ -1,6 +1,6 @@
 import { calculateAge, getExerciseMultiplierValue } from '@utils/global-functions'
 import type { Age, BMRAndExercise, BMREquation, ExerciseMultiplier, Genre, Goal, Height, LBM, LBMFormula } from 'src/types'
-import { kcalForDefinition, kcalForSurplus } from './settings'
+import { gramsOfProteinsInMaintain, kcalForDefinition, kcalForSurplus } from './settings'
 
 export const defaultWeight: Height = 63
 export const defaultHeight: Height = 169
@@ -30,6 +30,6 @@ export const defaultBMRAndExercise: BMRAndExercise = {
 }
 export const defaultGoal: Goal = 'Maintain'
 // Default macros for Maintain goal
-export const defaultProteins = Math.round(1.8 * defaultLbm.lbmKg)
+export const defaultProteins = Math.round(gramsOfProteinsInMaintain * defaultLbm.lbmKg)
 export const defaultFats = Math.round(defaultLbm.lbmKg)
 export const defaultCarbs = Math.round((defaultBMRAndExercise.kcalPerDayToMaintain - (defaultProteins * 4 + defaultFats * 9)) / 4)

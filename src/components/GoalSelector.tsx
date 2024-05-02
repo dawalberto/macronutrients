@@ -1,5 +1,7 @@
 import { defaultGoal } from '@lib/defaults'
 import { $updateUserGoal } from '@store/user-attributes'
+import { selectStyles } from '@styles/selects'
+import clsx from 'clsx'
 import type { Goal } from 'src/types'
 
 export const GoalSelector = () => {
@@ -19,7 +21,7 @@ export const GoalSelector = () => {
 					name='goal'
 					defaultValue={defaultGoal}
 					onChange={handleGoalChange}
-					className='block w-full border border-pink-300 bg-pink-50 p-2.5 text-sm text-pink-900 focus:border-pink-500 focus:ring-pink-500'
+					className={clsx(selectStyles, 'border-pink-300 bg-pink-50 text-pink-900 focus:border-pink-500 focus:ring-pink-500')}
 				>
 					<option value='Maintain'>Maintain</option>
 					<option value='Surplus'>Surplus</option>

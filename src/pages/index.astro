@@ -2,9 +2,9 @@
 import { BMRSelector } from '@components/BMRSelector'
 import ChartMacros from '@components/ChartMacros.astro'
 import { Dashboard } from '@components/Dashboard'
-import { Development } from '@components/Development'
 import { GoalSelector } from '@components/GoalSelector'
 import { LBMSelector } from '@components/LBMSelector'
+import '@styles/selects.css'
 ---
 
 <html lang='en'>
@@ -33,7 +33,7 @@ import { LBMSelector } from '@components/LBMSelector'
 					<BMRSelector client:load />
 				</div>
 			</div>
-			<Development client:load />
+			<!-- <Development client:load /> -->
 		</div>
 	</body>
 </html>

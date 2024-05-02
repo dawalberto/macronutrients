@@ -1,5 +1,7 @@
 import { defaultBMREquation, defaultExerciseMultiplier } from '@lib/defaults'
+import { selectStyles } from '@styles/selects'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
+import clsx from 'clsx'
 import type { BMREquation, ExerciseMultiplier } from 'src/types'
 
 export const BMRSelector = () => {
@@ -24,7 +26,7 @@ export const BMRSelector = () => {
 					name='BMREquation'
 					defaultValue={defaultBMREquation}
 					onChange={handleBMREquationChange}
-					className='block w-full border border-sky-300 bg-sky-50 p-2.5 text-sm text-sky-900 focus:border-sky-500 focus:ring-sky-500'
+					className={bmrSelectStyles}
 				>
 					<option value='Mifflin St Jeor'>Mifflin St Jeor</option>
 					<option value='Revised Harris-Benedict'>Revised Harris-Benedict</option>
@@ -40,7 +42,7 @@ export const BMRSelector = () => {
 					name='exerciseMultiplier'
 					defaultValue={defaultExerciseMultiplier}
 					onChange={handleExerciseMultiplierChange}
-					className='block w-full border border-sky-300 bg-sky-50 p-2.5 text-sm text-sky-900 focus:border-sky-500 focus:ring-sky-500'
+					className={bmrSelectStyles}
 				>
 					<option value='Sedentary'>🥱 Sedentary</option>
 					<option value='Lightly active'>🏃‍♂️ Lightly active</option>
@@ -52,3 +54,5 @@ export const BMRSelector = () => {
 		</div>
 	)
 }
+
+const bmrSelectStyles = clsx(selectStyles, 'border-sky-300 bg-sky-50 text-sky-900 focus:border-sky-500 focus:ring-sky-500')
