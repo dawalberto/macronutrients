@@ -10,10 +10,10 @@ export const chartConfiguration: ChartConfiguration<'pie', number[], unknown> | 
 			{
 				// label: 'My First Dataset',
 				data: [defaultCarbsGrams * 4, defaultFatsGrams * 9, defaultProteinsGrams * 4],
-				backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+				backgroundColor: ['#f59e0b', '#fde047', '#38bdf8'],
 				// hoverOffset: 4,
 				borderColor: '#4b5563',
-				borderWidth: 2,
+				borderWidth: 1.8,
 				hoverBorderColor: '#030712',
 			},
 		],
@@ -56,8 +56,8 @@ export const chartConfiguration: ChartConfiguration<'pie', number[], unknown> | 
 				position: 'left',
 				labels: {
 					padding: 20,
-					boxWidth: 25,
-					boxHeight: 25,
+					boxWidth: 20,
+					boxHeight: 20,
 					color: '#334155',
 					font: {
 						weight: 500,
