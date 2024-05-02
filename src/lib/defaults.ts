@@ -30,6 +30,6 @@ export const defaultBMRAndExercise: BMRAndExercise = {
 }
 export const defaultGoal: Goal = 'Maintain'
 // Default macros for Maintain goal
-export const defaultProteins = Math.round(gramsOfProteinsInMaintain * defaultLbm.lbmKg)
-export const defaultFats = Math.round(defaultLbm.lbmKg)
-export const defaultCarbs = Math.round((defaultBMRAndExercise.kcalPerDayToMaintain - (defaultProteins * 4 + defaultFats * 9)) / 4)
+export const defaultProteinsGrams = Math.round(gramsOfProteinsInMaintain * defaultLbm.lbmKg)
+export const defaultFatsGrams = Math.round(defaultLbm.lbmKg)
+export const defaultCarbsGrams = Math.round((defaultBMRAndExercise.kcalPerDayToMaintain - (defaultProteinsGrams * 4 + defaultFatsGrams * 9)) / 4)
