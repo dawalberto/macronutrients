@@ -1,10 +1,13 @@
-import { defaultBMREquation } from '@lib/defaults'
+import { useStore } from '@nanostores/react'
+import { $userAttributes } from '@store/user-attributes'
 import { selectStyles } from '@styles/selects'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
 import clsx from 'clsx'
 import type { BMREquation } from 'src/types'
 
 export const BMRSelector = () => {
+	const { bmrAndExercise } = useStore($userAttributes)
+
 	const handleBMREquationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const equation: BMREquation = event.target.value as unknown as BMREquation
 		calculateAndUpdateBMR({ equation })
@@ -18,7 +21,7 @@ export const BMRSelector = () => {
 			<select
 				id='BMREquation'
 				name='BMREquation'
-				defaultValue={defaultBMREquation}
+				defaultValue={bmrAndExercise.equation}
 				onChange={handleBMREquationChange}
 				className={clsx(selectStyles, 'border-amber-300 bg-amber-50 text-amber-900 focus:border-amber-500 focus:ring-amber-500')}
 			>

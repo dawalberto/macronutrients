@@ -1,10 +1,9 @@
 ---
-import { BMRSelector } from '@components/BMRSelector'
+import { AdditionalSettings } from '@components/AdditionalSettings'
 import ChartMacros from '@components/ChartMacros.astro'
 import { Dashboard } from '@components/Dashboard'
 import { ExerciseMultiplier } from '@components/ExerciseMultiplier'
 import { GoalSelector } from '@components/GoalSelector'
-import { LBMSelector } from '@components/LBMSelector'
 import '@styles/selects.css'
 ---
 
@@ -26,28 +25,24 @@ import '@styles/selects.css'
 		<meta name='language' content='English' />
 		<meta name='author' content='Alberto García Sola' />
 	</head>
-	<body class='mx-auto mt-4 w-full max-w-screen-xl p-2'>
+	<body class='mx-auto mt-4 w-full max-w-screen-xl p-2 text-slate-700'>
 		<div class='mx-auto lg:w-1/2 xl:w-[40%] 2xl:w-1/3'>
 			<div class='flex flex-col gap-6'>
 				<div>
 					<Dashboard client:load />
 				</div>
 				<div>
-					<GoalSelector client:load />
+					<ExerciseMultiplier client:load />
 				</div>
 				<div>
-					<ExerciseMultiplier client:load />
+					<GoalSelector client:load />
 				</div>
 				<div>
 					<ChartMacros />
 				</div>
-				<div>
-					<LBMSelector client:load />
-				</div>
-				<div>
-					<BMRSelector client:load />
-				</div>
+				<AdditionalSettings client:load />
 			</div>
+			<!-- <Development client:load /> -->
 		</div>
 	</body>
 </html>
