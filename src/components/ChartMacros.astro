@@ -4,7 +4,6 @@
 
 <div class='mx-auto w-full'><canvas id='chart'></canvas></div>
 <script>
-	import { defaultCarbsGrams, defaultFatsGrams, defaultProteinsGrams } from '@lib/defaults'
 	import {
 		gramsOfFatsInDefinition,
 		gramsOfProteinsInDefinition,
@@ -13,86 +12,38 @@
 		percentageOfFatsInSurplus,
 	} from '@lib/settings'
 	import { $userAttributes } from '@store/user-attributes'
-	import { getLabels, getMacronutrientsSlicePercentage } from '@utils/chart-functions'
+	import { chartConfiguration } from '@utils/chart-config'
+	import { getChartTitle, getLabels } from '@utils/chart-functions'
 	import Chart, { type ChartItem } from 'chart.js/auto'
 	import { listenKeys } from 'nanostores'
 	const chartElement = document.getElementById('chart') as ChartItem
 
-	const chart = new Chart(chartElement, {
-		type: 'pie',
-		data: {
-			labels: getLabels(defaultCarbsGrams, defaultFatsGrams, defaultProteinsGrams),
-			datasets: [
-				{
-					// label: 'My First Dataset',
-					data: [defaultCarbsGrams * 4, defaultFatsGrams * 9, defaultProteinsGrams * 4],
-					backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-					// hoverOffset: 4,
-				},
-			],
-		},
-		options: {
-			maintainAspectRatio: false,
-			layout: {
-				padding: {
-					left: 10,
-					right: 10,
-					top: 0,
-					bottom: 0,
-				},
-			},
-			plugins: {
-				tooltip: {
-					cornerRadius: 0,
-					padding: 10,
-					callbacks: {
-						title: () => '',
-						label: (context) => getMacronutrientsSlicePercentage(context),
-					},
-					bodyFont: {
-						size: 14,
-						weight: 500,
-					},
-					backgroundColor: '#1f2937',
-					displayColors: false,
-				},
-				legend: {
-					position: 'left',
-					labels: {
-						padding: 30,
-						boxWidth: 25,
-						boxHeight: 25,
-						color: '#334155',
-						font: {
-							weight: 500,
-							size: 16,
-						},
-					},
-				},
-			},
-		},
-	})
+	const chart = new Chart(chartElement, chartConfiguration)
 
 	listenKeys($userAttributes, ['goal', 'lbm', 'bmrAndExercise'], ({ bmrAndExercise, lbm, goal }) => {
 		let proteinGrams = 0
 		let fatGrams = 0
 		let carbGrams = 0
+		let kcalPerDay = 0
 
 		switch (goal) {
 			case 'Maintain':
 				proteinGrams = gramsOfProteinsInMaintain * lbm.lbmKg
 				fatGrams = lbm.lbmKg
 				carbGrams = (bmrAndExercise.kcalPerDayToMaintain - (proteinGrams * 4 + fatGrams * 9)) / 4
+				kcalPerDay = bmrAndExercise.kcalPerDayToMaintain
 				break
 			case 'Surplus':
 				proteinGrams = gramsOfProteinsInSurplus * lbm.lbmKg
 				fatGrams = (percentageOfFatsInSurplus * bmrAndExercise.kcalPerDayToSurplus) / 9
 				carbGrams = (bmrAndExercise.kcalPerDayToSurplus - (proteinGrams * 4 + fatGrams * 9)) / 4
+				kcalPerDay = bmrAndExercise.kcalPerDayToSurplus
 				break
 			case 'Definition':
 				proteinGrams = gramsOfProteinsInDefinition * lbm.lbmKg
 				fatGrams = gramsOfFatsInDefinition * lbm.lbmKg
 				carbGrams = (bmrAndExercise.kcalPerDayToDefinition - (proteinGrams * 4 + fatGrams * 9)) / 4
+				kcalPerDay = bmrAndExercise.kcalPerDayToDefinition
 				break
 		}
 
@@ -101,7 +52,9 @@
 		carbGrams = Math.round(carbGrams)
 
 		chart.data.labels = getLabels(carbGrams, fatGrams, proteinGrams)
-
+		if (chart.options.plugins?.title?.text) {
+			chart.options.plugins.title.text = getChartTitle(kcalPerDay)
+		}
 		if (chart.data.datasets[0]?.data) {
 			chart.data.datasets[0].data = [carbGrams * 4, fatGrams * 9, proteinGrams * 4]
 		}

@@ -13,3 +13,5 @@ export const getMacronutrientsSlicePercentage = (context: TooltipItem<'pie'>) =>
 	let percentage = ((value / total) * 100).toFixed(1)
 	return `${label.split(' ')[0]}  ${percentage}%`
 }
+
+export const getChartTitle = (kcalPerDay: number) => `🍱 ${kcalPerDay} kilocalories per day`
