@@ -17,7 +17,6 @@ export const AdditionalSettings = () => {
 		<div className='mt-6 w-full'>
 			<button
 				onClick={handleOnClick}
-				// className='mx-auto block text-center hover:text-slate-900'
 				className='mx-auto block w-full rounded-sm bg-amber-400 px-4 py-2 text-center text-amber-950 shadow-md hover:shadow-lg active:border-amber-500 active:shadow-none active:ring-amber-500'
 			>
 				Additional settings 👇
