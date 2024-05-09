@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react'
 import { $userAttributes } from '@store/user-attributes'
-import { selectStyles } from '@styles/selects'
+import { selectLabelStyles, selectStyles } from '@styles/forms'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
 import clsx from 'clsx'
 import type { BMREquation } from 'src/types'
@@ -15,7 +15,7 @@ export const BMRSelector = () => {
 
 	return (
 		<div className='w-full'>
-			<label htmlFor='BMREquation' className='mb-2 block text-sm font-medium text-amber-900'>
+			<label htmlFor='BMREquation' className={clsx(selectLabelStyles, 'text-amber-900')}>
 				BMR equation
 			</label>
 			<select

@@ -17,9 +17,9 @@ export const AdditionalSettings = () => {
 		<div className='mt-6 w-full'>
 			<button
 				onClick={handleOnClick}
-				className='mx-auto block w-full rounded-sm bg-amber-400 px-4 py-2 text-center text-amber-950 shadow-md hover:shadow-lg active:border-amber-500 active:shadow-none active:ring-amber-500'
+				className='mx-auto block w-fit rounded-full bg-amber-400 px-4 py-2 text-center font-semibold text-amber-950 shadow-md transition-all duration-150 hover:scale-105 hover:shadow-lg active:scale-100 active:border-amber-500 active:shadow-none active:ring-amber-500'
 			>
-				Additional settings 👇
+				Additional settings
 			</button>
 			{showMore && (
 				<div className='mt-6 flex flex-col gap-6'>

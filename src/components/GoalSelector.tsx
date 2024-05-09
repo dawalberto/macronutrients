@@ -1,6 +1,6 @@
 import { defaultGoal } from '@lib/defaults'
 import { $updateUserGoal } from '@store/user-attributes'
-import { selectStyles } from '@styles/selects'
+import { selectLabelStyles, selectStyles } from '@styles/forms'
 import clsx from 'clsx'
 import type { Goal } from 'src/types'
 
@@ -13,7 +13,7 @@ export const GoalSelector = () => {
 	return (
 		<div className='flex w-full flex-col gap-4'>
 			<div>
-				<label htmlFor='goal' className='mb-2 block text-sm font-medium text-pink-900'>
+				<label htmlFor='goal' className={clsx(selectLabelStyles, 'text-pink-900')}>
 					Goal
 				</label>
 				<select

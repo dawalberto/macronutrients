@@ -1,5 +1,5 @@
 import { defaultExerciseMultiplier } from '@lib/defaults'
-import { selectStyles } from '@styles/selects'
+import { selectLabelStyles, selectStyles } from '@styles/forms'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
 import clsx from 'clsx'
 import type { ExerciseMultiplier as EM } from 'src/types'
@@ -12,7 +12,7 @@ export const ExerciseMultiplier = () => {
 
 	return (
 		<div className='w-full'>
-			<label htmlFor='exerciseMultiplier' className='mb-2 block text-sm font-medium text-sky-900'>
+			<label htmlFor='exerciseMultiplier' className={clsx(selectLabelStyles, 'text-sky-900')}>
 				Exercise multiplier
 			</label>
 			<select
