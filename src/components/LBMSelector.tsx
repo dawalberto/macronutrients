@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react'
 import { $userAttributes } from '@store/user-attributes'
-import { selectStyles } from '@styles/selects'
+import { selectLabelStyles, selectStyles } from '@styles/forms'
 import { calculateAndUpdateLBM } from '@utils/lbm-functions'
 import clsx from 'clsx'
 import { useCallback, useState } from 'react'
@@ -25,7 +25,7 @@ export const LBMSelector = () => {
 
 	return (
 		<div className='w-full'>
-			<label htmlFor='LBMFormula' className='mb-2 block text-sm font-medium text-lime-900'>
+			<label htmlFor='LBMFormula' className={clsx(selectLabelStyles, 'text-lime-900')}>
 				LBM formula
 			</label>
 			<div className='flex gap-2'>

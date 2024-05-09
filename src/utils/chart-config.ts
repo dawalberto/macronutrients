@@ -33,7 +33,7 @@ export const chartConfiguration: ChartConfiguration<'pie', number[], unknown> | 
 				display: true,
 				text: getChartTitle(defaultBMRAndExercise.kcalPerDayToMaintain),
 				align: 'start',
-				color: '#374151',
+				color: '#171717',
 				font: {
 					size: 18,
 				},
@@ -58,9 +58,9 @@ export const chartConfiguration: ChartConfiguration<'pie', number[], unknown> | 
 					padding: 20,
 					boxWidth: 20,
 					boxHeight: 20,
-					color: '#334155',
+					color: '#262626',
 					font: {
-						weight: 500,
+						weight: 600,
 						size: 16,
 					},
 				},
