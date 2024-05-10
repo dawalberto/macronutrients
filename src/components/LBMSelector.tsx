@@ -25,7 +25,7 @@ export const LBMSelector = () => {
 
 	return (
 		<div className='w-full'>
-			<label htmlFor='LBMFormula' className={clsx(selectLabelStyles, 'text-lime-900')}>
+			<label title='Lean body mass' htmlFor='LBMFormula' className={clsx(selectLabelStyles, 'text-lime-900')}>
 				LBM formula
 			</label>
 			<div className='flex gap-2'>
@@ -53,7 +53,7 @@ export const LBMSelector = () => {
 					placeholder='LBM in Kg'
 					className={clsx(
 						showManualLBMInput ? 'block w-2/5' : 'hidden',
-						'block h-10 max-h-12 min-h-9 rounded-none border border-lime-300 bg-lime-50 p-2.5 text-sm text-lime-900 shadow-md focus:border-lime-500 focus:ring-lime-500'
+						'block max-h-12 min-h-9 rounded-none border-2 border-lime-300 bg-lime-50 p-2.5 text-sm text-lime-900 shadow-md outline-0 focus:border-lime-500 focus:ring-lime-500'
 					)}
 				/>
 			</div>
