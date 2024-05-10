@@ -15,7 +15,7 @@ export const BMRSelector = () => {
 
 	return (
 		<div className='w-full'>
-			<label htmlFor='BMREquation' className={clsx(selectLabelStyles, 'text-amber-900')}>
+			<label title='Basal metabolic rate' htmlFor='BMREquation' className={clsx(selectLabelStyles, 'text-amber-900')}>
 				BMR equation
 			</label>
 			<select
