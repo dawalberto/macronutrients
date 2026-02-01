@@ -3,6 +3,8 @@ import { useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Svg, { Circle, G } from 'react-native-svg'
 
+import { useI18n } from '@/src/i18n'
+
 const COLORS = {
 	carbs: '#f59e0b',
 	fats: '#fde047',
@@ -14,6 +16,7 @@ const COLORS = {
 }
 
 export const MacroDonutChart = ({ targets, size = 220 }: { targets: MacroTargets; size?: number }) => {
+	const { t } = useI18n()
 	const strokeWidth = 22
 	const radius = (size - strokeWidth) / 2
 	const circumference = 2 * Math.PI * radius
@@ -22,11 +25,11 @@ export const MacroDonutChart = ({ targets, size = 220 }: { targets: MacroTargets
 	const segments = useMemo(
 		() =>
 			[
-				{ key: 'carbs', label: 'Carbs', kcal: targets.carbsKcal, grams: targets.carbsGrams, color: COLORS.carbs },
-				{ key: 'fats', label: 'Fats', kcal: targets.fatsKcal, grams: targets.fatsGrams, color: COLORS.fats },
-				{ key: 'proteins', label: 'Proteins', kcal: targets.proteinsKcal, grams: targets.proteinsGrams, color: COLORS.proteins },
+				{ key: 'carbs', label: t('results.carbs'), kcal: targets.carbsKcal, grams: targets.carbsGrams, color: COLORS.carbs },
+				{ key: 'fats', label: t('results.fats'), kcal: targets.fatsKcal, grams: targets.fatsGrams, color: COLORS.fats },
+				{ key: 'proteins', label: t('results.proteins'), kcal: targets.proteinsKcal, grams: targets.proteinsGrams, color: COLORS.proteins },
 			] as const,
-		[targets]
+		[targets, t]
 	)
 
 	let offset = 0
@@ -67,7 +70,7 @@ export const MacroDonutChart = ({ targets, size = 220 }: { targets: MacroTargets
 
 				<View style={styles.center} pointerEvents='none'>
 					<Text style={styles.centerKcal}>{targets.kcalPerDay}</Text>
-					<Text style={styles.centerLabel}>kcal/day</Text>
+					<Text style={styles.centerLabel}>{t('results.kcalDay')}</Text>
 				</View>
 			</View>
 

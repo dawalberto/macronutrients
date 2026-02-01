@@ -1,5 +1,6 @@
 import { MacroDonutChart } from '@/src/components/MacroDonutChart'
 import { useNanostore } from '@/src/hooks/useNanostore'
+import { useI18n } from '@/src/i18n'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import {
 	$updateUserAge,
@@ -17,71 +18,84 @@ import {
 	type Goal,
 	type LBMFormula,
 } from '@macronutrients/core'
+import { router } from 'expo-router'
 import { useMemo } from 'react'
 import { Alert, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 
 export default function IndexScreen() {
 	const user = useNanostore($userAttributes)
 	const targets = useMemo(() => calculateMacroTargetsFromState(user), [user])
+	const { t } = useI18n()
 
 	return (
 		<ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps='handled'>
-			<Text style={styles.title}>MacroCalc</Text>
+			<View style={styles.header}>
+				<Text style={styles.title}>{t('app.title')}</Text>
+				<Pressable
+					hitSlop={10}
+					accessibilityRole='button'
+					accessibilityLabel={t('settings.title')}
+					onPress={() => router.push('/modal')}
+					style={({ pressed }) => [styles.settingsButton, pressed && styles.settingsButtonPressed]}
+				>
+					<FontAwesome name='cog' size={18} color='#111827' />
+				</Pressable>
+			</View>
 
-			<Section title='Basics'>
+			<Section title={t('sections.basics')}>
 				<Row>
 					<Segmented
-						label='Gender'
+						label={t('fields.gender')}
 						value={user.genre}
 						options={[
-							{ label: 'Male', value: 'male' },
-							{ label: 'Female', value: 'female' },
+							{ label: t('gender.male'), value: 'male' },
+							{ label: t('gender.female'), value: 'female' },
 						]}
 						onChange={(v) => $updateUserGenre(v as Genre)}
 					/>
 				</Row>
 
 				<Row>
-					<NumberField label='Weight (kg)' value={user.weight} onChange={(v) => $updateUserWeight(v)} />
-					<NumberField label='Height (cm)' value={user.height} onChange={(v) => $updateUserHeight(v)} />
+					<NumberField label={t('fields.weightKg')} value={user.weight} onChange={(v) => $updateUserWeight(v)} />
+					<NumberField label={t('fields.heightCm')} value={user.height} onChange={(v) => $updateUserHeight(v)} />
 				</Row>
 
 				<Row>
-					<NumberField label='Age (years)' value={user.age} onChange={(v) => $updateUserAge(v)} />
+					<NumberField label={t('fields.ageYears')} value={user.age} onChange={(v) => $updateUserAge(v)} />
 				</Row>
 			</Section>
 
-			<Section title='Goal'>
+			<Section title={t('sections.goal')}>
 				<Segmented
-					label='Goal'
+					label={t('fields.goal')}
 					value={user.goal}
 					options={[
-						{ label: 'Maintain', value: 'Maintain' },
-						{ label: 'Surplus', value: 'Surplus' },
-						{ label: 'Definition', value: 'Definition' },
+						{ label: t('goal.maintain'), value: 'Maintain' },
+						{ label: t('goal.surplus'), value: 'Surplus' },
+						{ label: t('goal.definition'), value: 'Definition' },
 					]}
 					onChange={(v) => $updateUserGoal(v as Goal)}
 				/>
 			</Section>
 
-			<Section title='Energy'>
+			<Section title={t('sections.energy')}>
 				<Segmented
-					label='Exercise'
+					label={t('fields.exercise')}
 					value={user.bmrAndExercise.exerciseMultiplier}
 					options={
 						[
-							{ label: 'Sed', value: 'Sedentary' },
-							{ label: 'Light', value: 'Lightly active' },
-							{ label: 'Mod', value: 'Moderately active' },
-							{ label: 'Very', value: 'Very active' },
-							{ label: 'Xtr', value: 'Extremely active' },
+							{ label: t('exercise.sedentary'), value: 'Sedentary' },
+							{ label: t('exercise.light'), value: 'Lightly active' },
+							{ label: t('exercise.moderate'), value: 'Moderately active' },
+							{ label: t('exercise.very'), value: 'Very active' },
+							{ label: t('exercise.extreme'), value: 'Extremely active' },
 						] as const satisfies ReadonlyArray<{ label: string; value: ExerciseMultiplier }>
 					}
 					onChange={(v) => calculateAndUpdateBMR({ exerciseMultiplier: v as ExerciseMultiplier })}
 				/>
 
 				<Segmented
-					label='BMR Equation'
+					label={t('fields.bmrEquation')}
 					value={user.bmrAndExercise.equation}
 					options={
 						[
@@ -94,9 +108,9 @@ export default function IndexScreen() {
 				/>
 			</Section>
 
-			<Section title='LBM' helpText='Lean Body Mass - Total body weight minus fat mass'>
+			<Section title={t('sections.lbm')} helpText={t('help.lbm.text')}>
 				<Segmented
-					label='Formula'
+					label={t('fields.formula')}
 					value={user.lbm.formula}
 					options={
 						[
@@ -111,21 +125,21 @@ export default function IndexScreen() {
 
 				{user.lbm.formula === 'Manual' ? (
 					<Row>
-						<NumberField label='Manual LBM (kg)' value={user.lbm.lbmKg} onChange={(v) => calculateAndUpdateLBM({ lbmManual: v })} />
+						<NumberField label={t('lbm.manualLbmKg')} value={user.lbm.lbmKg} onChange={(v) => calculateAndUpdateLBM({ lbmManual: v })} />
 					</Row>
 				) : null}
 			</Section>
 
-			<Section title='Results'>
+			<Section title={t('sections.results')}>
 				<MacroDonutChart targets={targets} />
 				<View style={styles.divider} />
-				<KeyValue label='Kcal/day' value={targets.kcalPerDay} />
-				<KeyValue label='Carbs' value={`${targets.carbsGrams} g`} />
-				<KeyValue label='Fats' value={`${targets.fatsGrams} g`} />
-				<KeyValue label='Proteins' value={`${targets.proteinsGrams} g`} />
+				<KeyValue label={t('results.kcalDay')} value={targets.kcalPerDay} />
+				<KeyValue label={t('results.carbs')} value={`${targets.carbsGrams} g`} />
+				<KeyValue label={t('results.fats')} value={`${targets.fatsGrams} g`} />
+				<KeyValue label={t('results.proteins')} value={`${targets.proteinsGrams} g`} />
 				<View style={styles.divider} />
-				<KeyValue label='LBM' value={`${user.lbm.lbmKg} kg`} />
-				<KeyValue label='Body fat' value={`${user.lbm.bodyFatPercentage}%`} />
+				<KeyValue label={t('results.lbm')} value={`${user.lbm.lbmKg} kg`} />
+				<KeyValue label={t('results.bodyFat')} value={`${user.lbm.bodyFatPercentage}%`} />
 			</Section>
 		</ScrollView>
 	)
@@ -233,10 +247,24 @@ const styles = StyleSheet.create({
 		padding: 8,
 		paddingBottom: 32,
 	},
+	header: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginBottom: 6,
+	},
 	title: {
 		fontSize: 28,
 		fontWeight: '800',
 		textAlign: 'center',
+	},
+	settingsButton: {
+		position: 'absolute',
+		right: 0,
+		padding: 8,
+	},
+	settingsButtonPressed: {
+		opacity: 0.6,
 	},
 	section: {
 		borderWidth: StyleSheet.hairlineWidth,

@@ -10,6 +10,7 @@ import 'react-native-reanimated'
 import { initUserAttributesPersistence, type KeyValueStorage } from '@macronutrients/core'
 
 import { useColorScheme } from '@/components/useColorScheme'
+import { I18nProvider, useI18n } from '@/src/i18n'
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -45,11 +46,16 @@ export default function RootLayout() {
 		return null
 	}
 
-	return <RootLayoutNav />
+	return (
+		<I18nProvider>
+			<RootLayoutNav />
+		</I18nProvider>
+	)
 }
 
 function RootLayoutNav() {
 	const colorScheme = useColorScheme()
+	const { t } = useI18n()
 
 	useEffect(() => {
 		const storage: KeyValueStorage = {
@@ -72,7 +78,7 @@ function RootLayoutNav() {
 		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
 			<Stack>
 				<Stack.Screen name='index' options={{ headerShown: false }} />
-				<Stack.Screen name='modal' options={{ presentation: 'modal' }} />
+				<Stack.Screen name='modal' options={{ presentation: 'modal', title: t('settings.title') }} />
 			</Stack>
 		</ThemeProvider>
 	)
