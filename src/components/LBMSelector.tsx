@@ -3,16 +3,15 @@ import { $userAttributes } from '@store/user-attributes'
 import { selectLabelStyles, selectStyles } from '@styles/forms'
 import { calculateAndUpdateLBM } from '@utils/lbm-functions'
 import clsx from 'clsx'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import type { LBMFormula } from 'src/types'
 
 export const LBMSelector = () => {
 	const { lbm } = useStore($userAttributes)
-	const [showManualLBMInput, setShowManualLBMInput] = useState(lbm.formula === 'Manual')
+	const showManualLBMInput = lbm.formula === 'Manual'
 
 	const handleLBMFormulaChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
 		const formula: LBMFormula = event.target.value as unknown as LBMFormula
-		setShowManualLBMInput(formula === 'Manual')
 		calculateAndUpdateLBM({ formula })
 	}, [])
 

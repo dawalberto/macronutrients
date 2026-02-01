@@ -21,7 +21,7 @@ export const BMRSelector = () => {
 			<select
 				id='BMREquation'
 				name='BMREquation'
-				defaultValue={bmrAndExercise.equation}
+				value={bmrAndExercise.equation}
 				onChange={handleBMREquationChange}
 				className={clsx(selectStyles, 'border-amber-300 bg-amber-50 text-amber-900 focus:border-amber-500 focus:ring-amber-500')}
 			>

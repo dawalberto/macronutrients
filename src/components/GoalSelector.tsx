@@ -1,10 +1,12 @@
-import { defaultGoal } from '@lib/defaults'
-import { $updateUserGoal } from '@store/user-attributes'
+import { useStore } from '@nanostores/react'
+import { $updateUserGoal, $userAttributes } from '@store/user-attributes'
 import { selectLabelStyles, selectStyles } from '@styles/forms'
 import clsx from 'clsx'
 import type { Goal } from 'src/types'
 
 export const GoalSelector = () => {
+	const { goal } = useStore($userAttributes)
+
 	const handleGoalChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const goal: Goal = event.target.value as Goal
 		$updateUserGoal(goal)
@@ -19,7 +21,7 @@ export const GoalSelector = () => {
 				<select
 					id='goal'
 					name='goal'
-					defaultValue={defaultGoal}
+					value={goal}
 					onChange={handleGoalChange}
 					className={clsx(selectStyles, 'border-pink-300 bg-pink-50 text-pink-900 focus:border-pink-500 focus:ring-pink-500')}
 				>

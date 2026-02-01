@@ -1,5 +1,6 @@
 ---
 import { AdditionalSettings } from '@components/AdditionalSettings'
+import { AppBootstrap } from '@components/AppBootstrap'
 import ChartMacros from '@components/ChartMacros.astro'
 import { Dashboard } from '@components/Dashboard'
 import { ExerciseMultiplier } from '@components/ExerciseMultiplier'
@@ -28,6 +29,7 @@ import '@styles/selects.css'
 	<body class='mx-auto w-full max-w-screen-xl text-slate-700'>
 		<div class='z-10 mx-auto lg:w-1/2 xl:w-[40%]'>
 			<div class='flex flex-col justify-start gap-6 p-2 md:justify-center'>
+				<AppBootstrap client:load />
 				<div>
 					<Dashboard client:load />
 				</div>
