@@ -1,5 +1,6 @@
 import { MacroDonutChart } from '@/src/components/MacroDonutChart'
 import { useNanostore } from '@/src/hooks/useNanostore'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
 import {
 	$updateUserAge,
 	$updateUserGenre,
@@ -17,7 +18,7 @@ import {
 	type LBMFormula,
 } from '@macronutrients/core'
 import { useMemo } from 'react'
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 
 export default function IndexScreen() {
 	const user = useNanostore($userAttributes)
@@ -93,7 +94,7 @@ export default function IndexScreen() {
 				/>
 			</Section>
 
-			<Section title='LBM'>
+			<Section title='LBM' helpText='Lean Body Mass - Total body weight minus fat mass'>
 				<Segmented
 					label='Formula'
 					value={user.lbm.formula}
@@ -130,10 +131,35 @@ export default function IndexScreen() {
 	)
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, helpText, children }: { title: string; helpText?: string; children: React.ReactNode }) {
+	const showHelp = () => {
+		if (!helpText) return
+		if (Platform.OS === 'web') {
+			// RN's Alert is native-first; on web a simple alert is the most reliable.
+			globalThis.alert?.(`${title}\n\n${helpText}`)
+			return
+		}
+		Alert.alert(title, helpText)
+	}
+
 	return (
 		<View style={styles.section}>
-			<Text style={styles.sectionTitle}>{title}</Text>
+			{helpText ? (
+				<Pressable
+					hitSlop={8}
+					accessibilityRole='button'
+					accessibilityLabel={`${title} help`}
+					onPress={showHelp}
+					style={({ pressed }) => [styles.sectionTitleRow, pressed && styles.sectionTitleRowPressed]}
+				>
+					<Text style={styles.sectionTitle}>{title}</Text>
+					<FontAwesome name='info-circle' size={18} color='#6b7280' style={styles.sectionTitleIcon} />
+				</Pressable>
+			) : (
+				<View style={styles.sectionTitleRow}>
+					<Text style={styles.sectionTitle}>{title}</Text>
+				</View>
+			)}
 			{children}
 		</View>
 	)
@@ -223,7 +249,19 @@ const styles = StyleSheet.create({
 	sectionTitle: {
 		fontSize: 16,
 		fontWeight: '700',
+		lineHeight: 20,
+	},
+	sectionTitleRow: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 8,
 		marginBottom: 8,
+	},
+	sectionTitleRowPressed: {
+		opacity: 0.65,
+	},
+	sectionTitleIcon: {
+		marginTop: 1,
 	},
 	row: {
 		flexDirection: 'row',
