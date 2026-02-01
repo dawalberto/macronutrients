@@ -42,7 +42,7 @@ export default function IndexScreen() {
 				</Pressable>
 			</View>
 
-			<Section title={t('sections.basics')}>
+			<Section title={t('sections.basics') + ' 🧬'}>
 				<Row>
 					<Segmented
 						label={t('fields.gender')}
@@ -65,7 +65,7 @@ export default function IndexScreen() {
 				</Row>
 			</Section>
 
-			<Section title={t('sections.goal')}>
+			<Section title={t('sections.goal') + ' 🏁'}>
 				<Segmented
 					label={t('fields.goal')}
 					value={user.goal}
@@ -78,7 +78,7 @@ export default function IndexScreen() {
 				/>
 			</Section>
 
-			<Section title={t('sections.energy')}>
+			<Section title={t('sections.energy') + ' ⚡'}>
 				<Segmented
 					label={t('fields.exercise')}
 					value={user.bmrAndExercise.exerciseMultiplier}
@@ -130,7 +130,7 @@ export default function IndexScreen() {
 				) : null}
 			</Section>
 
-			<Section title={t('sections.results')}>
+			<Section title={t('sections.results') + ' 📊'}>
 				<MacroDonutChart targets={targets} />
 				<View style={styles.divider} />
 				<KeyValue label={t('results.kcalDay')} value={targets.kcalPerDay} />
@@ -245,7 +245,7 @@ function Segmented({
 const styles = StyleSheet.create({
 	container: {
 		padding: 8,
-		paddingBottom: 32,
+		// paddingBottom: 32,
 	},
 	header: {
 		flexDirection: 'row',
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
 	section: {
 		borderWidth: StyleSheet.hairlineWidth,
 		borderColor: '#e5e7eb',
-		borderRadius: 12,
+		borderRadius: 6,
 		padding: 12,
 		marginTop: 12,
 		backgroundColor: '#fff',
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
 	input: {
 		borderWidth: 1,
 		borderColor: '#d1d5db',
-		borderRadius: 10,
+		borderRadius: 6,
 		paddingHorizontal: 12,
 		paddingVertical: 10,
 		fontSize: 16,
