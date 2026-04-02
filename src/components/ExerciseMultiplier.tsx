@@ -1,7 +1,7 @@
 import { defaultExerciseMultiplier } from '@lib/defaults'
 import { selectLabelStyles, selectStyles } from '@styles/forms'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
-import { Activity, ChevronDown } from 'lucide-react'
+import { Activity } from 'lucide-react'
 import type { ExerciseMultiplier as EM } from 'src/types'
 
 export const ExerciseMultiplier = () => {
@@ -15,7 +15,7 @@ export const ExerciseMultiplier = () => {
 			<label htmlFor='exerciseMultiplier' className={selectLabelStyles}>
 				<Activity size={10} /> EXERCISE_MULTIPLIER
 			</label>
-			<div className='relative chamfered bg-obsidian p-0.5'>
+			<div className='chamfered bg-obsidian relative p-0.5'>
 				<select
 					id='exerciseMultiplier'
 					name='exerciseMultiplier'
@@ -29,9 +29,6 @@ export const ExerciseMultiplier = () => {
 					<option value='Very active'>Very active</option>
 					<option value='Extremely active'>Extremely active</option>
 				</select>
-				<div className='pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-concrete'>
-					<ChevronDown size={20} />
-				</div>
 			</div>
 		</div>
 	)

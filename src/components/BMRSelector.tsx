@@ -2,7 +2,6 @@ import { useStore } from '@nanostores/react'
 import { $userAttributes } from '@store/user-attributes'
 import { selectLabelStyles, selectStyles } from '@styles/forms'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
-import { ChevronDown } from 'lucide-react'
 import type { BMREquation } from 'src/types'
 
 export const BMRSelector = () => {
@@ -18,7 +17,7 @@ export const BMRSelector = () => {
 			<label title='Basal metabolic rate' htmlFor='BMREquation' className={selectLabelStyles}>
 				BMR_EQUATION
 			</label>
-			<div className='relative chamfered bg-obsidian p-0.5'>
+			<div className='chamfered bg-obsidian relative p-0.5'>
 				<select
 					id='BMREquation'
 					name='BMREquation'
@@ -30,9 +29,6 @@ export const BMRSelector = () => {
 					<option value='Revised Harris-Benedict'>Revised Harris-Benedict</option>
 					<option value='Katch-McArdle'>Katch-McArdle</option>
 				</select>
-				<div className='pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-concrete'>
-					<ChevronDown size={20} />
-				</div>
 			</div>
 		</div>
 	)
