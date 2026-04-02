@@ -1,51 +1,14 @@
-import {
-	gramsOfFatsInDefinition,
-	gramsOfProteinsInDefinition,
-	gramsOfProteinsInMaintain,
-	gramsOfProteinsInSurplus,
-	percentageOfFatsInSurplus,
-} from '@lib/settings'
 import { $userAttributes } from '@store/user-attributes'
+import { calculateMacros } from '@utils/macro-functions'
 import { useStore } from '@nanostores/react'
 import { Sparkles } from 'lucide-react'
 import { useState } from 'react'
-import { Goal } from 'src/types'
 import { AIMenuModal } from './AIMenuModal'
 import { useAIWorker } from '../hooks/useAIWorker'
 
 function buildPrompt(attrs: ReturnType<typeof $userAttributes.get>): string {
 	const { height, weight, age, genre, lbm, bmrAndExercise, goal } = attrs
-
-	let proteinGrams = 0
-	let fatGrams = 0
-	let carbGrams = 0
-	let kcalPerDay = 0
-
-	switch (goal) {
-		case Goal.MAINTAIN:
-			proteinGrams = gramsOfProteinsInMaintain * lbm.lbmKg
-			fatGrams = lbm.lbmKg
-			carbGrams = (bmrAndExercise.kcalPerDayToMaintain - (proteinGrams * 4 + fatGrams * 9)) / 4
-			kcalPerDay = bmrAndExercise.kcalPerDayToMaintain
-			break
-		case Goal.SURPLUS:
-			proteinGrams = gramsOfProteinsInSurplus * lbm.lbmKg
-			fatGrams = (percentageOfFatsInSurplus * bmrAndExercise.kcalPerDayToSurplus) / 9
-			carbGrams = (bmrAndExercise.kcalPerDayToSurplus - (proteinGrams * 4 + fatGrams * 9)) / 4
-			kcalPerDay = bmrAndExercise.kcalPerDayToSurplus
-			break
-		case Goal.DEFINITION:
-			proteinGrams = gramsOfProteinsInDefinition * lbm.lbmKg
-			fatGrams = gramsOfFatsInDefinition * lbm.lbmKg
-			carbGrams = (bmrAndExercise.kcalPerDayToDefinition - (proteinGrams * 4 + fatGrams * 9)) / 4
-			kcalPerDay = bmrAndExercise.kcalPerDayToDefinition
-			break
-	}
-
-	proteinGrams = Math.round(proteinGrams)
-	fatGrams = Math.round(fatGrams)
-	carbGrams = Math.round(carbGrams)
-	kcalPerDay = Math.round(kcalPerDay)
+	const { proteinGrams, fatGrams, carbGrams, kcalPerDay } = calculateMacros(goal, lbm, bmrAndExercise)
 
 	return [
 		`You are a sports nutritionist. Generate a daily meal plan in markdown format.`,
