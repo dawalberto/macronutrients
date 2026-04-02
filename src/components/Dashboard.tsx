@@ -1,48 +1,47 @@
 import { useStore } from '@nanostores/react'
 import { $updateUserAge, $updateUserGenre, $updateUserHeight, $updateUserWeight, $userAttributes } from '@store/user-attributes'
-import '@styles/dashboard.css'
+import { clsx } from 'clsx'
 import { User } from 'lucide-react'
-import React, { useCallback } from 'react'
-import type { UserAttributesNamesDashboard } from 'src/types'
+import { Genre, UserAttributesNamesDashboard } from 'src/types'
 
 export const Dashboard = () => {
 	const { weight, height, age, genre } = useStore($userAttributes)
 
-	const handleUserAttributeChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleUserAttributeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const attribute = event.target.name as UserAttributesNamesDashboard
 		const value = parseInt(event.target.value)
 
 		switch (attribute) {
-			case 'weight':
+			case UserAttributesNamesDashboard.WEIGHT:
 				$updateUserWeight(value)
 				return
-			case 'height':
+			case UserAttributesNamesDashboard.HEIGHT:
 				$updateUserHeight(value)
 				return
-			case 'age':
+			case UserAttributesNamesDashboard.AGE:
 				$updateUserAge(value)
 				return
 		}
-	}, [])
+	}
 
 	return (
 		<div className='flex w-full flex-col gap-8'>
 			<div className='flex w-full gap-4'>
 				<button
-					onClick={() => $updateUserGenre('male')}
-					className={`flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all ${
-						genre === 'male' ? 'brutalist-border-active bg-gray-100 text-black' : 'bg-obsidian brutalist-border text-gray-400 opacity-50'
-					}`}
+					onClick={() => $updateUserGenre(Genre.MALE)}
+					className={clsx('flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all', {
+						'brutalist-border-active bg-gray-100 text-black': genre === Genre.MALE,
+						'bg-obsidian brutalist-border text-gray-400 opacity-50': genre !== Genre.MALE,
+					})}
 				>
 					<User size={16} /> MALE
 				</button>
 				<button
-					onClick={() => $updateUserGenre('female')}
-					className={`flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all ${
-						genre === 'female'
-							? 'brutalist-border-active bg-gray-100 text-black'
-							: 'bg-obsidian brutalist-border text-gray-400 opacity-50'
-					}`}
+					onClick={() => $updateUserGenre(Genre.FEMALE)}
+					className={clsx('flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all', {
+						'brutalist-border-active bg-gray-100 text-black': genre === Genre.FEMALE,
+						'bg-obsidian brutalist-border text-gray-400 opacity-50': genre !== Genre.FEMALE,
+					})}
 				>
 					<User size={16} /> FEMALE
 				</button>
@@ -50,24 +49,24 @@ export const Dashboard = () => {
 
 			<div className='space-y-3'>
 				<div className='flex items-end justify-between font-bold'>
-					<span className='text-concrete text-[10px]'>WEIGHT_KG</span>
-					<span className='bg-obsidian border border-[#4A4A4A] px-3 py-1 text-white'>{weight}.00</span>
+					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>WEIGHT_KG</span>
+					<span className='bg-obsidian border border-slate-brutalist px-3 py-1 text-white'>{weight}.00</span>
 				</div>
 				<input type='range' id='weight' name='weight' value={weight} min='0' max='200' onChange={handleUserAttributeChange} />
 			</div>
 
 			<div className='space-y-3'>
 				<div className='flex items-end justify-between font-bold'>
-					<span className='text-concrete text-[10px]'>HEIGHT_CM</span>
-					<span className='bg-obsidian border border-[#4A4A4A] px-3 py-1 text-white'>{height}.00</span>
+					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>HEIGHT_CM</span>
+					<span className='bg-obsidian border border-slate-brutalist px-3 py-1 text-white'>{height}.00</span>
 				</div>
 				<input type='range' id='height' name='height' value={height} min='0' max='250' onChange={handleUserAttributeChange} />
 			</div>
 
 			<div className='space-y-3'>
 				<div className='flex items-end justify-between font-bold'>
-					<span className='text-concrete text-[10px]'>AGE_YRS</span>
-					<span className='bg-obsidian border border-[#4A4A4A] px-3 py-1 text-white'>{age}.00</span>
+					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>AGE_YRS</span>
+					<span className='bg-obsidian border border-slate-brutalist px-3 py-1 text-white'>{age}.00</span>
 				</div>
 				<input type='range' id='age' name='age' value={age} min='0' max='100' onChange={handleUserAttributeChange} />
 			</div>

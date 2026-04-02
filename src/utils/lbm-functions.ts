@@ -1,5 +1,5 @@
 import { $updateUserLBM, $userAttributes } from '@store/user-attributes'
-import type { LBMFormula } from 'src/types'
+import { Genre, LBMFormula } from 'src/types'
 import { defaultLbm } from '../lib/defaults'
 
 export const calculateAndUpdateLBM = ({ formula, lbmManual }: { formula?: LBMFormula; lbmManual?: number }): void => {
@@ -8,16 +8,16 @@ export const calculateAndUpdateLBM = ({ formula, lbmManual }: { formula?: LBMFor
 	let lbm: number = defaultLbm.lbmKg
 
 	switch (updatedFormula) {
-		case 'Boer':
+		case LBMFormula.BOER:
 			lbm = calculateLBMBoer()
 			break
-		case 'James':
+		case LBMFormula.JAMES:
 			lbm = calculateLBMJames()
 			break
-		case 'Hume':
+		case LBMFormula.HUME:
 			lbm = calculateLBMHume()
 			break
-		case 'Manual':
+		case LBMFormula.MANUAL:
 			lbm = lbmManual ?? $lbm.lbmKg
 			break
 	}
@@ -34,7 +34,7 @@ const calculateLBMBoer = (): number => {
 	const { weight, height, genre } = $userAttributes.get()
 	let lbm = 0
 
-	if (genre === 'male') {
+	if (genre === Genre.MALE) {
 		lbm = 0.407 * weight + 0.267 * height - 19.2
 	} else {
 		lbm = 0.252 * weight + 0.473 * height - 48.3
@@ -48,7 +48,7 @@ const calculateLBMJames = (): number => {
 
 	let lbm = 0
 
-	if (genre === 'male') {
+	if (genre === Genre.MALE) {
 		lbm = 1.1 * weight - 128 * (weight / height) ** 2
 	} else {
 		lbm = 1.07 * weight - 148 * (weight / height) ** 2
@@ -62,7 +62,7 @@ const calculateLBMHume = (): number => {
 
 	let lbm = 0
 
-	if (genre === 'male') {
+	if (genre === Genre.MALE) {
 		lbm = 0.3281 * weight + 0.33929 * height - 29.5336
 	} else {
 		lbm = 0.29569 * weight + 0.41813 * height - 43.2933

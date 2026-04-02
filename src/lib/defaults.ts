@@ -1,14 +1,15 @@
 import { calculateAge, getExerciseMultiplierValue } from '@utils/global-functions'
-import type { Age, BMRAndExercise, BMREquation, ExerciseMultiplier, Genre, Goal, Height, LBM, LBMFormula } from 'src/types'
+import { BMREquation, ExerciseMultiplier, Genre, Goal, LBMFormula } from 'src/types'
+import type { Age, BMRAndExercise, Height, LBM, Weight } from 'src/types'
 import { gramsOfProteinsInMaintain, kcalForDefinition, kcalForSurplus } from './settings'
 
-export const defaultWeight: Height = 63
+export const defaultWeight: Weight = 63
 export const defaultHeight: Height = 169
 export const defaultAge: Age = calculateAge('1997-12-30')
-export const defaultGenre: Genre = 'male'
+export const defaultGenre: Genre = Genre.MALE
 
 const lbm = 0.407 * defaultWeight + 0.267 * defaultHeight - 19.2 // 'Boer' formula calculation
-export const defaultLBMFormula: LBMFormula = 'Boer'
+export const defaultLBMFormula: LBMFormula = LBMFormula.BOER
 export const defaultLbm: LBM = {
 	formula: defaultLBMFormula,
 	lbmKg: Number(lbm.toFixed(1)),
@@ -16,8 +17,8 @@ export const defaultLbm: LBM = {
 	bodyFatPercentage: Math.round(((defaultWeight - lbm) / defaultWeight) * 100),
 }
 
-export const defaultExerciseMultiplier: ExerciseMultiplier = 'Moderately active'
-export const defaultBMREquation: BMREquation = 'Katch-McArdle'
+export const defaultExerciseMultiplier: ExerciseMultiplier = ExerciseMultiplier.MODERATELY_ACTIVE
+export const defaultBMREquation: BMREquation = BMREquation.KATCH_MC_ARDLE
 const kcalPerDay = 370 + 21.6 * (1 - defaultLbm.bodyFatPercentage / 100) * defaultWeight // 'Katch-McArdle' equation calculation
 
 export const defaultBMRAndExercise: BMRAndExercise = {
@@ -28,7 +29,7 @@ export const defaultBMRAndExercise: BMRAndExercise = {
 	kcalPerDayToSurplus: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier) + kcalForSurplus),
 	kcalPerDayToDefinition: Math.round(kcalPerDay * getExerciseMultiplierValue(defaultExerciseMultiplier) - kcalForDefinition),
 }
-export const defaultGoal: Goal = 'Maintain'
+export const defaultGoal: Goal = Goal.MAINTAIN
 // Default macros for Maintain goal
 export const defaultProteinsGrams = Math.round(gramsOfProteinsInMaintain * defaultLbm.lbmKg)
 export const defaultFatsGrams = Math.round(defaultLbm.lbmKg)

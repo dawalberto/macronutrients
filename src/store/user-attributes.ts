@@ -2,7 +2,8 @@ import { defaultAge, defaultBMRAndExercise, defaultGenre, defaultGoal, defaultHe
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
 import { calculateAndUpdateLBM } from '@utils/lbm-functions'
 import { listenKeys, map } from 'nanostores'
-import type { Age, BMRAndExercise, Genre, Goal, Height, LBM, UserAttributes, Weight } from 'src/types'
+import { Genre, Goal } from 'src/types'
+import type { Age, BMRAndExercise, Height, LBM, UserAttributes, Weight } from 'src/types'
 
 export const $userAttributes = map<UserAttributes>({
 	height: defaultHeight,
