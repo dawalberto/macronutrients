@@ -31,9 +31,7 @@ export const Dashboard = () => {
 				<button
 					onClick={() => $updateUserGenre('male')}
 					className={`flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all ${
-						genre === 'male'
-							? 'bg-gray-100 text-black brutalist-border-active'
-							: 'bg-obsidian text-gray-400 brutalist-border opacity-50'
+						genre === 'male' ? 'brutalist-border-active bg-gray-100 text-black' : 'bg-obsidian brutalist-border text-gray-400 opacity-50'
 					}`}
 				>
 					<User size={16} /> MALE
@@ -42,8 +40,8 @@ export const Dashboard = () => {
 					onClick={() => $updateUserGenre('female')}
 					className={`flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all ${
 						genre === 'female'
-							? 'bg-gray-100 text-black brutalist-border-active'
-							: 'bg-obsidian text-gray-400 brutalist-border opacity-50'
+							? 'brutalist-border-active bg-gray-100 text-black'
+							: 'bg-obsidian brutalist-border text-gray-400 opacity-50'
 					}`}
 				>
 					<User size={16} /> FEMALE
@@ -52,24 +50,24 @@ export const Dashboard = () => {
 
 			<div className='space-y-3'>
 				<div className='flex items-end justify-between font-bold'>
-					<span className='text-[10px] text-concrete'>WEIGHT_KG</span>
-					<span className='border border-slate-brutalist bg-obsidian px-3 py-1 text-white'>{weight}.00</span>
+					<span className='text-concrete text-[10px]'>WEIGHT_KG</span>
+					<span className='bg-obsidian border border-[#4A4A4A] px-3 py-1 text-white'>{weight}.00</span>
 				</div>
 				<input type='range' id='weight' name='weight' value={weight} min='0' max='200' onChange={handleUserAttributeChange} />
 			</div>
 
 			<div className='space-y-3'>
 				<div className='flex items-end justify-between font-bold'>
-					<span className='text-[10px] text-concrete'>HEIGHT_CM</span>
-					<span className='border border-slate-brutalist bg-obsidian px-3 py-1 text-white'>{height}.00</span>
+					<span className='text-concrete text-[10px]'>HEIGHT_CM</span>
+					<span className='bg-obsidian border border-[#4A4A4A] px-3 py-1 text-white'>{height}.00</span>
 				</div>
 				<input type='range' id='height' name='height' value={height} min='0' max='250' onChange={handleUserAttributeChange} />
 			</div>
 
 			<div className='space-y-3'>
 				<div className='flex items-end justify-between font-bold'>
-					<span className='text-[10px] text-concrete'>AGE_YRS</span>
-					<span className='border border-slate-brutalist bg-obsidian px-3 py-1 text-white'>{age}.00</span>
+					<span className='text-concrete text-[10px]'>AGE_YRS</span>
+					<span className='bg-obsidian border border-[#4A4A4A] px-3 py-1 text-white'>{age}.00</span>
 				</div>
 				<input type='range' id='age' name='age' value={age} min='0' max='100' onChange={handleUserAttributeChange} />
 			</div>

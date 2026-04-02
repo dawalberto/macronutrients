@@ -30,32 +30,24 @@ import '@styles/selects.css'
 		<meta name='author' content='Alberto García Sola' />
 	</head>
 	<body class='min-h-screen bg-[#0A0A0A] text-gray-100'>
-		<div class='mx-auto w-full max-w-md p-4 md:p-8'>
+		<div class='mx-auto w-full max-w-xl p-4 md:p-8'>
 			<header class='mb-8 border-b-8 border-[#4A4A4A] pb-4'>
 				<h1 class='text-4xl leading-none font-extrabold italic'>MACRO_CALC V1.0</h1>
 				<div class='mt-1 flex items-center justify-between'>
 					<p class='text-[10px] opacity-60'>SYSTEM STATUS: OPTIMAL // BRUTALIST NUTRITION ENGINE</p>
 					<div class='flex gap-1'>
 						<div class='h-2 w-2 animate-pulse bg-emerald-500'></div>
-						<div class='h-2 w-2 bg-[#4A4A4A]'></div>
-						<div class='h-2 w-2 bg-[#4A4A4A]'></div>
+						<div class='bg-slate-brutalist h-2 w-2'></div>
+						<div class='bg-slate-brutalist h-2 w-2'></div>
 					</div>
 				</div>
 			</header>
 
 			<div class='flex flex-col gap-8'>
-				<div>
-					<Dashboard client:load />
-				</div>
-				<div>
-					<ExerciseMultiplier client:load />
-				</div>
-				<div>
-					<GoalSelector client:load />
-				</div>
-				<div>
-					<ChartMacros />
-				</div>
+				<Dashboard client:load />
+				<ExerciseMultiplier client:load />
+				<GoalSelector client:load />
+				<ChartMacros />
 				<AdditionalSettings client:load />
 			</div>
 

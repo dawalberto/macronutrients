@@ -42,7 +42,7 @@ export const LBMSelector = () => {
 					onChange={handleManualLBMInputChange}
 					defaultValue={lbm.lbmKg}
 					placeholder='LBM in Kg'
-					className={`${showManualLBMInput ? 'block w-2/5' : 'hidden'} border-slate-brutalist border-2 bg-[#0A0A0A] p-2 font-mono text-sm text-white outline-0`}
+					className={`${showManualLBMInput ? 'block w-2/5' : 'hidden'} border-2 border-[#4A4A4A] bg-[#0A0A0A] p-2 font-mono text-sm text-white outline-0`}
 				/>
 			</div>
 		</div>

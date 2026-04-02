@@ -17,10 +17,11 @@ export const AdditionalSettings = () => {
 		<div className='w-full'>
 			<button
 				onClick={handleOnClick}
-				className='mx-auto block w-fit bg-obsidian px-6 py-3 font-bold tracking-widest text-gray-300 brutalist-border transition-all hover:brutalist-border-active'
+				className='bg-obsidian brutalist-border hover:brutalist-border-active mx-auto block w-fit px-6 py-3 font-bold tracking-widest text-gray-300 transition-all'
 			>
 				ADVANCED_SETTINGS
 			</button>
+			{/* TODO - ANIMATE THIS SHOW/HIDE; USE REACT 19 <ACTIVITY> COMPONENT */}
 			{showMore && (
 				<div className='mt-6 flex flex-col gap-6'>
 					<div>
