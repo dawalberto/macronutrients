@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 /*********** Baseline, reset styles ***********/
 input[type="range"] {
   -webkit-appearance: none;
