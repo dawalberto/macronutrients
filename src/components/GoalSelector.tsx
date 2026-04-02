@@ -1,7 +1,7 @@
 import { defaultGoal } from '@lib/defaults'
 import { $updateUserGoal } from '@store/user-attributes'
 import { selectLabelStyles, selectStyles } from '@styles/forms'
-import clsx from 'clsx'
+import { ChevronDown, Target } from 'lucide-react'
 import type { Goal } from 'src/types'
 
 export const GoalSelector = () => {
@@ -11,22 +11,19 @@ export const GoalSelector = () => {
 	}
 
 	return (
-		<div className='flex w-full flex-col gap-4'>
-			<div>
-				<label htmlFor='goal' className={clsx(selectLabelStyles, 'text-pink-900')}>
-					Goal
-				</label>
-				<select
-					id='goal'
-					name='goal'
-					defaultValue={defaultGoal}
-					onChange={handleGoalChange}
-					className={clsx(selectStyles, 'border-pink-300 bg-pink-50 text-pink-900 focus:border-pink-500 focus:ring-pink-500')}
-				>
+		<div className='w-full space-y-2'>
+			<label htmlFor='goal' className={selectLabelStyles}>
+				<Target size={10} /> TARGET_GOAL
+			</label>
+			<div className='relative chamfered bg-obsidian p-0.5'>
+				<select id='goal' name='goal' defaultValue={defaultGoal} onChange={handleGoalChange} className={selectStyles}>
 					<option value='Maintain'>Maintain</option>
 					<option value='Surplus'>Surplus</option>
 					<option value='Definition'>Definition</option>
 				</select>
+				<div className='pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-concrete'>
+					<ChevronDown size={20} />
+				</div>
 			</div>
 		</div>
 	)

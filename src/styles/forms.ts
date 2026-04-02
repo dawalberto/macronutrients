@@ -1,3 +1,3 @@
-export const labelStyles = 'block md:text-sm text-base font-bold'
+export const labelStyles = 'text-[10px] font-bold text-[#8C8C8C] flex items-center gap-1'
 export const selectLabelStyles = 'mb-2 ' + labelStyles
-export const selectStyles = 'block ml-1 min-h-9 rounded-none border-2 p-2.5 md:text-sm text-base w-full md:h-auto shadow-md cursor-pointer outline-0'
+export const selectStyles = 'w-full bg-[#0A0A0A] text-white p-4 border-none focus:ring-0 font-bold cursor-pointer uppercase tracking-tighter'

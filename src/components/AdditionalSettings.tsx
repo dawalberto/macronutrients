@@ -14,12 +14,12 @@ export const AdditionalSettings = () => {
 	}, [])
 
 	return (
-		<div className='mt-6 w-full'>
+		<div className='w-full'>
 			<button
 				onClick={handleOnClick}
-				className='mx-auto block w-fit rounded-full bg-amber-400 px-4 py-2 text-center font-semibold text-amber-950 shadow-md transition-all duration-150 hover:scale-105 hover:shadow-lg active:scale-100 active:border-amber-500 active:shadow-none active:ring-amber-500'
+				className='mx-auto block w-fit bg-obsidian px-6 py-3 font-bold tracking-widest text-gray-300 brutalist-border transition-all hover:brutalist-border-active'
 			>
-				Additional settings
+				ADVANCED_SETTINGS
 			</button>
 			{showMore && (
 				<div className='mt-6 flex flex-col gap-6'>

@@ -1,7 +1,7 @@
 import { defaultExerciseMultiplier } from '@lib/defaults'
 import { selectLabelStyles, selectStyles } from '@styles/forms'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
-import clsx from 'clsx'
+import { Activity, ChevronDown } from 'lucide-react'
 import type { ExerciseMultiplier as EM } from 'src/types'
 
 export const ExerciseMultiplier = () => {
@@ -11,25 +11,28 @@ export const ExerciseMultiplier = () => {
 	}
 
 	return (
-		<div className='w-full'>
-			<label htmlFor='exerciseMultiplier' className={clsx(selectLabelStyles, 'text-sky-900')}>
-				Exercise multiplier
+		<div className='w-full space-y-2'>
+			<label htmlFor='exerciseMultiplier' className={selectLabelStyles}>
+				<Activity size={10} /> EXERCISE_MULTIPLIER
 			</label>
-			<select
-				id='exerciseMultiplier'
-				name='exerciseMultiplier'
-				defaultValue={defaultExerciseMultiplier}
-				onChange={handleExerciseMultiplierChange}
-				className={bmrSelectStyles}
-			>
-				<option value='Sedentary'>🥱 Sedentary</option>
-				<option value='Lightly active'>🏃‍♂️ Lightly active</option>
-				<option value='Moderately active'>💪 Moderately active</option>
-				<option value='Very active'>🏋️‍♀️ Very active</option>
-				<option value='Extremely active'>🔥 Extremely active</option>
-			</select>
+			<div className='relative chamfered bg-obsidian p-0.5'>
+				<select
+					id='exerciseMultiplier'
+					name='exerciseMultiplier'
+					defaultValue={defaultExerciseMultiplier}
+					onChange={handleExerciseMultiplierChange}
+					className={selectStyles}
+				>
+					<option value='Sedentary'>Sedentary</option>
+					<option value='Lightly active'>Lightly active</option>
+					<option value='Moderately active'>Moderately active</option>
+					<option value='Very active'>Very active</option>
+					<option value='Extremely active'>Extremely active</option>
+				</select>
+				<div className='pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-concrete'>
+					<ChevronDown size={20} />
+				</div>
+			</div>
 		</div>
 	)
 }
-
-const bmrSelectStyles = clsx(selectStyles, 'border-sky-300 bg-sky-50 text-sky-900 focus:border-sky-500 focus:ring-sky-500')

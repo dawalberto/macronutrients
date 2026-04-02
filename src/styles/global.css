@@ -1,1 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,800&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-obsidian: #1A1A1A;
+  --color-slate-brutalist: #4A4A4A;
+  --color-concrete: #8C8C8C;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0A0A0A] text-gray-100 font-mono uppercase tracking-tighter;
+  }
+}
+
+@layer components {
+  .brutalist-border {
+    @apply border-4 border-[#4A4A4A] shadow-[6px_6px_0px_0px_#1A1A1A] transition-all;
+  }
+
+  .brutalist-border-active {
+    @apply border-4 border-gray-100 shadow-[6px_6px_0px_0px_#4A4A4A];
+  }
+
+  .chamfered {
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+}

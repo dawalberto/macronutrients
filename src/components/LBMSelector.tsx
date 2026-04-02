@@ -2,7 +2,7 @@ import { useStore } from '@nanostores/react'
 import { $userAttributes } from '@store/user-attributes'
 import { selectLabelStyles, selectStyles } from '@styles/forms'
 import { calculateAndUpdateLBM } from '@utils/lbm-functions'
-import clsx from 'clsx'
+import { ChevronDown } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import type { LBMFormula } from 'src/types'
 
@@ -24,37 +24,35 @@ export const LBMSelector = () => {
 	}, [])
 
 	return (
-		<div className='w-full'>
-			<label title='Lean body mass' htmlFor='LBMFormula' className={clsx(selectLabelStyles, 'text-lime-900')}>
-				LBM formula
+		<div className='w-full space-y-2'>
+			<label title='Lean body mass' htmlFor='LBMFormula' className={selectLabelStyles}>
+				LBM_FORMULA
 			</label>
 			<div className='flex gap-2'>
-				<select
-					id='LBMFormula'
-					name='LBMFormula'
-					defaultValue={lbm.formula}
-					onChange={handleLBMFormulaChange}
-					className={clsx(
-						selectStyles,
-						showManualLBMInput ? 'w-3/5' : 'w-full',
-						'border-lime-300 bg-lime-50 text-lime-900 focus:border-lime-500 focus:ring-lime-500'
-					)}
-				>
-					<option value='Boer'>Boer</option>
-					<option value='James'>James</option>
-					<option value='Hume'>Hume</option>
-					<option value='Manual'>Manual</option>
-				</select>
+				<div className={`relative chamfered bg-obsidian p-0.5 ${showManualLBMInput ? 'w-3/5' : 'w-full'}`}>
+					<select
+						id='LBMFormula'
+						name='LBMFormula'
+						defaultValue={lbm.formula}
+						onChange={handleLBMFormulaChange}
+						className={selectStyles}
+					>
+						<option value='Boer'>Boer</option>
+						<option value='James'>James</option>
+						<option value='Hume'>Hume</option>
+						<option value='Manual'>Manual</option>
+					</select>
+					<div className='pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-concrete'>
+						<ChevronDown size={20} />
+					</div>
+				</div>
 				<input
 					type='number'
 					name='manualLBMInput'
 					onChange={handleManualLBMInputChange}
 					defaultValue={lbm.lbmKg}
 					placeholder='LBM in Kg'
-					className={clsx(
-						showManualLBMInput ? 'block w-2/5' : 'hidden',
-						'block max-h-12 min-h-9 rounded-none border-2 border-lime-300 bg-lime-50 p-2.5 text-sm text-lime-900 shadow-md outline-0 focus:border-lime-500 focus:ring-lime-500'
-					)}
+					className={`${showManualLBMInput ? 'block w-2/5' : 'hidden'} border-2 border-slate-brutalist bg-[#0A0A0A] p-2 font-mono text-sm text-white outline-0`}
 				/>
 			</div>
 		</div>
