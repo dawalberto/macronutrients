@@ -1,4 +1,4 @@
-import type { ExerciseMultiplier } from 'src/types'
+import { ExerciseMultiplier } from 'src/types'
 
 export const calculateAge = (birthDate: string) => {
 	const today = new Date()
@@ -16,15 +16,17 @@ export const calculateAge = (birthDate: string) => {
 
 export const getExerciseMultiplierValue = (exerciseMultiplier: ExerciseMultiplier) => {
 	switch (exerciseMultiplier) {
-		case 'Sedentary':
+		case ExerciseMultiplier.SEDENTARY:
 			return 1.2
-		case 'Lightly active':
+		case ExerciseMultiplier.LIGHTLY_ACTIVE:
 			return 1.375
-		case 'Moderately active':
+		case ExerciseMultiplier.MODERATELY_ACTIVE:
 			return 1.55
-		case 'Very active':
+		case ExerciseMultiplier.VERY_ACTIVE:
 			return 1.725
-		case 'Extremely active':
+		case ExerciseMultiplier.EXTREMELY_ACTIVE:
 			return 1.9
+		default:
+			return 1.2
 	}
 }

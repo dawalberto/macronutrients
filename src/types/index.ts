@@ -11,7 +11,7 @@ export type UserAttributes = {
 export type Height = number
 export type Weight = number
 export type Age = number
-export type Genre = 'male' | 'female'
+
 export type LBM = {
 	formula: LBMFormula
 	lbmKg: number
@@ -27,8 +27,41 @@ export type BMRAndExercise = {
 	kcalPerDayToDefinition: number
 }
 
-export type LBMFormula = 'Boer' | 'James' | 'Hume' | 'Manual'
-export type BMREquation = 'Mifflin St Jeor' | 'Revised Harris-Benedict' | 'Katch-McArdle'
-export type ExerciseMultiplier = 'Sedentary' | 'Lightly active' | 'Moderately active' | 'Very active' | 'Extremely active'
-export type UserAttributesNamesDashboard = 'genre' | 'weight' | 'height' | 'age'
-export type Goal = 'Maintain' | 'Surplus' | 'Definition'
+export enum Genre {
+	MALE = 'male',
+	FEMALE = 'female',
+}
+
+export enum LBMFormula {
+	BOER = 'Boer',
+	JAMES = 'James',
+	HUME = 'Hume',
+	MANUAL = 'Manual',
+}
+
+export enum BMREquation {
+	MIFFLIN_ST_JEOR = 'Mifflin St Jeor',
+	REVISED_HARRIS_BENEDICT = 'Revised Harris-Benedict',
+	KATCH_MC_ARDLE = 'Katch-McArdle',
+}
+
+export enum ExerciseMultiplier {
+	SEDENTARY = 'Sedentary',
+	LIGHTLY_ACTIVE = 'Lightly active',
+	MODERATELY_ACTIVE = 'Moderately active',
+	VERY_ACTIVE = 'Very active',
+	EXTREMELY_ACTIVE = 'Extremely active',
+}
+
+export enum Goal {
+	MAINTAIN = 'Maintain',
+	SURPLUS = 'Surplus',
+	DEFINITION = 'Definition',
+}
+
+export enum UserAttributesNamesDashboard {
+	GENRE = 'genre',
+	WEIGHT = 'weight',
+	HEIGHT = 'height',
+	AGE = 'age',
+}

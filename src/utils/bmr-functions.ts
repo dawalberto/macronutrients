@@ -1,6 +1,7 @@
 import { kcalForDefinition, kcalForSurplus } from '@lib/settings'
 import { $updateUserBMRAndExercise, $userAttributes } from '@store/user-attributes'
-import type { BMRAndExercise, BMREquation, ExerciseMultiplier } from 'src/types'
+import { BMREquation, ExerciseMultiplier, Genre } from 'src/types'
+import type { BMRAndExercise } from 'src/types'
 import { defaultBMRAndExercise } from '../lib/defaults'
 import { getExerciseMultiplierValue } from './global-functions'
 
@@ -11,13 +12,13 @@ export const calculateAndUpdateBMR = ({ equation, exerciseMultiplier }: { equati
 	let bmr: number = defaultBMRAndExercise.kcalPerDay
 
 	switch (updatedEquation) {
-		case 'Mifflin St Jeor':
+		case BMREquation.MIFFLIN_ST_JEOR:
 			bmr = calculateBMRMifflin()
 			break
-		case 'Revised Harris-Benedict':
+		case BMREquation.REVISED_HARRIS_BENEDICT:
 			bmr = calculateBMRRevisedHarris()
 			break
-		case 'Katch-McArdle':
+		case BMREquation.KATCH_MC_ARDLE:
 			bmr = calculateBMRKatch()
 			break
 	}
@@ -41,7 +42,7 @@ const calculateBMRMifflin = (): number => {
 	const { weight, height, genre, age } = $userAttributes.get()
 	let bmr = 0
 
-	if (genre === 'male') {
+	if (genre === Genre.MALE) {
 		bmr = 10 * weight + 6.25 * height - 5 * age + 5
 	} else {
 		bmr = 10 * weight + 6.25 * height - 5 * age - 161
@@ -54,7 +55,7 @@ const calculateBMRRevisedHarris = (): number => {
 	const { weight, height, genre, age } = $userAttributes.get()
 	let bmr = 0
 
-	if (genre === 'male') {
+	if (genre === Genre.MALE) {
 		bmr = 13.397 * weight + 4.799 * height - 5.677 * age + 88.362
 	} else {
 		bmr = 9.247 * weight + 3.098 * height - 4.33 * age + 447.593

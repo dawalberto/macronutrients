@@ -1,8 +1,7 @@
 import { defaultGoal } from '@lib/defaults'
 import { $updateUserGoal } from '@store/user-attributes'
-import { selectLabelStyles, selectStyles } from '@styles/forms'
-import clsx from 'clsx'
-import type { Goal } from 'src/types'
+import { Target } from 'lucide-react'
+import { Goal } from 'src/types'
 
 export const GoalSelector = () => {
 	const handleGoalChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -11,21 +10,15 @@ export const GoalSelector = () => {
 	}
 
 	return (
-		<div className='flex w-full flex-col gap-4'>
-			<div>
-				<label htmlFor='goal' className={clsx(selectLabelStyles, 'text-pink-900')}>
-					Goal
-				</label>
-				<select
-					id='goal'
-					name='goal'
-					defaultValue={defaultGoal}
-					onChange={handleGoalChange}
-					className={clsx(selectStyles, 'border-pink-300 bg-pink-50 text-pink-900 focus:border-pink-500 focus:ring-pink-500')}
-				>
-					<option value='Maintain'>Maintain</option>
-					<option value='Surplus'>Surplus</option>
-					<option value='Definition'>Definition</option>
+		<div className='w-full space-y-2'>
+			<label htmlFor='goal' className='select-label'>
+				<Target size={10} /> TARGET_GOAL
+			</label>
+			<div className='chamfered bg-obsidian relative p-0.5'>
+				<select id='goal' name='goal' defaultValue={defaultGoal} onChange={handleGoalChange} className='form-select'>
+					<option value={Goal.MAINTAIN}>Maintain</option>
+					<option value={Goal.SURPLUS}>Surplus</option>
+					<option value={Goal.DEFINITION}>Definition</option>
 				</select>
 			</div>
 		</div>

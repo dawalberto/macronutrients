@@ -2,7 +2,20 @@
 
 ---
 
-<div class='mx-auto w-full'><canvas id='chart'></canvas></div>
+<div class='bg-obsidian brutalist-border-active relative overflow-hidden p-8 text-white'>
+	<p class='mb-6 text-[clamp(11px,1.2vw,13px)] opacity-60'>◉ DAILY_CALORIC_QUOTA</p>
+	<div class='mx-auto w-full' style='height: 16rem;'><canvas id='chart'></canvas></div>
+
+	<!-- Grid background decoration -->
+	<div class='pointer-events-none absolute top-0 right-0 h-48 w-48 opacity-10'>
+		<svg width='100%' height='100%' viewBox='0 0 100 100'>
+			<pattern id='grid' width='10' height='10' patternUnits='userSpaceOnUse'>
+				<path d='M 10 0 L 0 0 0 10' fill='none' stroke='white' stroke-width='0.5'></path>
+			</pattern>
+			<rect width='100' height='100' fill='url(#grid)'></rect>
+		</svg>
+	</div>
+</div>
 <script>
 	import {
 		gramsOfFatsInDefinition,
@@ -16,6 +29,8 @@
 	import { getChartTitle, getLabels } from '@utils/chart-functions'
 	import Chart, { type ChartItem } from 'chart.js/auto'
 	import { listenKeys } from 'nanostores'
+	import { Goal } from 'src/types'
+
 	const chartElement = document.getElementById('chart') as ChartItem
 
 	const chart = new Chart(chartElement, chartConfiguration)
@@ -27,19 +42,19 @@
 		let kcalPerDay = 0
 
 		switch (goal) {
-			case 'Maintain':
+			case Goal.MAINTAIN:
 				proteinGrams = gramsOfProteinsInMaintain * lbm.lbmKg
 				fatGrams = lbm.lbmKg
 				carbGrams = (bmrAndExercise.kcalPerDayToMaintain - (proteinGrams * 4 + fatGrams * 9)) / 4
 				kcalPerDay = bmrAndExercise.kcalPerDayToMaintain
 				break
-			case 'Surplus':
+			case Goal.SURPLUS:
 				proteinGrams = gramsOfProteinsInSurplus * lbm.lbmKg
 				fatGrams = (percentageOfFatsInSurplus * bmrAndExercise.kcalPerDayToSurplus) / 9
 				carbGrams = (bmrAndExercise.kcalPerDayToSurplus - (proteinGrams * 4 + fatGrams * 9)) / 4
 				kcalPerDay = bmrAndExercise.kcalPerDayToSurplus
 				break
-			case 'Definition':
+			case Goal.DEFINITION:
 				proteinGrams = gramsOfProteinsInDefinition * lbm.lbmKg
 				fatGrams = gramsOfFatsInDefinition * lbm.lbmKg
 				carbGrams = (bmrAndExercise.kcalPerDayToDefinition - (proteinGrams * 4 + fatGrams * 9)) / 4

@@ -1,73 +1,73 @@
 import { useStore } from '@nanostores/react'
 import { $updateUserAge, $updateUserGenre, $updateUserHeight, $updateUserWeight, $userAttributes } from '@store/user-attributes'
-import '@styles/dashboard.css'
-import { labelStyles } from '@styles/forms'
-import React, { useCallback } from 'react'
-import type { Genre, UserAttributesNamesDashboard } from 'src/types'
+import { clsx } from 'clsx'
+import { User } from 'lucide-react'
+import { Genre, UserAttributesNamesDashboard } from 'src/types'
 
 export const Dashboard = () => {
 	const { weight, height, age, genre } = useStore($userAttributes)
 
-	const handleUserAttributeChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleUserAttributeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const attribute = event.target.name as UserAttributesNamesDashboard
-		let value = event.target.value as Genre | number
-		if (attribute !== 'genre') {
-			value = parseInt(value as string)
-		}
+		const value = parseInt(event.target.value)
 
 		switch (attribute) {
-			case 'weight':
-				$updateUserWeight(value as number)
+			case UserAttributesNamesDashboard.WEIGHT:
+				$updateUserWeight(value)
 				return
-			case 'height':
-				$updateUserHeight(value as number)
+			case UserAttributesNamesDashboard.HEIGHT:
+				$updateUserHeight(value)
 				return
-			case 'age':
-				$updateUserAge(value as number)
-				return
-			case 'genre':
-				$updateUserGenre(value as Genre)
+			case UserAttributesNamesDashboard.AGE:
+				$updateUserAge(value)
 				return
 		}
-	}, [])
+	}
 
 	return (
-		<div className='mx-auto flex w-full flex-col items-center justify-center gap-4 text-sm font-medium text-amber-900'>
-			<div className='flex w-full justify-start gap-4'>
-				<label className='radio-button' htmlFor='genreMale'>
-					<input type='radio' id='genreMale' name='genre' value='male' checked={genre === 'male'} onChange={handleUserAttributeChange} />
-					🙋‍♂️ Male
-					<span />
-				</label>
-				<label className='radio-button' htmlFor='genreFemale'>
-					<input
-						type='radio'
-						id='genreFemale'
-						name='genre'
-						value='female'
-						checked={genre === 'female'}
-						onChange={handleUserAttributeChange}
-					/>
-					🙋‍♀️ Female
-					<span />
-				</label>
+		<div className='flex w-full flex-col gap-8'>
+			<div className='flex w-full gap-4'>
+				<button
+					onClick={() => $updateUserGenre(Genre.MALE)}
+					className={clsx('flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all', {
+						'brutalist-border-active bg-gray-100 text-black': genre === Genre.MALE,
+						'bg-obsidian brutalist-border text-gray-400 opacity-50': genre !== Genre.MALE,
+					})}
+				>
+					<User size={16} /> MALE
+				</button>
+				<button
+					onClick={() => $updateUserGenre(Genre.FEMALE)}
+					className={clsx('flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all', {
+						'brutalist-border-active bg-gray-100 text-black': genre === Genre.FEMALE,
+						'bg-obsidian brutalist-border text-gray-400 opacity-50': genre !== Genre.FEMALE,
+					})}
+				>
+					<User size={16} /> FEMALE
+				</button>
 			</div>
-			<div className='mt-2 flex w-full flex-col items-start gap-3'>
-				<label htmlFor='weight' className={labelStyles}>
-					Weight: <span className='text-base text-amber-600'>{weight}</span> kg
-				</label>
+
+			<div className='space-y-3'>
+				<div className='flex items-end justify-between font-bold'>
+					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>WEIGHT_KG</span>
+					<span className='bg-obsidian border border-slate-brutalist px-3 py-1 text-white'>{weight}.00</span>
+				</div>
 				<input type='range' id='weight' name='weight' value={weight} min='0' max='200' onChange={handleUserAttributeChange} />
 			</div>
-			<div className='flex w-full flex-col items-start gap-3'>
-				<label htmlFor='height' className={labelStyles}>
-					Height: <span className='text-base text-amber-600'>{height}</span> cm
-				</label>
+
+			<div className='space-y-3'>
+				<div className='flex items-end justify-between font-bold'>
+					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>HEIGHT_CM</span>
+					<span className='bg-obsidian border border-slate-brutalist px-3 py-1 text-white'>{height}.00</span>
+				</div>
 				<input type='range' id='height' name='height' value={height} min='0' max='250' onChange={handleUserAttributeChange} />
 			</div>
-			<div className='flex w-full flex-col items-start gap-3'>
-				<label htmlFor='age' className={labelStyles}>
-					Age: <span className='text-base text-amber-600'>{age}</span> years
-				</label>
+
+			<div className='space-y-3'>
+				<div className='flex items-end justify-between font-bold'>
+					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>AGE_YRS</span>
+					<span className='bg-obsidian border border-slate-brutalist px-3 py-1 text-white'>{age}.00</span>
+				</div>
 				<input type='range' id='age' name='age' value={age} min='0' max='100' onChange={handleUserAttributeChange} />
 			</div>
 		</div>

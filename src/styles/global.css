@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-obsidian: #1A1A1A;
+  --color-slate-brutalist: #4A4A4A;
+  --color-concrete: #8C8C8C;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0A0A0A] text-gray-100 font-mono uppercase tracking-tighter;
+  }
+}
+
+@layer components {
+  .brutalist-border {
+    @apply border-4 border-[#4A4A4A] shadow-[6px_6px_0px_0px_#1A1A1A] transition-all;
+  }
+
+  .brutalist-border-active {
+    @apply border-4 border-gray-100 shadow-[6px_6px_0px_0px_#4A4A4A];
+  }
+
+  .chamfered {
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+
+  .form-label {
+    @apply font-bold text-[#8C8C8C] flex items-center gap-1;
+    font-size: clamp(11px, 1.2vw, 13px);
+  }
+
+  .select-label {
+    @apply mb-2 font-bold text-[#8C8C8C] flex items-center gap-1;
+    font-size: clamp(11px, 1.2vw, 13px);
+  }
+
+  .form-select {
+    @apply w-full bg-[#0A0A0A] text-white p-4 border-none focus:ring-0 font-bold cursor-pointer uppercase tracking-tighter;
+  }
+}
+
+/*********** Range input — baseline reset ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium ********/
+input[type="range"]::-webkit-slider-runnable-track {
+  @apply w-full bg-[#262626] border-2 border-[#4A4A4A];
+  height: 1.5rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -0.5rem;
+  @apply h-9 w-4 bg-gray-300 border-2 border-black;
+  box-shadow: 4px 0px 0px #000;
+}
+
+/*********** Firefox ***********/
+input[type="range"]::-moz-range-track {
+  @apply bg-[#262626] border-2 border-[#4A4A4A];
+  height: 1.5rem;
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply h-9 w-4 bg-gray-300 border-2 border-black;
+  border-radius: 0;
+  box-shadow: 4px 0px 0px #000;
+}
+
+/*********** Select dropdown ***********/
+select {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  padding-right: 20px;
+
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024' width='0.8em' height='0.8em'><g xmlns='http://www.w3.org/2000/svg' transform='matrix(0 -1 1 0 -0 1024)'><path fill='rgb(209, 213, 219)' d='M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281l360-281.1c3.8-3 6.1-7.7 6.1-12.6' /></g></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 97%;
+  background-position-y: 50%;
+}
+
+/* Microsoft browsers */
+select::-ms-expand {
+  display: none;
+}

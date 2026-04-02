@@ -4,7 +4,7 @@ import ChartMacros from '@components/ChartMacros.astro'
 import { Dashboard } from '@components/Dashboard'
 import { ExerciseMultiplier } from '@components/ExerciseMultiplier'
 import { GoalSelector } from '@components/GoalSelector'
-import '@styles/selects.css'
+import '@styles/global.css'
 ---
 
 <html lang='en'>
@@ -13,6 +13,9 @@ import '@styles/selects.css'
 		<link rel='icon' type='image/svg+xml' href='/macronutrients/favicon.svg' />
 		<meta name='viewport' content='width=device-width' />
 		<meta name='generator' content={Astro.generator} />
+		<link rel='preconnect' href='https://fonts.googleapis.com' />
+		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+		<link href='https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,800&display=swap' rel='stylesheet' />
 
 		<title>MacroCalc</title>
 		<meta name='title' content='Macronutrients' />
@@ -25,67 +28,32 @@ import '@styles/selects.css'
 		<meta name='language' content='English' />
 		<meta name='author' content='Alberto García Sola' />
 	</head>
-	<body class='mx-auto w-full max-w-screen-xl text-slate-700'>
-		<div class='z-10 mx-auto lg:w-1/2 xl:w-[40%]'>
-			<div class='flex flex-col justify-start gap-6 p-2 md:justify-center'>
-				<div>
-					<Dashboard client:load />
+	<body class='min-h-screen bg-[#0A0A0A] text-gray-100'>
+		<div class='mx-auto w-full max-w-xl p-4 md:p-8'>
+			<header class='mb-8 border-b-8 border-[#4A4A4A] pb-4'>
+				<h1 class='text-4xl leading-none font-extrabold italic'>MACRO_CALC V1.0</h1>
+				<div class='mt-1 flex items-center justify-between'>
+					<p class='text-[clamp(10px,1.1vw,12px)] opacity-60'>SYSTEM STATUS: OPTIMAL // BRUTALIST NUTRITION ENGINE</p>
+					<div class='flex gap-1'>
+						<div class='h-2 w-2 animate-pulse bg-emerald-500'></div>
+						<div class='bg-slate-brutalist h-2 w-2'></div>
+						<div class='bg-slate-brutalist h-2 w-2'></div>
+					</div>
 				</div>
-				<div>
-					<ExerciseMultiplier client:load />
-				</div>
-				<div>
-					<GoalSelector client:load />
-				</div>
-				<div>
-					<ChartMacros />
-				</div>
+			</header>
+
+			<div class='flex flex-col gap-8'>
+				<Dashboard client:load />
+				<ExerciseMultiplier client:load />
+				<GoalSelector client:load />
+				<ChartMacros />
 				<AdditionalSettings client:load />
 			</div>
-			<!-- <Development client:load /> -->
+
+			<footer class='mt-8 space-y-2 border-t-2 border-dashed border-[#4A4A4A] py-12 text-center text-[clamp(8px,1vw,10px)] opacity-40'>
+				<p>DATA_RECONSTRUCTED // UNIT_SYSTEM: METRIC // SOURCE: MIFFLIN-ST_JEOR_REVISED</p>
+				<p class='tracking-[0.2em]'>01010111 01001000 01000101 01000001 01010100</p>
+			</footer>
 		</div>
-		<div class='background'></div>
 	</body>
-	<style>
-		.background {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: -1;
-		}
-
-		.background::before {
-			animation-name: bounce;
-			animation-duration: 3.6s;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease-in-out;
-
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 105%;
-			background-image: url('/macronutrients/background.svg');
-			background-size: cover;
-			background-position: center;
-			background-origin: center;
-			opacity: 0.2;
-			z-index: -1;
-		}
-
-		@keyframes bounce {
-			from {
-				transform: translate(0, 0);
-			}
-			50% {
-				transform: translate(0, -0.402777775rem);
-			}
-			to {
-				transform: translate(0, 0);
-			}
-		}
-	</style>
 </html>
