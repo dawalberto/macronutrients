@@ -2,14 +2,14 @@
 
 @theme {
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  --color-obsidian: #1A1A1A;
-  --color-slate-brutalist: #4A4A4A;
-  --color-concrete: #8C8C8C;
+  --color-obsidian: #1a1a1a;
+  --color-slate-brutalist: #4a4a4a;
+  --color-concrete: #8c8c8c;
 }
 
 @layer base {
   body {
-    @apply bg-[#0A0A0A] text-gray-100 font-mono uppercase tracking-tighter;
+    @apply bg-[#0A0A0A] font-mono tracking-tighter text-gray-100 uppercase;
   }
 }
 
@@ -23,21 +23,95 @@
   }
 
   .chamfered {
-    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    clip-path: polygon(
+      12px 0,
+      100% 0,
+      100% calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      0 100%,
+      0 12px
+    );
   }
 
   .form-label {
-    @apply font-bold text-[#8C8C8C] flex items-center gap-1;
+    @apply flex items-center gap-1 font-bold text-[#8C8C8C];
     font-size: clamp(11px, 1.2vw, 13px);
   }
 
   .select-label {
-    @apply mb-2 font-bold text-[#8C8C8C] flex items-center gap-1;
+    @apply mb-2 flex items-center gap-1 font-bold text-[#8C8C8C];
     font-size: clamp(11px, 1.2vw, 13px);
   }
 
   .form-select {
-    @apply w-full bg-[#0A0A0A] text-white p-4 border-none focus:ring-0 font-bold cursor-pointer uppercase tracking-tighter;
+    @apply w-full cursor-pointer border-none bg-[#0A0A0A] p-4 font-bold tracking-tighter text-white uppercase focus:ring-0;
+  }
+
+  .ai-content {
+    @apply text-sm leading-relaxed tracking-normal normal-case;
+  }
+
+  .ai-content h1,
+  .ai-content h2,
+  .ai-content h3 {
+    @apply mt-4 mb-2 font-extrabold tracking-tighter text-gray-100 uppercase;
+  }
+
+  .ai-content h1 {
+    @apply border-b-2 border-[#4A4A4A] pb-2 text-lg;
+  }
+
+  .ai-content h2 {
+    @apply text-base;
+  }
+
+  .ai-content h3 {
+    @apply text-sm text-[#8C8C8C];
+  }
+
+  .ai-content p {
+    @apply my-2 text-gray-300;
+  }
+
+  .ai-content ul,
+  .ai-content ol {
+    @apply my-2 ml-4 text-gray-300;
+  }
+
+  .ai-content ul {
+    list-style-type: "▸ ";
+  }
+
+  .ai-content ol {
+    @apply list-decimal;
+  }
+
+  .ai-content li {
+    @apply my-1;
+  }
+
+  .ai-content strong {
+    @apply font-extrabold text-gray-100;
+  }
+
+  .ai-content table {
+    @apply my-4 w-full border-collapse text-xs;
+  }
+
+  .ai-content th {
+    @apply bg-obsidian border-2 border-[#4A4A4A] px-3 py-2 text-left font-extrabold text-gray-100 uppercase;
+  }
+
+  .ai-content td {
+    @apply border border-[#333] px-3 py-2 text-gray-300;
+  }
+
+  .ai-content tr:nth-child(even) td {
+    @apply bg-obsidian/50;
+  }
+
+  .ai-content hr {
+    @apply my-4 border-[#4A4A4A];
   }
 }
 
@@ -56,7 +130,7 @@ input[type="range"]:focus {
 
 /******** Chrome, Safari, Opera and Edge Chromium ********/
 input[type="range"]::-webkit-slider-runnable-track {
-  @apply w-full bg-[#262626] border-2 border-[#4A4A4A];
+  @apply w-full border-2 border-[#4A4A4A] bg-[#262626];
   height: 1.5rem;
 }
 
@@ -64,18 +138,18 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   margin-top: -0.5rem;
-  @apply h-9 w-4 bg-gray-300 border-2 border-black;
+  @apply h-9 w-4 border-2 border-black bg-gray-300;
   box-shadow: 4px 0px 0px #000;
 }
 
 /*********** Firefox ***********/
 input[type="range"]::-moz-range-track {
-  @apply bg-[#262626] border-2 border-[#4A4A4A];
+  @apply border-2 border-[#4A4A4A] bg-[#262626];
   height: 1.5rem;
 }
 
 input[type="range"]::-moz-range-thumb {
-  @apply h-9 w-4 bg-gray-300 border-2 border-black;
+  @apply h-9 w-4 border-2 border-black bg-gray-300;
   border-radius: 0;
   box-shadow: 4px 0px 0px #000;
 }

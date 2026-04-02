@@ -1,14 +1,16 @@
 {
+  "env": {
+    "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_SKILLS": "./.agents/skills"
+  },
   "permissions": {
     "allow": [
       "Bash(git checkout:*)",
       "WebSearch",
       "Bash(npm install:*)",
       "Bash(npm run:*)",
-      "Bash(find /Users/dawalberto/Code/macronutrients/src -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" \\\\\\) -exec wc -l {} +)"
+      "Bash(find /Users/dawalberto/Code/macronutrients/src -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" \\\\\\) -exec wc -l {} +)",
+      "Bash(grep -E \"\\\\.\\(tsx?|astro|css\\)$\")",
+      "Bash(npx prettier:*)"
     ]
-  },
-  "env": {
-    "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_SKILLS": "./.agents/skills"
   }
 }
