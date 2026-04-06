@@ -10,7 +10,8 @@
       "Bash(npm run:*)",
       "Bash(find /Users/dawalberto/Code/macronutrients/src -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" \\\\\\) -exec wc -l {} +)",
       "Bash(grep -E \"\\\\.\\(tsx?|astro|css\\)$\")",
-      "Bash(npx prettier:*)"
+      "Bash(npx prettier:*)",
+      "Bash(grep -E \"\\\\.\\(ts|tsx|astro|css\\)$\")"
     ]
   }
 }

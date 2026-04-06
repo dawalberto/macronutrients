@@ -43,6 +43,7 @@ npx prettier --check .   # Check formatting
 ### Calculation Architecture
 
 The app supports multiple formula choices per calculation type:
+
 - **LBM** (Lean Body Mass): Boer, James, Hume, or Manual input
 - **BMR** (Basal Metabolic Rate): Mifflin St Jeor, Revised Harris-Benedict, or Katch-McArdle
 
