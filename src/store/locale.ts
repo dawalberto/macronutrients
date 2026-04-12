@@ -6,6 +6,8 @@ const SUPPORTED: Locale[] = ['en', 'zh', 'hi', 'es', 'fr']
 const STORAGE_KEY = 'macrocalc-locale'
 
 function detectLocale(): Locale {
+	if (typeof window === 'undefined') return 'en'
+
 	const stored = localStorage.getItem(STORAGE_KEY) as Locale | null
 	if (stored && SUPPORTED.includes(stored)) return stored
 
@@ -15,10 +17,9 @@ function detectLocale(): Locale {
 	return 'en'
 }
 
-export const $locale = atom<Locale>('en')
+export const $locale = atom<Locale>(detectLocale())
 
 if (typeof window !== 'undefined') {
-	$locale.set(detectLocale())
 	$locale.subscribe((locale) => localStorage.setItem(STORAGE_KEY, locale))
 }
 
