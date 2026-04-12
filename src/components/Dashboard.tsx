@@ -50,7 +50,15 @@ export const Dashboard = () => {
 			<div className='space-y-3'>
 				<div className='flex items-end justify-between font-bold'>
 					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>WEIGHT_KG</span>
-					<span className='bg-obsidian border border-slate-brutalist px-3 py-1 text-white'>{weight}.00</span>
+					<input
+						type='number'
+						name='weight'
+						value={weight}
+						min='0'
+						max='200'
+						onChange={handleUserAttributeChange}
+						className='w-20 bg-obsidian border border-slate-brutalist px-3 py-1 text-white text-right [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+					/>
 				</div>
 				<input type='range' id='weight' name='weight' value={weight} min='0' max='200' onChange={handleUserAttributeChange} />
 			</div>
@@ -58,7 +66,15 @@ export const Dashboard = () => {
 			<div className='space-y-3'>
 				<div className='flex items-end justify-between font-bold'>
 					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>HEIGHT_CM</span>
-					<span className='bg-obsidian border border-slate-brutalist px-3 py-1 text-white'>{height}.00</span>
+					<input
+						type='number'
+						name='height'
+						value={height}
+						min='0'
+						max='250'
+						onChange={handleUserAttributeChange}
+						className='w-20 bg-obsidian border border-slate-brutalist px-3 py-1 text-white text-right [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+					/>
 				</div>
 				<input type='range' id='height' name='height' value={height} min='0' max='250' onChange={handleUserAttributeChange} />
 			</div>
@@ -66,7 +82,15 @@ export const Dashboard = () => {
 			<div className='space-y-3'>
 				<div className='flex items-end justify-between font-bold'>
 					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>AGE_YRS</span>
-					<span className='bg-obsidian border border-slate-brutalist px-3 py-1 text-white'>{age}.00</span>
+					<input
+						type='number'
+						name='age'
+						value={age}
+						min='0'
+						max='100'
+						onChange={handleUserAttributeChange}
+						className='w-20 bg-obsidian border border-slate-brutalist px-3 py-1 text-white text-right [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+					/>
 				</div>
 				<input type='range' id='age' name='age' value={age} min='0' max='100' onChange={handleUserAttributeChange} />
 			</div>
