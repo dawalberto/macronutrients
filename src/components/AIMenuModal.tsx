@@ -33,7 +33,7 @@ export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMe
 		<div className='fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4' onClick={generating ? undefined : onClose}>
 			<div className='chamfered brutalist-border flex max-h-[80vh] w-full max-w-xl flex-col bg-[#0A0A0A]' onClick={(e) => e.stopPropagation()}>
 				<div className='flex items-center justify-between border-b-2 border-[#4A4A4A] px-6 py-4'>
-					<h2 className='text-sm font-extrabold tracking-tighter italic'>AI_GENERATED_MENU</h2>
+					<h2 className='text-sm font-extrabold tracking-tighter italic'>AI_INTERPRETATION</h2>
 					<button
 						type='button'
 						onClick={onClose}
@@ -52,7 +52,7 @@ export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMe
 					) : (
 						<div className='flex items-center gap-2 text-xs text-[#8C8C8C]'>
 							<div className='h-2 w-2 animate-pulse bg-gray-100' />
-							GENERATING MENU...
+							INTERPRETING...
 						</div>
 					)}
 				</div>

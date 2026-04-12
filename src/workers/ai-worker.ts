@@ -7,7 +7,7 @@ function send(msg: AIOutboundMessage) {
 	self.postMessage(msg)
 }
 
-const MODEL = 'onnx-community/Llama-3.2-1B-Instruct'
+const MODEL = 'onnx-community/Qwen2.5-0.5B-Instruct'
 
 async function detectDevice(): Promise<AIDevice> {
 	try {
@@ -32,7 +32,7 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 			const device = await detectDevice()
 
 			pipe = (await pipeline('text-generation', MODEL, {
-				dtype: device === 'webgpu' ? 'q4f16' : 'q4',
+				dtype: 'q4',
 				device,
 				progress_callback: (info: { status: string; file?: string; progress?: number }) => {
 					if (info.status === 'progress') {
@@ -56,7 +56,7 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 	}
 
 	if (type === AIWorkerInbound.GENERATE_MENU) {
-		const { prompt } = e.data
+		const { prompt, systemPrompt } = e.data
 		try {
 			if (!pipe) {
 				send({ type: AIWorkerOutbound.ERROR, error: 'Model is not loaded yet.' })
@@ -70,7 +70,9 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 				},
 			})
 
-			const messages = [{ role: 'user', content: prompt }]
+			const messages = systemPrompt
+				? [{ role: 'system', content: systemPrompt }, { role: 'user', content: prompt }]
+				: [{ role: 'user', content: prompt }]
 
 			await pipe(messages, {
 				max_new_tokens: 1024,

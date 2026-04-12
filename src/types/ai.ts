@@ -13,7 +13,7 @@ export enum AIWorkerOutbound {
 
 export type AIDevice = 'webgpu' | 'wasm'
 
-export type AIInboundMessage = { type: AIWorkerInbound.CHECK_AVAILABILITY } | { type: AIWorkerInbound.GENERATE_MENU; prompt: string }
+export type AIInboundMessage = { type: AIWorkerInbound.CHECK_AVAILABILITY } | { type: AIWorkerInbound.GENERATE_MENU; prompt: string; systemPrompt?: string }
 
 export type AIOutboundMessage =
 	| { type: AIWorkerOutbound.STATUS; model: string; device: AIDevice }
