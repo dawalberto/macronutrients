@@ -70,10 +70,10 @@ export function useAIWorker() {
 		}
 	}, [])
 
-	const generate = useCallback((systemPrompt: string, userPrompt: string) => {
+	const generate = useCallback((systemPrompt: string, userPrompt?: string) => {
 		if (!workerRef.current) return
 		setState((prev) => ({ ...prev, generating: true, streamedText: '', error: null }))
-		workerRef.current.postMessage({ type: AIWorkerInbound.GENERATE_MENU, prompt: userPrompt, systemPrompt })
+		workerRef.current.postMessage({ type: AIWorkerInbound.GENERATE_MENU, prompt: userPrompt ?? systemPrompt, systemPrompt: userPrompt ? systemPrompt : undefined })
 	}, [])
 
 	return { ...state, generate }

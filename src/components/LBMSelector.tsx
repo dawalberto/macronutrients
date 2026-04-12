@@ -1,11 +1,13 @@
 import { useStore } from '@nanostores/react'
 import { $userAttributes } from '@store/user-attributes'
+import { useTranslations } from '@i18n/index'
 import { calculateAndUpdateLBM } from '@utils/lbm-functions'
 import { clsx } from 'clsx'
 import { LBMFormula } from 'src/types'
 
 export const LBMSelector = () => {
 	const { lbm } = useStore($userAttributes)
+	const t = useTranslations()
 	const showManualLBMInput = lbm.formula === LBMFormula.MANUAL
 
 	const handleLBMFormulaChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -23,15 +25,15 @@ export const LBMSelector = () => {
 	return (
 		<div className='w-full space-y-2'>
 			<label title='Lean body mass' htmlFor='LBMFormula' className='select-label'>
-				LBM_FORMULA
+				{t.lbm_formula}
 			</label>
 			<div className='flex gap-2'>
 				<div className={clsx('chamfered bg-obsidian relative p-0.5', showManualLBMInput ? 'w-3/5' : 'w-full')}>
 					<select id='LBMFormula' name='LBMFormula' defaultValue={lbm.formula} onChange={handleLBMFormulaChange} className='form-select'>
-						<option value={LBMFormula.BOER}>Boer</option>
-						<option value={LBMFormula.JAMES}>James</option>
-						<option value={LBMFormula.HUME}>Hume</option>
-						<option value={LBMFormula.MANUAL}>Manual</option>
+						<option value={LBMFormula.BOER}>{t.lbm_boer}</option>
+						<option value={LBMFormula.JAMES}>{t.lbm_james}</option>
+						<option value={LBMFormula.HUME}>{t.lbm_hume}</option>
+						<option value={LBMFormula.MANUAL}>{t.lbm_manual}</option>
 					</select>
 				</div>
 				<input
@@ -39,7 +41,7 @@ export const LBMSelector = () => {
 					name='manualLBMInput'
 					onChange={handleManualLBMInputChange}
 					defaultValue={lbm.lbmKg}
-					placeholder='LBM in Kg'
+					placeholder={t.lbm_placeholder}
 					className={clsx('border-2 border-slate-brutalist bg-[#0A0A0A] p-2 font-mono text-sm text-white outline-0', showManualLBMInput ? 'block w-2/5' : 'hidden')}
 				/>
 			</div>

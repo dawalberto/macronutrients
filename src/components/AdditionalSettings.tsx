@@ -1,9 +1,11 @@
+import { useTranslations } from '@i18n/index'
 import { useState } from 'react'
 import { BMRSelector } from './BMRSelector'
 import { LBMSelector } from './LBMSelector'
 
 export const AdditionalSettings = () => {
 	const [showMore, setShowMore] = useState(false)
+	const t = useTranslations()
 
 	const handleOnClick = () => {
 		setShowMore((shown) => !shown)
@@ -19,7 +21,7 @@ export const AdditionalSettings = () => {
 				onClick={handleOnClick}
 				className='bg-obsidian brutalist-border hover:brutalist-border-active mx-auto block w-fit px-6 py-3 font-bold tracking-widest text-gray-300 transition-all'
 			>
-				ADVANCED_SETTINGS
+				{t.advanced_settings}
 			</button>
 			{showMore && (
 				<div className='mt-6 flex flex-col gap-6'>
