@@ -7,16 +7,61 @@ import { AIMenuModal } from './AIMenuModal'
 import { useAIWorker } from '../hooks/useAIWorker'
 
 function buildPrompt(attrs: ReturnType<typeof $userAttributes.get>): string {
-	const { height, weight, age, genre, lbm, bmrAndExercise, goal } = attrs
+	const { lbm, bmrAndExercise, goal } = attrs
 	const { proteinGrams, fatGrams, carbGrams, kcalPerDay } = calculateMacros(goal, lbm, bmrAndExercise)
 
-	return [
-		`You are a sports nutritionist. Generate a daily meal plan in markdown format.`,
-		`Create a meal plan for a ${age}-year-old ${genre}, ${height}cm, ${weight}kg.`,
-		`Goal: ${goal}. Daily target: ${kcalPerDay} kcal (${proteinGrams}g protein, ${fatGrams}g fat, ${carbGrams}g carbs).`,
-		`Include breakfast, lunch, dinner, and 2 snacks. For each meal list the foods with approximate grams and macros.`,
-		`End with a total summary row. Use markdown tables and headers. Be concise.`,
-	].join(' ')
+	return `Actúa como un nutricionista profesional. Elabora un menú para un día de exactamente ${kcalPerDay} kcal (${carbGrams}g carbohidratos, ${fatGrams}g grasas y ${proteinGrams}g proteína).
+
+## PASO PREVIO OBLIGATORIO:
+Antes de escribir el bloque de código, realiza un desglose detallado de los macronutrientes por cada comida para asegurar que la SUMA TOTAL sea exactamente ${carbGrams}g de carbohidratos, ${fatGrams}g de grasas y ${proteinGrams}g de proteína.
+
+## RESTRICCIONES DE SALIDA:
+1. Calcula primero el desglose matemático de los macros.
+2. Después responde ÚNICAMENTE con un bloque de código Markdown.
+3. El bloque DEBE contener obligatoriamente dos secciones: '## 🍽️ Menú del Día' y '## 💡 Consejos del Nutricionista'.
+4. Los gramos de los alimentos en el menú DEBEN coincidir con tu desglose matemático previo.
+5. NO cierres el bloque de código (\`\`\`) hasta haber escrito al menos 4 consejos útiles.
+
+## INSTRUCCIÓN DE FORMATO (Obligatorio seguir este orden):
+1. Escribe el Menú (5 comidas).
+2. Escribe una línea separadora: ---
+3. Escribe la sección de Consejos.
+4. CIERRA el bloque de código solo al final de los consejos.
+
+## EJEMPLO DE SALIDA ESPERADA:
+Antes de generar el menú, calcula mentalmente las porciones necesarias para que la suma de los macronutrientes coincida con el objetivo. Sigue exactamente esta estructura:
+\`\`\`markdown
+## 🍽️ Menú del Día
+
+**🥣 Desayuno: [Nombre del plato]**
+* [Gramos/Cantidad] de [Alimento]
+* [Gramos/Cantidad] de [Alimento]
+
+**🫒 Almuerzo: [Nombre del plato]**
+* [Gramos/Cantidad] de [Alimento]
+* [Gramos/Cantidad] de [Alimento]
+
+**🥘 Comida: [Nombre del plato]**
+* [Gramos/Cantidad] de [Alimento]
+* [Gramos/Cantidad] de [Alimento]
+
+**🍎 Merienda: [Nombre del plato]**
+* [Gramos/Cantidad] de [Alimento]
+
+**🐟 Cena: [Nombre del plato]**
+* [Gramos/Cantidad] de [Alimento]
+* [Gramos/Cantidad] de [Alimento]
+---
+## 💡 Consejos del Nutricionista
+
+* **[Consejo 1]**
+* **[Consejo 2]**
+* **[Consejo 3]**
+* **[Consejo 4]**
+* **[Consejo 5]**
+\`\`\`
+
+### RESPUESTA (Genera el bloque de código completo, incluyendo los consejos finales):`
 }
 
 export const GenerateMenu = () => {
