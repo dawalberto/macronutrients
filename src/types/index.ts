@@ -65,3 +65,5 @@ export enum UserAttributesNamesDashboard {
 	HEIGHT = 'height',
 	AGE = 'age',
 }
+
+export * from './ai'
