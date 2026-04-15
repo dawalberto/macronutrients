@@ -1,0 +1,26 @@
+{
+	"name": "MacroCalc — Macronutrient Calculator",
+	"short_name": "MacroCalc",
+	"description": "Free macronutrient calculator. Calculate daily protein, carbs, and fat targets based on your body composition and goals.",
+	"start_url": "/macronutrients/en/",
+	"scope": "/macronutrients/",
+	"display": "standalone",
+	"background_color": "#0A0A0A",
+	"theme_color": "#0A0A0A",
+	"lang": "en",
+	"icons": [
+		{
+			"src": "/macronutrients/apple-touch-icon.png",
+			"sizes": "180x180",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/macronutrients/favicon.svg",
+			"sizes": "any",
+			"type": "image/svg+xml",
+			"purpose": "any"
+		}
+	],
+	"categories": ["health", "fitness", "utilities"]
+}

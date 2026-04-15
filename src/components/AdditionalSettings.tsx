@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useTranslations } from '@i18n/index'
 import { ChevronDown } from 'lucide-react'
+import { useState } from 'react'
 import { BMRSelector } from './BMRSelector'
 import { LBMSelector } from './LBMSelector'
 
 export const AdditionalSettings = () => {
 	const [showMore, setShowMore] = useState(false)
+	const t = useTranslations()
 
 	const handleOnClick = () => {
 		const next = !showMore
@@ -24,7 +26,7 @@ export const AdditionalSettings = () => {
 					className='chamfered hover:bg-obsidian relative w-full cursor-pointer bg-[#0A0A0A] px-6 py-4 font-extrabold tracking-tighter transition-all active:shadow-none'
 				>
 					<span className='flex items-center justify-center gap-2 text-base text-gray-300'>
-						ADVANCED_SETTINGS
+						{t.advanced_settings}
 						<ChevronDown
 							size={16}
 							className='transition-transform duration-300'
@@ -34,10 +36,7 @@ export const AdditionalSettings = () => {
 				</button>
 			</div>
 
-			<div
-				style={{ gridTemplateRows: showMore ? '1fr' : '0fr' }}
-				className='grid transition-[grid-template-rows] duration-300 ease-in-out'
-			>
+			<div style={{ gridTemplateRows: showMore ? '1fr' : '0fr' }} className='grid transition-[grid-template-rows] duration-300 ease-in-out'>
 				<div className='overflow-hidden'>
 					<div className='mt-6 flex flex-col gap-6'>
 						<LBMSelector />

@@ -3,7 +3,7 @@
 ---
 
 <div class='bg-obsidian brutalist-border-active relative overflow-hidden p-8 text-white'>
-	<p class='mb-6 text-[clamp(11px,1.2vw,13px)] opacity-60'>◉ DAILY_CALORIC_QUOTA</p>
+	<p id='chart-label' class='mb-6 text-[clamp(11px,1.2vw,13px)] opacity-60'>◉ DAILY_CALORIC_QUOTA</p>
 	<div class='mx-auto w-full' style='height: 16rem;'><canvas id='chart'></canvas></div>
 
 	<!-- Grid background decoration -->
@@ -18,30 +18,38 @@
 </div>
 <script>
 	import { $userAttributes } from '@store/user-attributes'
+	import { $locale } from '@store/locale'
 	import { calculateMacros } from '@utils/macro-functions'
 	import { chartConfiguration } from '@utils/chart-config'
 	import { getChartTitle, getLabels } from '@utils/chart-functions'
+	import { getTranslations } from '@i18n/index'
 	import Chart, { type ChartItem } from 'chart.js/auto'
 	import { listenKeys } from 'nanostores'
 
 	const chartElement = document.getElementById('chart') as ChartItem
+	const chartLabelEl = document.getElementById('chart-label')
 
 	const chart = new Chart(chartElement, chartConfiguration)
 
-	listenKeys($userAttributes, ['goal', 'lbm', 'bmrAndExercise'], ({ bmrAndExercise, lbm, goal }) => {
-		const { weight, height, age } = $userAttributes.get()
-		if (!weight || !height || !age) return
-
+	function updateChart() {
+		const { bmrAndExercise, lbm, goal } = $userAttributes.get()
+		const t = getTranslations()
 		const { proteinGrams, fatGrams, carbGrams, kcalPerDay } = calculateMacros(goal, lbm, bmrAndExercise)
 
-		chart.data.labels = getLabels(carbGrams, fatGrams, proteinGrams)
+		chart.data.labels = getLabels(carbGrams, fatGrams, proteinGrams, t)
 		if (chart.options.plugins?.title?.text) {
-			chart.options.plugins.title.text = getChartTitle(kcalPerDay)
+			chart.options.plugins.title.text = getChartTitle(kcalPerDay, t)
 		}
 		if (chart.data.datasets[0]?.data) {
 			chart.data.datasets[0].data = [carbGrams * 4, fatGrams * 9, proteinGrams * 4]
 		}
+		if (chartLabelEl) {
+			chartLabelEl.textContent = t.daily_caloric_quota
+		}
 
 		chart.update()
-	})
+	}
+
+	listenKeys($userAttributes, ['goal', 'lbm', 'bmrAndExercise'], updateChart)
+	$locale.listen(updateChart)
 </script>
