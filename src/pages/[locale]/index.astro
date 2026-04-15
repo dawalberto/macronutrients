@@ -7,6 +7,7 @@ import { ExerciseMultiplier } from '@components/ExerciseMultiplier'
 import { InterpretResults } from '@components/InterpretResults'
 import { GoalSelector } from '@components/GoalSelector'
 import { LanguageSelector } from '@components/LanguageSelector'
+import GoogleAnalytics from '@components/GoogleAnalytics.astro'
 import SEO from '@components/SEO.astro'
 import { getTranslationsFor } from '@i18n/index'
 import '@styles/global.css'
@@ -38,6 +39,7 @@ const BASE = '/macronutrients'
 		<link href='https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,800&display=swap' rel='stylesheet' />
 
 		<SEO locale={locale} page='home' />
+		<GoogleAnalytics />
 	</head>
 	<body class='min-h-screen bg-[#0A0A0A] text-gray-100'>
 		<div class='mx-auto w-full max-w-xl p-4 md:p-8'>
