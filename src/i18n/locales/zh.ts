@@ -152,4 +152,26 @@ export const zh = {
 ${label}：${diff} 千卡。
 蛋白质：${proteins} 克 | 碳水化合物：${carbs} 克 | 脂肪：${fats} 克。
 解读这些结果。`,
+
+	// SEO — Home
+	seo_home_title: 'MacroCalc — 免费宏量营养素计算器',
+	seo_home_description: '根据您的体重、身高、年龄、活动水平和目标，计算每日蛋白质、碳水化合物和脂肪摄入目标。使用Katch-McArdle基础代谢率和去脂体重公式。',
+	seo_home_keywords: '宏量营养素计算器, 宏计算器, 蛋白质计算器, TDEE计算器, 基础代谢率计算器, 去脂体重, 减肥卡路里, 增肌宏量',
+	seo_og_tagline: '精准宏量目标。免费。无需注册。',
+
+	// SEO — Info
+	seo_info_title: '公式与定义 — MacroCalc参考手册',
+	seo_info_description: 'LBM（去脂体重）、BMR（基础代谢率）、TDEE及宏量营养素公式详解。Boer、James、Hume、Mifflin-St Jeor、Harris-Benedict、Katch-McArdle。',
+
+	// SEO — FAQ
+	seo_faq_lbm_q: '什么是去脂体重（LBM），为什么它对宏量计算很重要？',
+	seo_faq_lbm_a: '去脂体重是您的总体重减去体脂——包括肌肉、骨骼、器官和水分。MacroCalc以LBM为基础计算所有宏量目标，因为脂肪组织几乎不需要蛋白质或碳水化合物来维持，从而提供更精准的目标。',
+	seo_faq_bmr_q: '什么是基础代谢率（BMR）？',
+	seo_faq_bmr_a: 'BMR是身体在完全静息状态下消耗的卡路里数量。MacroCalc支持三种公式：Mifflin-St Jeor（适合普通人群）、修订版Harris-Benedict，以及Katch-McArdle（已知体成分时最精准，使用LBM）。',
+	seo_faq_tdee_q: '每日总能量消耗（TDEE）如何计算？',
+	seo_faq_tdee_a: 'TDEE = BMR × 活动系数。久坐（×1.2）、轻度活动（×1.375）、中度活动（×1.55）、高度活动（×1.725）、极度活动（×1.9）。',
+	seo_faq_macros_q: 'MacroCalc如何分配蛋白质、碳水化合物和脂肪？',
+	seo_faq_macros_a: '蛋白质和脂肪按每公斤LBM的克数设定。碳水化合物填补剩余卡路里。维持：1.8g蛋白质/kg LBM，1.0g脂肪/kg。增肌：2.0g蛋白质，脂肪占总热量25%。减脂：2.5g蛋白质，0.9g脂肪/kg。',
+	seo_faq_goals_q: '每个目标的卡路里调整是多少？',
+	seo_faq_goals_a: '维持：卡路里 = TDEE。增肌：TDEE +300千卡支持肌肉生长。减脂：TDEE −300千卡实现适度脂肪减少（每500千卡热量差约减重0.5公斤/周）。',
 } satisfies Translations

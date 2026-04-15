@@ -154,4 +154,34 @@ Apport calorique cible : ${targetKcal} kcal.
 ${label} : ${diff} kcal.
 Protéines : ${proteins} g | Glucides : ${carbs} g | Lipides : ${fats} g.
 Interprétez ces résultats.`,
+
+	// SEO — Home
+	seo_home_title: 'MacroCalc — Calculateur de Macronutriments Gratuit',
+	seo_home_description:
+		'Calculez vos objectifs quotidiens en protéines, glucides et lipides selon votre poids, taille, âge, activité et objectif. Utilise les formules BMR et masse maigre.',
+	seo_home_keywords:
+		'calculateur macronutriments, calculateur macro, calculateur protéines, calculateur TDEE, calculateur BMR, masse maigre, calories perte de poids, macros pour muscle',
+	seo_og_tagline: 'Objectifs macro précis. Gratuit. Sans inscription.',
+
+	// SEO — Info
+	seo_info_title: 'Formules et Définitions — Référence MacroCalc',
+	seo_info_description:
+		'LBM, BMR, TDEE et formules de macronutriments expliqués. Boer, James, Hume, Mifflin-St Jeor, Harris-Benedict, Katch-McArdle.',
+
+	// SEO — FAQ
+	seo_faq_lbm_q: "Qu'est-ce que la Masse Maigre (LBM) et pourquoi est-elle importante ?",
+	seo_faq_lbm_a:
+		"La Masse Maigre est votre poids total moins la graisse corporelle — muscles, os, organes et eau. MacroCalc l'utilise comme base car le tissu adipeux n'a pas besoin de protéines ou glucides pour se maintenir, offrant des objectifs plus précis.",
+	seo_faq_bmr_q: "Qu'est-ce que le Métabolisme de Base (BMR) ?",
+	seo_faq_bmr_a:
+		'Le BMR est le nombre de calories brûlées au repos complet. MacroCalc supporte trois équations : Mifflin-St Jeor, Harris-Benedict Révisé et Katch-McArdle (plus précis quand la composition corporelle est connue).',
+	seo_faq_tdee_q: "Comment est calculée la Dépense Énergétique Totale Journalière (TDEE) ?",
+	seo_faq_tdee_a:
+		'TDEE = BMR × multiplicateur d\'activité. Sédentaire (×1.2), Légèrement actif (×1.375), Modérément actif (×1.55), Très actif (×1.725), Extrêmement actif (×1.9).',
+	seo_faq_macros_q: 'Comment MacroCalc distribue-t-il protéines, glucides et lipides ?',
+	seo_faq_macros_a:
+		'Protéines et lipides sont fixés en g/kg de LBM selon l\'objectif. Les glucides complètent les calories restantes. Maintien : 1.8 g protéine/kg, 1.0 g lipides/kg. Surplus : 2.0 g protéine, lipides à 25%. Définition : 2.5 g protéine, 0.9 g lipides/kg.',
+	seo_faq_goals_q: 'Quels sont les ajustements caloriques pour chaque objectif ?',
+	seo_faq_goals_a:
+		'Maintien : calories = TDEE. Surplus : TDEE +300 kcal pour la prise de muscle. Définition : TDEE −300 kcal pour une perte de graisse modérée (environ 0.5 kg/semaine par 500 kcal de déficit).',
 } satisfies Translations

@@ -155,4 +155,34 @@ ${label}: ${diff} kcal.
 Proteínas: ${proteins} g | Carbohidratos: ${carbs} g | Grasas: ${fats} g.
 
 Interpreta estos resultados.`,
+
+	// SEO — Home
+	seo_home_title: 'MacroCalc — Calculadora de Macronutrientes Gratis',
+	seo_home_description:
+		'Calcula tus objetivos diarios de proteínas, carbohidratos y grasas según tu peso, altura, edad, actividad y objetivo. Usa fórmulas de BMR y masa corporal magra.',
+	seo_home_keywords:
+		'calculadora macronutrientes, calculadora macro, calculadora proteínas, calculadora TDEE, calculadora BMR, masa corporal magra, calorías pérdida de peso, macros para músculo',
+	seo_og_tagline: 'Objetivos macro precisos. Gratis. Sin registro.',
+
+	// SEO — Info
+	seo_info_title: 'Fórmulas y Definiciones — Referencia MacroCalc',
+	seo_info_description:
+		'LBM, BMR, TDEE y fórmulas de macronutrientes explicadas. Boer, James, Hume, Mifflin-St Jeor, Harris-Benedict, Katch-McArdle.',
+
+	// SEO — FAQ
+	seo_faq_lbm_q: '¿Qué es la Masa Corporal Magra (LBM) y por qué importa?',
+	seo_faq_lbm_a:
+		'La Masa Corporal Magra es tu peso total menos la grasa corporal — incluye músculo, hueso, órganos y agua. MacroCalc la usa como base porque el tejido graso no necesita proteínas ni carbohidratos para mantenerse, lo que da objetivos más precisos.',
+	seo_faq_bmr_q: '¿Qué es la Tasa Metabólica Basal (BMR)?',
+	seo_faq_bmr_a:
+		'El BMR son las calorías que tu cuerpo quema en reposo completo. MacroCalc soporta tres ecuaciones: Mifflin-St Jeor, Harris-Benedict Revisado y Katch-McArdle (más preciso cuando se conoce la composición corporal).',
+	seo_faq_tdee_q: '¿Cómo se calcula el Gasto Energético Total Diario (TDEE)?',
+	seo_faq_tdee_a:
+		'TDEE = BMR × multiplicador de actividad. Sedentario (×1.2), Ligeramente activo (×1.375), Moderadamente activo (×1.55), Muy activo (×1.725), Extremadamente activo (×1.9).',
+	seo_faq_macros_q: '¿Cómo distribuye MacroCalc proteínas, carbohidratos y grasas?',
+	seo_faq_macros_a:
+		'Proteína y grasa se fijan en gramos por kg de LBM según tu objetivo. Los carbohidratos llenan las calorías restantes. Mantenimiento: 1.8 g proteína/kg, 1.0 g grasa/kg. Superávit: 2.0 g proteína, grasa al 25%. Definición: 2.5 g proteína, 0.9 g grasa/kg.',
+	seo_faq_goals_q: '¿Cuáles son los ajustes calóricos para cada objetivo?',
+	seo_faq_goals_a:
+		'Mantener: calorías = TDEE. Superávit: TDEE +300 kcal para ganar músculo. Definición: TDEE −300 kcal para pérdida moderada de grasa (aprox. 0.5 kg/semana por cada 500 kcal de déficit).',
 } satisfies Translations

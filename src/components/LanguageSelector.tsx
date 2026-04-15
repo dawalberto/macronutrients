@@ -1,5 +1,5 @@
 import { useStore } from '@nanostores/react'
-import { $locale, setLocale, type Locale } from '@store/locale'
+import { $locale, type Locale } from '@store/locale'
 
 const LOCALE_LABELS: Record<Locale, string> = {
 	en: 'EN // ENGLISH',
@@ -9,6 +9,17 @@ const LOCALE_LABELS: Record<Locale, string> = {
 	fr: 'FR // FRANÇAIS',
 }
 
+const SUPPORTED: Locale[] = ['en', 'es', 'fr', 'zh', 'hi']
+const BASE = '/macronutrients'
+
+function navigateToLocale(newLocale: Locale) {
+	const path = window.location.pathname
+	// Replace the current locale segment with the new one
+	const currentLocale = path.split('/').find((seg) => SUPPORTED.includes(seg as Locale))
+	const newPath = currentLocale ? path.replace(`/${currentLocale}/`, `/${newLocale}/`) : `${BASE}/${newLocale}/`
+	window.location.assign(newPath)
+}
+
 export const LanguageSelector = () => {
 	const locale = useStore($locale)
 
@@ -16,7 +27,7 @@ export const LanguageSelector = () => {
 		<div className='chamfered bg-obsidian relative p-0.5'>
 			<select
 				value={locale}
-				onChange={(e) => setLocale(e.target.value as Locale)}
+				onChange={(e) => navigateToLocale(e.target.value as Locale)}
 				className='form-select text-[clamp(8px,1vw,10px)]'
 				aria-label='Language / Idioma / Langue / 语言 / भाषा'
 			>

@@ -1,0 +1,132 @@
+MacroCalc — Full Reference
+https://dawalberto.github.io/macronutrients/en/info
+
+MacroCalc is a free, in-browser macronutrient calculator. It computes daily protein, carbohydrate, and fat targets from user inputs: body weight (kg), height (cm), age (years), sex (male/female), activity level, fitness goal, BMR formula choice, and LBM formula choice. All calculations run client-side — no data is transmitted.
+
+---
+
+MODULE 01: LBM — LEAN BODY MASS
+
+Lean Body Mass is total body weight minus body fat. It includes muscles, bones, organs, and water. MacroCalc uses LBM (not total body weight) as the base for all macro targets, because fat tissue has minimal metabolic activity and does not require protein or carbohydrates to be sustained. This yields more accurate, personalised macro targets.
+
+Formulas:
+
+BOER (default)
+  Male:   LBM = 0.407 × W + 0.267 × H − 19.2
+  Female: LBM = 0.252 × W + 0.473 × H − 48.3
+  W = weight (kg), H = height (cm)
+
+JAMES
+  Male:   LBM = 1.1 × W − 128 × (W/H)²
+  Female: LBM = 1.07 × W − 148 × (W/H)²
+  Note: Can underestimate LBM in obese individuals.
+
+HUME
+  Male:   LBM = 0.3281 × W + 0.33929 × H − 29.5336
+  Female: LBM = 0.29569 × W + 0.41813 × H − 43.2933
+
+MANUAL
+  User enters LBM directly (e.g. from DEXA scan, BodPod, etc.)
+
+---
+
+MODULE 02: BMR — BASAL METABOLIC RATE
+
+BMR is the number of calories the body burns at complete rest — the minimum energy required to sustain organ function. It is the baseline from which all caloric targets are derived.
+
+Formulas:
+
+MIFFLIN-ST JEOR (best accuracy for general population)
+  Male:   BMR = 10W + 6.25H − 5A + 5
+  Female: BMR = 10W + 6.25H − 5A − 161
+  W = weight (kg), H = height (cm), A = age (years)
+
+REVISED HARRIS-BENEDICT (Roza & Shizgal, 1984)
+  Male:   BMR = 13.397W + 4.799H − 5.677A + 88.362
+  Female: BMR = 9.247W + 3.098H − 4.33A + 447.593
+  Slightly higher estimates than Mifflin-St Jeor.
+
+KATCH-MCARDLE (default; most accurate when body composition is known)
+  BMR = 370 + 21.6 × LBM (kg)
+  Gender-neutral. Uses LBM instead of total body weight.
+
+---
+
+MODULE 03: TDEE — TOTAL DAILY ENERGY EXPENDITURE
+
+TDEE is the total calories burned per day, accounting for physical activity.
+
+Formula:
+  TDEE = BMR × activity_multiplier
+
+Activity multipliers:
+  Sedentary       × 1.2   — desk job, no exercise
+  Lightly active  × 1.375 — 1–3 days/week exercise
+  Moderately active × 1.55 — 3–5 days/week exercise
+  Very active     × 1.725 — 6–7 days/week exercise
+  Extremely active × 1.9  — physical job or 2×/day training
+
+---
+
+MODULE 04: GOALS — CALORIC TARGETS
+
+MAINTAIN
+  Calories = TDEE
+  Sustain current weight. Balanced macro split to support activity and body composition.
+
+SURPLUS
+  Calories = TDEE + 300 kcal
+  Moderate caloric surplus to support muscle growth. Higher carbs to fuel training; fat set to 25% of total calories.
+
+DEFINITION (fat loss)
+  Calories = TDEE − 300 kcal
+  Moderate caloric deficit for fat loss. Protein is increased to preserve muscle mass. Estimated weight loss: ~0.5 kg/week per 500 kcal deficit.
+
+---
+
+MODULE 05: MACRONUTRIENT DISTRIBUTION
+
+Macros are set per kg of LBM (not total body weight). Carbohydrates fill remaining calories after protein and fat are allocated.
+
+Energy density:
+  Protein:       4 kcal/gram
+  Carbohydrates: 4 kcal/gram
+  Fat:           9 kcal/gram
+
+PROTEIN targets (g per kg LBM):
+  Maintain:    1.8 g/kg
+  Surplus:     2.0 g/kg
+  Definition:  2.5 g/kg
+
+FAT targets:
+  Maintain:    1.0 g/kg LBM
+  Surplus:     25% of total daily calories
+  Definition:  0.9 g/kg LBM
+
+CARBOHYDRATES:
+  Remainder = (total_kcal − protein_kcal − fat_kcal) / 4
+
+---
+
+FREQUENTLY ASKED QUESTIONS
+
+Q: What is Lean Body Mass (LBM) and why does it matter for macros?
+A: Lean Body Mass is your total weight minus body fat — it includes muscle, bone, organs, and water. MacroCalc uses LBM as the base for all macro targets because fat tissue has minimal metabolic activity and does not need protein or carbs to be sustained. This gives more accurate targets than using total body weight.
+
+Q: What is Basal Metabolic Rate (BMR)?
+A: BMR is the number of calories your body burns at complete rest — the minimum energy needed to keep organs functioning. MacroCalc supports three equations: Mifflin-St Jeor (best for general population), Revised Harris-Benedict, and Katch-McArdle (most accurate when body composition is known, uses LBM).
+
+Q: How is Total Daily Energy Expenditure (TDEE) calculated?
+A: TDEE = BMR × an activity multiplier. Sedentary (×1.2), Lightly active (×1.375), Moderately active (×1.55), Very active (×1.725), Extremely active (×1.9). This gives your actual daily calorie burn including exercise and lifestyle activity.
+
+Q: How does MacroCalc distribute protein, carbs, and fat?
+A: Protein and fat are set in grams per kg of LBM based on your goal. Carbs fill the remaining calories. Maintenance: 1.8 g protein/kg LBM, 1.0 g fat/kg LBM. Surplus: 2.0 g protein, fat at 25% of total calories. Definition: 2.5 g protein, 0.9 g fat/kg LBM.
+
+Q: What are the calorie adjustments for each goal?
+A: Maintain keeps calories at TDEE for weight stability. Surplus adds +300 kcal to TDEE to support muscle growth. Definition subtracts −300 kcal from TDEE for moderate fat loss (estimated ~0.5 kg/week per 500 kcal deficit).
+
+---
+
+Source: https://dawalberto.github.io/macronutrients/en/info
+Author: Alberto García Sola
+License: Free to use

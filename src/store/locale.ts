@@ -8,6 +8,10 @@ const STORAGE_KEY = 'macrocalc-locale'
 function detectLocale(): Locale {
 	if (typeof window === 'undefined') return 'en'
 
+	// URL is the source of truth — extract locale from path segment e.g. /macronutrients/es/
+	const pathLocale = window.location.pathname.split('/').find((seg) => SUPPORTED.includes(seg as Locale)) as Locale | undefined
+	if (pathLocale) return pathLocale
+
 	const stored = localStorage.getItem(STORAGE_KEY) as Locale | null
 	if (stored && SUPPORTED.includes(stored)) return stored
 

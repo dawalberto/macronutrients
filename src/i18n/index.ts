@@ -18,3 +18,8 @@ export function useTranslations(): Translations {
 export function getTranslations(): Translations {
 	return localeMap[$locale.get()]
 }
+
+/** Server-side helper — pure function, no nanostores, safe in Astro components */
+export function getTranslationsFor(locale: Locale): Translations {
+	return localeMap[locale] ?? localeMap['en']
+}
