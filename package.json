@@ -1,7 +1,7 @@
 {
-  "name": "macronutrients",
+  "name": "macrocalc",
   "type": "module",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.8",
     "@astrojs/react": "^5.0.2",
+    "@huggingface/transformers": "^4.0.1",
     "@nanostores/react": "^1.1.0",
     "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.14",
@@ -24,10 +25,13 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-draggable": "^4.5.0",
+    "snarkdown": "^2.0.0",
+    "streamdown": "^2.5.0",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2"

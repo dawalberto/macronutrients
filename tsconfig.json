@@ -8,7 +8,8 @@
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
-      "@lib/*": ["src/lib/*"]
+      "@lib/*": ["src/lib/*"],
+      "@i18n/*": ["src/i18n/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"

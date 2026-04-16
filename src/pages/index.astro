@@ -1,59 +1,31 @@
 ---
-import { AdditionalSettings } from '@components/AdditionalSettings'
-import ChartMacros from '@components/ChartMacros.astro'
-import { Dashboard } from '@components/Dashboard'
-import { ExerciseMultiplier } from '@components/ExerciseMultiplier'
-import { GoalSelector } from '@components/GoalSelector'
-import '@styles/global.css'
+// Root landing — detects preferred locale and redirects to the correct prefixed URL.
+// Also emits hreflang for the 5 supported locales so search engines can discover them.
+const BASE = ''
+const SUPPORTED = ['en', 'es', 'fr', 'zh', 'hi'] as const
+const SITE = 'https://macrocalc.fit'
 ---
 
 <html lang='en'>
 	<head>
 		<meta charset='utf-8' />
-		<link rel='icon' type='image/svg+xml' href='/macronutrients/favicon.svg' />
 		<meta name='viewport' content='width=device-width' />
-		<meta name='generator' content={Astro.generator} />
-		<link rel='preconnect' href='https://fonts.googleapis.com' />
-		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-		<link href='https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,800&display=swap' rel='stylesheet' />
-
 		<title>MacroCalc</title>
-		<meta name='title' content='Macronutrients' />
-		<meta name='description' content='MacroCalc is a website to calculate the macronutrients that you need' />
-		<meta
-			name='keywords'
-			content='macronutrients,macronutrients calculation,proteins,proteins calculation,carbs carbs calculation,fats,fats calculation'
-		/>
-		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-		<meta name='language' content='English' />
-		<meta name='author' content='Alberto García Sola' />
+		<meta name='robots' content='noindex, follow' />
+
+		<!-- hreflang for crawler discoverability -->
+		{SUPPORTED.map((loc) => <link rel='alternate' hreflang={loc} href={`${SITE}${BASE}/${loc}/`} />)}
+		<link rel='alternate' hreflang='x-default' href={`${SITE}${BASE}/en/`} />
+
+		<!-- Immediate meta-refresh fallback to English (overridden by JS below) -->
+		<meta http-equiv='refresh' content={`0; url=${BASE}/en/`} />
 	</head>
-	<body class='min-h-screen bg-[#0A0A0A] text-gray-100'>
-		<div class='mx-auto w-full max-w-xl p-4 md:p-8'>
-			<header class='mb-8 border-b-8 border-[#4A4A4A] pb-4'>
-				<h1 class='text-4xl leading-none font-extrabold italic'>MACRO_CALC V1.0</h1>
-				<div class='mt-1 flex items-center justify-between'>
-					<p class='text-[clamp(10px,1.1vw,12px)] opacity-60'>SYSTEM STATUS: OPTIMAL // BRUTALIST NUTRITION ENGINE</p>
-					<div class='flex gap-1'>
-						<div class='h-2 w-2 animate-pulse bg-emerald-500'></div>
-						<div class='bg-slate-brutalist h-2 w-2'></div>
-						<div class='bg-slate-brutalist h-2 w-2'></div>
-					</div>
-				</div>
-			</header>
-
-			<div class='flex flex-col gap-8'>
-				<Dashboard client:load />
-				<ExerciseMultiplier client:load />
-				<GoalSelector client:load />
-				<ChartMacros />
-				<AdditionalSettings client:load />
-			</div>
-
-			<footer class='mt-8 space-y-2 border-t-2 border-dashed border-[#4A4A4A] py-12 text-center text-[clamp(8px,1vw,10px)] opacity-40'>
-				<p>DATA_RECONSTRUCTED // UNIT_SYSTEM: METRIC // SOURCE: MIFFLIN-ST_JEOR_REVISED</p>
-				<p class='tracking-[0.2em]'>01010111 01001000 01000101 01000001 01010100</p>
-			</footer>
-		</div>
+	<body>
+		<script is:inline define:vars={{ BASE, SUPPORTED }}>
+			const nav = navigator.language.split('-')[0]
+			const stored = localStorage.getItem('macrocalc-locale')
+			const locale = (SUPPORTED.includes(stored) ? stored : SUPPORTED.includes(nav) ? nav : 'en')
+			window.location.replace(`${BASE}/${locale}/`)
+		</script>
 	</body>
 </html>
