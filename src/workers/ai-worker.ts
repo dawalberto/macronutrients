@@ -14,14 +14,6 @@ const MODELS = {
 
 type Dtype = 'q4f16' | 'q4' | 'auto' | 'fp32' | 'fp16' | 'q8' | 'int8' | 'uint8' | 'bnb4'
 
-// deviceMemory >= 4 → full model (q4f16, WebGPU-optimised); >= 2 → lite model (q4, WASM-safe); < 2 → unsupported
-function selectModel(): { model: string; dtype: Dtype; maxNewTokens: number } {
-	const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
-	if (memory === undefined || memory >= 4) return { model: MODELS.full, dtype: 'q4f16', maxNewTokens: 1024 }
-	if (memory >= 2) return { model: MODELS.lite, dtype: 'q4', maxNewTokens: 400 }
-	throw new Error('Insufficient device memory for AI generation.')
-}
-
 async function detectDevice(): Promise<AIDevice> {
 	try {
 		const gpu = (navigator as Navigator & { gpu?: { requestAdapter(): Promise<unknown> } }).gpu
@@ -30,6 +22,25 @@ async function detectDevice(): Promise<AIDevice> {
 	} catch {
 		return 'wasm'
 	}
+}
+
+// Mobile devices use the lite model regardless of reported memory — mobile WebGPU/WASM can't
+// handle Qwen 0.5B even when deviceMemory reports 4 GB.
+// q4f16 requires WebGPU; always fall back to q4 on WASM to avoid garbled/corrupted output.
+function selectModel(): { model: string; dtype: Dtype; maxNewTokens: number } {
+	const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
+	const mobile = navigator.maxTouchPoints > 0
+
+	if (mobile) {
+		if (memory === undefined || memory >= 2) return { model: MODELS.lite, dtype: 'q4', maxNewTokens: 300 }
+		throw new Error('Insufficient device memory for AI generation.')
+	}
+
+	if (memory === undefined || memory >= 4) {
+		return { model: MODELS.full, dtype: 'q4', maxNewTokens: 1024 }
+	}
+	if (memory >= 2) return { model: MODELS.lite, dtype: 'q4', maxNewTokens: 400 }
+	throw new Error('Insufficient device memory for AI generation.')
 }
 
 env.allowLocalModels = false
@@ -43,9 +54,9 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 
 	if (type === AIWorkerInbound.CHECK_AVAILABILITY) {
 		try {
+			const device = await detectDevice()
 			const { model, dtype, maxNewTokens: tokenLimit } = selectModel()
 			maxNewTokens = tokenLimit
-			const device = await detectDevice()
 
 			pipe = (await pipeline('text-generation', model, {
 				dtype,
@@ -93,7 +104,9 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 			await pipe(messages, {
 				max_new_tokens: maxNewTokens,
 				do_sample: true,
-				temperature: 0.7,
+				temperature: 0.4,
+				top_p: 0.9,
+				repetition_penalty: 1.3,
 				streamer,
 			})
 

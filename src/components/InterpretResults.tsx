@@ -47,7 +47,7 @@ export const InterpretResults = () => {
 		setShowModal(true)
 	}
 
-	const isLoading = downloading && downloadProgress < 100
+	const isLoading = downloading
 	const buttonText = isLoading ? t.loading_ai(downloadProgress) : generating ? t.interpreting : t.interpret_results
 
 	return (
