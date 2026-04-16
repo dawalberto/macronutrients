@@ -1,3 +1,4 @@
+import { useTranslations } from '@i18n/index'
 import { X } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { Streamdown } from 'streamdown'
@@ -12,6 +13,7 @@ type AIMenuModalProps = {
 
 export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMenuModalProps) => {
 	const contentRef = useRef<HTMLDivElement>(null)
+	const t = useTranslations()
 
 	useEffect(() => {
 		if (contentRef.current) {
@@ -33,7 +35,7 @@ export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMe
 		<div className='fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4' onClick={generating ? undefined : onClose}>
 			<div className='chamfered brutalist-border flex max-h-[80vh] w-full max-w-xl flex-col bg-[#0A0A0A]' onClick={(e) => e.stopPropagation()}>
 				<div className='flex items-center justify-between border-b-2 border-[#4A4A4A] px-6 py-4'>
-					<h2 className='text-sm font-extrabold tracking-tighter italic'>AI_INTERPRETATION</h2>
+					<h2 className='text-sm font-extrabold tracking-tighter italic'>{t.ai_interpretation}</h2>
 					<button
 						type='button'
 						onClick={onClose}
@@ -52,7 +54,7 @@ export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMe
 					) : (
 						<div className='flex items-center gap-2 text-xs text-[#8C8C8C]'>
 							<div className='h-2 w-2 animate-pulse bg-gray-100' />
-							INTERPRETING...
+							{t.ai_interpreting}
 						</div>
 					)}
 				</div>
@@ -61,7 +63,7 @@ export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMe
 					<div className='border-t-2 border-[#4A4A4A] px-6 py-3'>
 						<div className='flex items-center gap-2 text-xs text-[#8C8C8C]'>
 							<div className='h-1.5 w-1.5 animate-pulse bg-emerald-500' />
-							STREAMING...
+							{t.ai_streaming}
 						</div>
 					</div>
 				)}

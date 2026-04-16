@@ -1,9 +1,10 @@
 import type { TooltipItem } from 'chart.js'
+import type { Translations } from '@i18n/locales/en'
 
-export const getLabels = (carbs: number, fats: number, proteins: number) => [
-	`${carbs}G CARBS`,
-	`${fats}G FATS`,
-	`${proteins}G PROT`,
+export const getLabels = (carbs: number, fats: number, proteins: number, t: Translations) => [
+	t.chart_carbs(carbs),
+	t.chart_fats(fats),
+	t.chart_prot(proteins),
 ]
 
 export const getMacronutrientsSlicePercentage = (context: TooltipItem<'pie'>) => {
@@ -14,4 +15,4 @@ export const getMacronutrientsSlicePercentage = (context: TooltipItem<'pie'>) =>
 	return `${label?.split(' ')[0]}  ${percentage}%`
 }
 
-export const getChartTitle = (kcalPerDay: number) => `${kcalPerDay} KCAL / DAY`
+export const getChartTitle = (kcalPerDay: number, t: Translations) => t.chart_title(kcalPerDay)

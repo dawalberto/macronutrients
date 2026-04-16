@@ -1,0 +1,22 @@
+# MacroCalc
+
+> Free, in-browser macronutrient calculator. Enter weight, height, age, activity level, and goal to get daily protein, carbohydrate, and fat targets. Uses evidence-based formulas: Katch-McArdle BMR, Boer LBM, and goal-adjusted macro ratios. No sign-up. No data sent to servers. Supports English, Spanish, French, Chinese, and Hindi.
+
+## Calculator
+
+- [MacroCalc — English](https://macrocalc.fit/en/): Main calculator. Inputs: weight (kg), height (cm), age, sex, activity level, goal (maintain/surplus/definition), BMR formula, LBM formula.
+- [MacroCalc — Español](https://macrocalc.fit/es/): Spanish locale.
+- [MacroCalc — Français](https://macrocalc.fit/fr/): French locale.
+- [MacroCalc — 中文](https://macrocalc.fit/zh/): Chinese locale.
+- [MacroCalc — हिन्दी](https://macrocalc.fit/hi/): Hindi locale.
+
+## Reference
+
+- [Formulas & Definitions](https://macrocalc.fit/en/info): Full reference for LBM (Boer, James, Hume, Manual), BMR (Mifflin-St Jeor, Revised Harris-Benedict, Katch-McArdle), TDEE activity multipliers, goal calorie adjustments, and macro distribution logic.
+
+## Optional
+
+- [Reference — Español](https://macrocalc.fit/es/info)
+- [Reference — Français](https://macrocalc.fit/fr/info)
+- [Reference — 中文](https://macrocalc.fit/zh/info)
+- [Reference — हिन्दी](https://macrocalc.fit/hi/info)
