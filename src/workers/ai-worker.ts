@@ -1,13 +1,26 @@
 /// <reference lib="webworker" />
 
-import { env, pipeline, TextStreamer, type TextGenerationPipeline } from '@huggingface/transformers'
-import { AIWorkerInbound, AIWorkerOutbound, type AIDevice, type AIInboundMessage, type AIOutboundMessage } from '../types'
+import { env, pipeline, TextStreamer, type TextGenerationPipeline } from '@huggingface/transformers';
+import { AIWorkerInbound, AIWorkerOutbound, type AIDevice, type AIInboundMessage, type AIOutboundMessage } from '../types';
 
 function send(msg: AIOutboundMessage) {
 	self.postMessage(msg)
 }
 
-const MODEL = 'onnx-community/Qwen2.5-0.5B-Instruct'
+const MODELS = {
+	full: 'onnx-community/Qwen2.5-0.5B-Instruct',
+	lite: 'onnx-community/SmolLM2-135M-Instruct',
+} as const
+
+type Dtype = 'q4f16' | 'q4' | 'auto' | 'fp32' | 'fp16' | 'q8' | 'int8' | 'uint8' | 'bnb4'
+
+// deviceMemory >= 4 → full model (q4f16, WebGPU-optimised); >= 2 → lite model (q4, WASM-safe); < 2 → unsupported
+function selectModel(): { model: string; dtype: Dtype; maxNewTokens: number } {
+	const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
+	if (memory === undefined || memory >= 4) return { model: MODELS.full, dtype: 'q4f16', maxNewTokens: 1024 }
+	if (memory >= 2) return { model: MODELS.lite, dtype: 'q4', maxNewTokens: 400 }
+	throw new Error('Insufficient device memory for AI generation.')
+}
 
 async function detectDevice(): Promise<AIDevice> {
 	try {
@@ -23,16 +36,19 @@ env.allowLocalModels = false
 env.useBrowserCache = true
 
 let pipe: TextGenerationPipeline | null = null
+let maxNewTokens = 1024
 
 self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 	const { type } = e.data
 
 	if (type === AIWorkerInbound.CHECK_AVAILABILITY) {
 		try {
+			const { model, dtype, maxNewTokens: tokenLimit } = selectModel()
+			maxNewTokens = tokenLimit
 			const device = await detectDevice()
 
-			pipe = (await pipeline('text-generation', MODEL, {
-				dtype: 'q4',
+			pipe = (await pipeline('text-generation', model, {
+				dtype,
 				device,
 				progress_callback: (info: { status: string; file?: string; progress?: number }) => {
 					if (info.status === 'progress') {
@@ -45,7 +61,7 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 				},
 			})) as TextGenerationPipeline
 
-			send({ type: AIWorkerOutbound.STATUS, model: MODEL, device })
+			send({ type: AIWorkerOutbound.STATUS, model, device })
 		} catch (err) {
 			send({
 				type: AIWorkerOutbound.ERROR,
@@ -75,7 +91,7 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 				: [{ role: 'user', content: prompt }]
 
 			await pipe(messages, {
-				max_new_tokens: 1024,
+				max_new_tokens: maxNewTokens,
 				do_sample: true,
 				temperature: 0.7,
 				streamer,
