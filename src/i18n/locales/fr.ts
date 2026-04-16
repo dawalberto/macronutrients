@@ -57,7 +57,7 @@ export const fr = {
 	loading_ai: (pct: number) => `CHARGEMENT MODÈLE IA... ${pct}%`,
 
 	// Header
-	page_title: 'MACRO_CALC V1.0',
+	page_title: 'MACRO_CALC',
 	system_status: 'STATUT: OPTIMAL // MOTEUR_NUTRITION_BRUTALISTE',
 
 	// Footer / Nav

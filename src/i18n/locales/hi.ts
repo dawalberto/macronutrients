@@ -57,7 +57,7 @@ export const hi = {
 	loading_ai: (pct: number) => `AI मॉडल लोड हो रहा है... ${pct}%`,
 
 	// Header
-	page_title: 'MACRO_CALC V1.0',
+	page_title: 'MACRO_CALC',
 	system_status: 'सिस्टम_स्थिति: सर्वोत्तम // पोषण_इंजन',
 
 	// Footer / Nav

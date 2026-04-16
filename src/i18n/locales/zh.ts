@@ -57,7 +57,7 @@ export const zh = {
 	loading_ai: (pct: number) => `加载AI模型... ${pct}%`,
 
 	// Header
-	page_title: 'MACRO_CALC V1.0',
+	page_title: 'MACRO_CALC',
 	system_status: '系统状态: 最佳 // 营养计算引擎',
 
 	// Footer / Nav

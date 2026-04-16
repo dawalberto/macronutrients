@@ -19,12 +19,21 @@ const INITIAL_STATE: AIWorkerState = {
 	error: null,
 }
 
+function isMobileDevice(): boolean {
+	return typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0
+}
+
 export function useAIWorker() {
 	const [state, setState] = useState<AIWorkerState>(INITIAL_STATE)
 	const workerRef = useRef<Worker | null>(null)
 	const fileProgressRef = useRef<Map<string, number>>(new Map())
 
 	useEffect(() => {
+		if (isMobileDevice()) {
+			setState((prev) => ({ ...prev, available: false }))
+			return
+		}
+
 		const worker = new Worker(new URL('../workers/ai-worker.ts', import.meta.url), { type: 'module' })
 		workerRef.current = worker
 
