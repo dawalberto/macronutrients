@@ -57,7 +57,7 @@ export const es = {
 	loading_ai: (pct: number) => `CARGANDO MODELO IA... ${pct}%`,
 
 	// Header
-	page_title: 'MACRO_CALC V1.0',
+	page_title: 'MACRO_CALC',
 	system_status: 'ESTADO: ÓPTIMO // MOTOR_NUTRICIÓN_BRUTALISTA',
 
 	// Footer / Nav

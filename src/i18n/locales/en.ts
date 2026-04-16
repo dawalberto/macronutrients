@@ -55,7 +55,7 @@ export const en = {
 	loading_ai: (pct: number) => `LOADING AI MODEL... ${pct}%`,
 
 	// Header
-	page_title: 'MACRO_CALC V1.0',
+	page_title: 'MACRO_CALC',
 	system_status: 'SYSTEM STATUS: OPTIMAL // BRUTALIST NUTRITION ENGINE',
 
 	// Footer / Nav
