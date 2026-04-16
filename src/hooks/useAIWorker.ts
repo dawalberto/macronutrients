@@ -19,23 +19,12 @@ const INITIAL_STATE: AIWorkerState = {
 	error: null,
 }
 
-function isUnsupportedDevice(): boolean {
-	const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
-	const deviceMemoryGB = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 4
-	return isMobile || deviceMemoryGB < 4
-}
-
 export function useAIWorker() {
 	const [state, setState] = useState<AIWorkerState>(INITIAL_STATE)
 	const workerRef = useRef<Worker | null>(null)
 	const fileProgressRef = useRef<Map<string, number>>(new Map())
 
 	useEffect(() => {
-		if (isUnsupportedDevice()) {
-			setState((prev) => ({ ...prev, available: false }))
-			return
-		}
-
 		const worker = new Worker(new URL('../workers/ai-worker.ts', import.meta.url), { type: 'module' })
 		workerRef.current = worker
 

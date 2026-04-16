@@ -7,7 +7,14 @@ function send(msg: AIOutboundMessage) {
 	self.postMessage(msg)
 }
 
-const MODEL = 'onnx-community/Qwen2.5-0.5B-Instruct'
+function selectModel(): string {
+	const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+	const deviceMemoryGB = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 4
+
+	if (isMobile || deviceMemoryGB < 4) return 'onnx-community/SmolLM2-135M-Instruct'
+	if (deviceMemoryGB >= 8) return 'onnx-community/Qwen2.5-1.5B-Instruct'
+	return 'onnx-community/Qwen2.5-0.5B-Instruct'
+}
 
 async function detectDevice(): Promise<AIDevice> {
 	try {
@@ -29,9 +36,10 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 
 	if (type === AIWorkerInbound.CHECK_AVAILABILITY) {
 		try {
+			const model = selectModel()
 			const device = await detectDevice()
 
-			pipe = (await pipeline('text-generation', MODEL, {
+			pipe = (await pipeline('text-generation', model, {
 				dtype: 'q4',
 				device,
 				progress_callback: (info: { status: string; file?: string; progress?: number }) => {
@@ -45,7 +53,7 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 				},
 			})) as TextGenerationPipeline
 
-			send({ type: AIWorkerOutbound.STATUS, model: MODEL, device })
+			send({ type: AIWorkerOutbound.STATUS, model, device })
 		} catch (err) {
 			send({
 				type: AIWorkerOutbound.ERROR,
