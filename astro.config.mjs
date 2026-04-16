@@ -25,6 +25,5 @@ export default defineConfig({
 	vite: {
 		plugins: [tailwindcss()],
 	},
-	site: 'https://dawalberto.github.io',
-	base: 'macronutrients',
+	site: 'https://macrocalc.fit',
 })

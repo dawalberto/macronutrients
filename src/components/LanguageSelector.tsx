@@ -10,7 +10,7 @@ const LOCALE_LABELS: Record<Locale, string> = {
 }
 
 const SUPPORTED: Locale[] = ['en', 'es', 'fr', 'zh', 'hi']
-const BASE = '/macronutrients'
+const BASE = ''
 
 function navigateToLocale(newLocale: Locale) {
 	const path = window.location.pathname

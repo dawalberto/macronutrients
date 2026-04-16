@@ -1,4 +1,4 @@
-# MacroCalc — https://dawalberto.github.io/macronutrients
+# MacroCalc — https://macrocalc.fit
 # All crawlers welcome, including AI/LLM bots
 
 User-agent: *
@@ -46,4 +46,4 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://dawalberto.github.io/macronutrients/sitemap-index.xml
+Sitemap: https://macrocalc.fit/sitemap-index.xml

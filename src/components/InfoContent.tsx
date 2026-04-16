@@ -20,7 +20,7 @@ export const InfoContent = () => {
 
 			<nav className='mb-8'>
 				<a
-					href='/macronutrients/'
+					href='/'
 					className='brutalist-border inline-block bg-obsidian px-4 py-2 text-[clamp(11px,1.2vw,13px)] font-bold text-gray-400 transition-all hover:border-gray-100 hover:text-white'
 				>
 					{t.back_to_calculator}

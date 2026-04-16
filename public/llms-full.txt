@@ -1,5 +1,5 @@
 MacroCalc — Full Reference
-https://dawalberto.github.io/macronutrients/en/info
+https://macrocalc.fit/en/info
 
 MacroCalc is a free, in-browser macronutrient calculator. It computes daily protein, carbohydrate, and fat targets from user inputs: body weight (kg), height (cm), age (years), sex (male/female), activity level, fitness goal, BMR formula choice, and LBM formula choice. All calculations run client-side — no data is transmitted.
 
@@ -127,6 +127,6 @@ A: Maintain keeps calories at TDEE for weight stability. Surplus adds +300 kcal 
 
 ---
 
-Source: https://dawalberto.github.io/macronutrients/en/info
+Source: https://macrocalc.fit/en/info
 Author: Alberto García Sola
 License: Free to use

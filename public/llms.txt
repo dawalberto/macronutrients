@@ -4,19 +4,19 @@
 
 ## Calculator
 
-- [MacroCalc — English](https://dawalberto.github.io/macronutrients/en/): Main calculator. Inputs: weight (kg), height (cm), age, sex, activity level, goal (maintain/surplus/definition), BMR formula, LBM formula.
-- [MacroCalc — Español](https://dawalberto.github.io/macronutrients/es/): Spanish locale.
-- [MacroCalc — Français](https://dawalberto.github.io/macronutrients/fr/): French locale.
-- [MacroCalc — 中文](https://dawalberto.github.io/macronutrients/zh/): Chinese locale.
-- [MacroCalc — हिन्दी](https://dawalberto.github.io/macronutrients/hi/): Hindi locale.
+- [MacroCalc — English](https://macrocalc.fit/en/): Main calculator. Inputs: weight (kg), height (cm), age, sex, activity level, goal (maintain/surplus/definition), BMR formula, LBM formula.
+- [MacroCalc — Español](https://macrocalc.fit/es/): Spanish locale.
+- [MacroCalc — Français](https://macrocalc.fit/fr/): French locale.
+- [MacroCalc — 中文](https://macrocalc.fit/zh/): Chinese locale.
+- [MacroCalc — हिन्दी](https://macrocalc.fit/hi/): Hindi locale.
 
 ## Reference
 
-- [Formulas & Definitions](https://dawalberto.github.io/macronutrients/en/info): Full reference for LBM (Boer, James, Hume, Manual), BMR (Mifflin-St Jeor, Revised Harris-Benedict, Katch-McArdle), TDEE activity multipliers, goal calorie adjustments, and macro distribution logic.
+- [Formulas & Definitions](https://macrocalc.fit/en/info): Full reference for LBM (Boer, James, Hume, Manual), BMR (Mifflin-St Jeor, Revised Harris-Benedict, Katch-McArdle), TDEE activity multipliers, goal calorie adjustments, and macro distribution logic.
 
 ## Optional
 
-- [Reference — Español](https://dawalberto.github.io/macronutrients/es/info)
-- [Reference — Français](https://dawalberto.github.io/macronutrients/fr/info)
-- [Reference — 中文](https://dawalberto.github.io/macronutrients/zh/info)
-- [Reference — हिन्दी](https://dawalberto.github.io/macronutrients/hi/info)
+- [Reference — Español](https://macrocalc.fit/es/info)
+- [Reference — Français](https://macrocalc.fit/fr/info)
+- [Reference — 中文](https://macrocalc.fit/zh/info)
+- [Reference — हिन्दी](https://macrocalc.fit/hi/info)
