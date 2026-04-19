@@ -32,37 +32,57 @@ export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMe
 	if (!visible) return null
 
 	return (
-		<div className='fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4' onClick={generating ? undefined : onClose}>
-			<div className='chamfered brutalist-border flex max-h-[80vh] w-full max-w-xl flex-col bg-[#0A0A0A]' onClick={(e) => e.stopPropagation()}>
-				<div className='flex items-center justify-between border-b-2 border-[#4A4A4A] px-6 py-4'>
-					<h2 className='text-sm font-extrabold tracking-tighter italic'>{t.ai_interpretation}</h2>
+		<div
+			className='fixed inset-0 z-50 flex items-center justify-center p-4'
+			style={{ background: 'rgba(0,0,0,0.4)' }}
+			onClick={generating ? undefined : onClose}
+		>
+			<div
+				className='flex max-h-[80vh] w-full max-w-xl flex-col bg-white'
+				style={{
+					border: '1px solid rgba(0,0,0,0.1)',
+					borderRadius: '12px',
+					boxShadow: 'rgba(0,0,0,0.05) 0px 1px 3px, rgba(0,0,0,0.02) 0px 3px 7px, rgba(0,0,0,0.02) 0px 7px 15px, rgba(0,0,0,0.04) 0px 14px 28px, rgba(0,0,0,0.05) 0px 23px 52px',
+				}}
+				onClick={(e) => e.stopPropagation()}
+			>
+				{/* Header */}
+				<div
+					className='flex items-center justify-between px-6 py-4'
+					style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}
+				>
+					<h2 style={{ fontSize: '15px', fontWeight: 600, color: 'rgba(0,0,0,0.95)', letterSpacing: '-0.1px' }}>
+						{t.ai_interpretation}
+					</h2>
 					<button
 						type='button'
 						onClick={onClose}
 						disabled={generating}
-						className='cursor-pointer text-[#8C8C8C] transition-colors hover:text-gray-100 disabled:cursor-not-allowed disabled:opacity-30'
+						className='cursor-pointer rounded p-1 text-warm-gray-300 transition-colors hover:bg-warm-white hover:text-warm-gray-500 disabled:cursor-not-allowed disabled:opacity-30'
 					>
-						<X size={18} />
+						<X size={16} />
 					</button>
 				</div>
 
+				{/* Content */}
 				<div ref={contentRef} className='ai-content flex-1 overflow-y-auto p-6'>
 					{streamedText ? (
 						<Streamdown mode={generating ? 'streaming' : 'static'} isAnimating={generating}>
 							{streamedText}
 						</Streamdown>
 					) : (
-						<div className='flex items-center gap-2 text-xs text-[#8C8C8C]'>
-							<div className='h-2 w-2 animate-pulse bg-gray-100' />
+						<div className='flex items-center gap-2 text-sm text-warm-gray-300'>
+							<div className='h-1.5 w-1.5 animate-pulse rounded-full bg-notion-blue' />
 							{t.ai_interpreting}
 						</div>
 					)}
 				</div>
 
+				{/* Streaming indicator */}
 				{generating && streamedText && (
-					<div className='border-t-2 border-[#4A4A4A] px-6 py-3'>
-						<div className='flex items-center gap-2 text-xs text-[#8C8C8C]'>
-							<div className='h-1.5 w-1.5 animate-pulse bg-emerald-500' />
+					<div className='px-6 py-3' style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}>
+						<div className='flex items-center gap-2 text-xs text-warm-gray-300'>
+							<div className='h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500' />
 							{t.ai_streaming}
 						</div>
 					</div>

@@ -2,7 +2,6 @@ import { useTranslations } from '@i18n/index'
 import { useStore } from '@nanostores/react'
 import { $updateUserAge, $updateUserGenre, $updateUserHeight, $updateUserWeight, $userAttributes } from '@store/user-attributes'
 import { clsx } from 'clsx'
-import { User } from 'lucide-react'
 import { Genre, UserAttributesNamesDashboard } from 'src/types'
 
 export const Dashboard = () => {
@@ -28,30 +27,34 @@ export const Dashboard = () => {
 
 	return (
 		<div className='flex w-full flex-col gap-8'>
-			<div className='flex w-full gap-4'>
+			{/* Gender toggle */}
+			<div className='flex w-full gap-2 rounded-md p-1' style={{ background: '#f6f5f4', border: '1px solid rgba(0,0,0,0.08)' }}>
 				<button
 					onClick={() => $updateUserGenre(Genre.MALE)}
-					className={clsx('flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all', {
-						'brutalist-border-active bg-gray-100 text-black': genre === Genre.MALE,
-						'bg-obsidian brutalist-border text-gray-400 opacity-50': genre !== Genre.MALE,
+					className={clsx('flex flex-1 items-center justify-center gap-1.5 rounded py-2 text-sm font-medium transition-all', {
+						'bg-white text-[rgba(0,0,0,0.95)] shadow-sm': genre === Genre.MALE,
+						'text-warm-gray-500 hover:text-[rgba(0,0,0,0.95)]': genre !== Genre.MALE,
 					})}
+					style={genre === Genre.MALE ? { boxShadow: '0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)' } : {}}
 				>
-					<User size={16} /> {t.male}
+					{t.male}
 				</button>
 				<button
 					onClick={() => $updateUserGenre(Genre.FEMALE)}
-					className={clsx('flex flex-1 items-center justify-center gap-2 p-4 font-bold transition-all', {
-						'brutalist-border-active bg-gray-100 text-black': genre === Genre.FEMALE,
-						'bg-obsidian brutalist-border text-gray-400 opacity-50': genre !== Genre.FEMALE,
+					className={clsx('flex flex-1 items-center justify-center gap-1.5 rounded py-2 text-sm font-medium transition-all', {
+						'bg-white text-[rgba(0,0,0,0.95)] shadow-sm': genre === Genre.FEMALE,
+						'text-warm-gray-500 hover:text-[rgba(0,0,0,0.95)]': genre !== Genre.FEMALE,
 					})}
+					style={genre === Genre.FEMALE ? { boxShadow: '0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)' } : {}}
 				>
-					<User size={16} /> {t.female}
+					{t.female}
 				</button>
 			</div>
 
+			{/* Weight */}
 			<div className='space-y-3'>
-				<div className='flex items-end justify-between font-bold'>
-					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>{t.weight_kg}</span>
+				<div className='flex items-center justify-between'>
+					<span className='select-label mb-0'>{t.weight_kg}</span>
 					<input
 						type='number'
 						name='weight'
@@ -59,15 +62,17 @@ export const Dashboard = () => {
 						min='0'
 						max='200'
 						onChange={handleUserAttributeChange}
-						className='bg-obsidian border-slate-brutalist w-20 [appearance:textfield] border px-3 py-1 text-right text-white [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+						className='w-20 rounded text-right text-sm font-medium text-[rgba(0,0,0,0.9)] [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+						style={{ border: '1px solid #dddddd', padding: '4px 8px', background: '#fff', outline: 'none' }}
 					/>
 				</div>
 				<input type='range' id='weight' name='weight' value={weight} min='0' max='200' onChange={handleUserAttributeChange} />
 			</div>
 
+			{/* Height */}
 			<div className='space-y-3'>
-				<div className='flex items-end justify-between font-bold'>
-					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>{t.height_cm}</span>
+				<div className='flex items-center justify-between'>
+					<span className='select-label mb-0'>{t.height_cm}</span>
 					<input
 						type='number'
 						name='height'
@@ -75,15 +80,17 @@ export const Dashboard = () => {
 						min='0'
 						max='250'
 						onChange={handleUserAttributeChange}
-						className='bg-obsidian border-slate-brutalist w-20 [appearance:textfield] border px-3 py-1 text-right text-white [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+						className='w-20 rounded text-right text-sm font-medium text-[rgba(0,0,0,0.9)] [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+						style={{ border: '1px solid #dddddd', padding: '4px 8px', background: '#fff', outline: 'none' }}
 					/>
 				</div>
 				<input type='range' id='height' name='height' value={height} min='0' max='250' onChange={handleUserAttributeChange} />
 			</div>
 
+			{/* Age */}
 			<div className='space-y-3'>
-				<div className='flex items-end justify-between font-bold'>
-					<span className='text-concrete text-[clamp(11px,1.2vw,13px)]'>{t.age_yrs}</span>
+				<div className='flex items-center justify-between'>
+					<span className='select-label mb-0'>{t.age_yrs}</span>
 					<input
 						type='number'
 						name='age'
@@ -91,7 +98,8 @@ export const Dashboard = () => {
 						min='0'
 						max='100'
 						onChange={handleUserAttributeChange}
-						className='bg-obsidian border-slate-brutalist w-20 [appearance:textfield] border px-3 py-1 text-right text-white [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+						className='w-20 rounded text-right text-sm font-medium text-[rgba(0,0,0,0.9)] [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+						style={{ border: '1px solid #dddddd', padding: '4px 8px', background: '#fff', outline: 'none' }}
 					/>
 				</div>
 				<input type='range' id='age' name='age' value={age} min='0' max='100' onChange={handleUserAttributeChange} />

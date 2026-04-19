@@ -18,19 +18,17 @@ export const BMRSelector = () => {
 			<label title='Basal metabolic rate' htmlFor='BMREquation' className='select-label'>
 				{t.bmr_equation}
 			</label>
-			<div className='chamfered bg-obsidian relative p-0.5'>
-				<select
-					id='BMREquation'
-					name='BMREquation'
-					defaultValue={bmrAndExercise.equation}
-					onChange={handleBMREquationChange}
-					className='form-select'
-				>
-					<option value={BMREquation.MIFFLIN_ST_JEOR}>{t.bmr_mifflin}</option>
-					<option value={BMREquation.REVISED_HARRIS_BENEDICT}>{t.bmr_harris}</option>
-					<option value={BMREquation.KATCH_MC_ARDLE}>{t.bmr_katch}</option>
-				</select>
-			</div>
+			<select
+				id='BMREquation'
+				name='BMREquation'
+				defaultValue={bmrAndExercise.equation}
+				onChange={handleBMREquationChange}
+				className='form-select'
+			>
+				<option value={BMREquation.MIFFLIN_ST_JEOR}>{t.bmr_mifflin}</option>
+				<option value={BMREquation.REVISED_HARRIS_BENEDICT}>{t.bmr_harris}</option>
+				<option value={BMREquation.KATCH_MC_ARDLE}>{t.bmr_katch}</option>
+			</select>
 		</div>
 	)
 }
