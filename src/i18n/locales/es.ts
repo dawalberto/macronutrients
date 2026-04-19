@@ -55,6 +55,7 @@ export const es = {
 	interpret_results: 'INTERPRETAR RESULTADOS',
 	interpreting: 'INTERPRETANDO...',
 	loading_ai: (pct: number) => `CARGANDO MODELO IA... ${pct}%`,
+	ai_unavailable_mobile: 'SOLO ESCRITORIO',
 
 	// Header
 	page_title: 'MACRO_CALC',

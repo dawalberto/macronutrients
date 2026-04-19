@@ -55,6 +55,7 @@ export const zh = {
 	interpret_results: '解读结果',
 	interpreting: '解读中...',
 	loading_ai: (pct: number) => `加载AI模型... ${pct}%`,
+	ai_unavailable_mobile: '仅限桌面端',
 
 	// Header
 	page_title: 'MACRO_CALC',

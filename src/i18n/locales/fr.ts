@@ -55,6 +55,7 @@ export const fr = {
 	interpret_results: 'INTERPRÉTER RÉSULTATS',
 	interpreting: 'INTERPRÉTATION...',
 	loading_ai: (pct: number) => `CHARGEMENT MODÈLE IA... ${pct}%`,
+	ai_unavailable_mobile: 'BUREAU UNIQUEMENT',
 
 	// Header
 	page_title: 'MACRO_CALC',

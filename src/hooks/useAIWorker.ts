@@ -3,6 +3,7 @@ import { AIWorkerInbound, AIWorkerOutbound, type AIOutboundMessage } from '../ty
 
 type AIWorkerState = {
 	available: boolean | null
+	isMobile: boolean
 	downloading: boolean
 	downloadProgress: number
 	generating: boolean
@@ -12,6 +13,7 @@ type AIWorkerState = {
 
 const INITIAL_STATE: AIWorkerState = {
 	available: null,
+	isMobile: false,
 	downloading: false,
 	downloadProgress: 0,
 	generating: false,
@@ -30,7 +32,7 @@ export function useAIWorker() {
 
 	useEffect(() => {
 		if (isMobileDevice()) {
-			setState((prev) => ({ ...prev, available: false }))
+			setState((prev) => ({ ...prev, available: false, isMobile: true }))
 			return
 		}
 

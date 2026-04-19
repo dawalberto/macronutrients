@@ -53,6 +53,7 @@ export const en = {
 	interpret_results: 'INTERPRET RESULTS',
 	interpreting: 'INTERPRETING...',
 	loading_ai: (pct: number) => `LOADING AI MODEL... ${pct}%`,
+	ai_unavailable_mobile: 'DESKTOP ONLY',
 
 	// Header
 	page_title: 'MACRO_CALC',

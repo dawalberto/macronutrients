@@ -55,6 +55,7 @@ export const hi = {
 	interpret_results: 'परिणाम व्याख्या करें',
 	interpreting: 'व्याख्या हो रही है...',
 	loading_ai: (pct: number) => `AI मॉडल लोड हो रहा है... ${pct}%`,
+	ai_unavailable_mobile: 'केवल डेस्कटॉप',
 
 	// Header
 	page_title: 'MACRO_CALC',
