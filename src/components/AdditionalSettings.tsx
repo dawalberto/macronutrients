@@ -20,21 +20,18 @@ export const AdditionalSettings = () => {
 
 	return (
 		<div className='w-full'>
-			<div className='chamfered brutalist-border bg-obsidian p-0.5'>
-				<button
-					onClick={handleOnClick}
-					className='chamfered hover:bg-obsidian relative w-full cursor-pointer bg-[#0A0A0A] px-6 py-4 font-extrabold tracking-tighter transition-all active:shadow-none'
-				>
-					<span className='flex items-center justify-center gap-2 text-base text-gray-300'>
-						{t.advanced_settings}
-						<ChevronDown
-							size={16}
-							className='transition-transform duration-300'
-							style={{ transform: showMore ? 'rotate(180deg)' : 'rotate(0deg)' }}
-						/>
-					</span>
-				</button>
-			</div>
+			<button
+				onClick={handleOnClick}
+				className='flex w-full cursor-pointer items-center justify-between px-0 py-2 transition-colors'
+				style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}
+			>
+				<span className='text-sm font-medium text-warm-gray-500'>{t.advanced_settings}</span>
+				<ChevronDown
+					size={15}
+					className='text-warm-gray-300 transition-transform duration-300'
+					style={{ transform: showMore ? 'rotate(180deg)' : 'rotate(0deg)' }}
+				/>
+			</button>
 
 			<div style={{ gridTemplateRows: showMore ? '1fr' : '0fr' }} className='grid transition-[grid-template-rows] duration-300 ease-in-out'>
 				<div className='overflow-hidden'>

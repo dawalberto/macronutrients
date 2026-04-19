@@ -2,14 +2,14 @@ import type { Translations } from './en'
 
 export const zh = {
 	// Dashboard
-	weight_kg: '体重_KG',
-	height_cm: '身高_CM',
-	age_yrs: '年龄_岁',
+	weight_kg: '体重 KG',
+	height_cm: '身高 CM',
+	age_yrs: '年龄 岁',
 	male: '男性',
 	female: '女性',
 
 	// BMR Selector
-	bmr_equation: 'BMR_公式',
+	bmr_equation: 'BMR 公式',
 	bmr_mifflin: 'Mifflin St Jeor',
 	bmr_harris: 'Revised Harris-Benedict',
 	bmr_katch: 'Katch-McArdle',
@@ -29,7 +29,7 @@ export const zh = {
 	goal_definition: '减脂',
 
 	// LBM Selector
-	lbm_formula: 'LBM_公式',
+	lbm_formula: 'LBM 公式',
 	lbm_boer: 'Boer',
 	lbm_james: 'James',
 	lbm_hume: 'Hume',
@@ -47,7 +47,7 @@ export const zh = {
 	chart_title: (kcal: number) => `${kcal} 千卡 / 天`,
 
 	// AI Modal
-	ai_interpretation: 'AI_解读',
+	ai_interpretation: 'AI 解读',
 	ai_interpreting: '解读中...',
 	ai_streaming: '流式输出...',
 
@@ -55,9 +55,10 @@ export const zh = {
 	interpret_results: '解读结果',
 	interpreting: '解读中...',
 	loading_ai: (pct: number) => `加载AI模型... ${pct}%`,
+	ai_unavailable_mobile: '仅限桌面端',
 
 	// Header
-	page_title: 'MACRO_CALC',
+	page_title: 'MacroCalc',
 	system_status: '系统状态: 最佳 // 营养计算引擎',
 
 	// Footer / Nav
@@ -69,7 +70,7 @@ export const zh = {
 	back_to_calculator: '← 返回计算器',
 
 	// Info page — Module 01: LBM
-	info_module_01: '模块_01',
+	info_module_01: '模块 01',
 	info_lbm_title: 'LBM — 去脂体重',
 	info_lbm_desc: '您的体重减去体脂。包括肌肉、骨骼、器官和水分。LBM是所有宏量营养素目标的基础——而非总体重——因为脂肪组织的代谢活性极低，不需要蛋白质或碳水化合物来维持。',
 	info_lbm_boer_label: 'BOER（默认）',
@@ -78,7 +79,7 @@ export const zh = {
 	info_lbm_manual_desc: '如果您有体成分测量数据（DEXA、BodPod等），可直接输入LBM值。',
 
 	// Info page — Module 02: BMR
-	info_module_02: '模块_02',
+	info_module_02: '模块 02',
 	info_bmr_title: 'BMR — 基础代谢率',
 	info_bmr_desc: '身体在完全静息状态下消耗的热量——仅用于维持器官运作。这是您能量需求的最低值，超出部分来自体力活动。',
 	info_bmr_mifflin_note: 'W = 体重（kg），H = 身高（cm），A = 年龄（岁）。对普通人群精度最高。',
@@ -87,7 +88,7 @@ export const zh = {
 	info_bmr_katch_note: '使用去脂体重代替总体重——在已知体成分时更准确。性别中性。',
 
 	// Info page — Module 03: TDEE
-	info_module_03: '模块_03',
+	info_module_03: '模块 03',
 	info_tdee_title: 'TDEE — 每日总能量消耗',
 	info_tdee_desc: '您实际的每日热量消耗。由BMR乘以考虑运动和生活方式的活动系数计算得出。',
 	info_tdee_formula: 'TDEE = BMR × 活动系数',
@@ -98,7 +99,7 @@ export const zh = {
 	info_tdee_extremely_desc: '× 1.9 — 体力劳动或每天2次训练',
 
 	// Info page — Module 04: Goals
-	info_module_04: '模块_04',
+	info_module_04: '模块 04',
 	info_goals_title: '目标 — 热量指标',
 	info_goal_maintain_formula: '热量 = TDEE',
 	info_goal_maintain_desc: '维持当前体重。均衡的宏量营养素分配以支持活动和体成分。',
@@ -108,7 +109,7 @@ export const zh = {
 	info_goal_definition_desc: '适度热量赤字以减脂。提高蛋白质以保护肌肉量。碳水填充剩余热量。',
 
 	// Info page — Module 05: Macros
-	info_module_05: '模块_05',
+	info_module_05: '模块 05',
 	info_macros_title: '宏量营养素 — 分配',
 	info_macros_desc: '每种宏量营养素的克数按LBM的每公斤计算（非总体重）。蛋白质和脂肪计算完成后，碳水始终填充剩余热量。',
 	info_protein_targets: '蛋白质目标（每公斤LBM）',
