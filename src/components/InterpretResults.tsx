@@ -53,24 +53,31 @@ export const InterpretResults = () => {
 	return (
 		<>
 			<div className='w-full'>
-				<div className='chamfered brutalist-border bg-obsidian p-0.5'>
-					<button
-						type='button'
-						onClick={handleClick}
-						disabled={generating || isLoading}
-						className='chamfered hover:bg-obsidian relative w-full cursor-pointer overflow-hidden bg-[#0A0A0A] px-6 py-4 font-extrabold tracking-tighter italic transition-all active:shadow-none disabled:cursor-not-allowed disabled:opacity-70'
-					>
-						{isLoading && (
-							<div
-								className='bg-obsidian absolute inset-0 transition-[width] duration-300 ease-out'
-								style={{ width: `${downloadProgress}%` }}
-							/>
-						)}
-						<span className='relative flex items-center justify-center gap-2 text-base'>
-							{buttonText} {!isLoading && !generating && <Sparkles size={16} />}
-						</span>
-					</button>
-				</div>
+				<button
+					type='button'
+					onClick={handleClick}
+					disabled={generating || isLoading}
+					className='relative w-full cursor-pointer overflow-hidden rounded font-semibold text-white transition-all disabled:cursor-not-allowed disabled:opacity-60'
+					style={{
+						background: '#0075de',
+						padding: '10px 16px',
+						fontSize: '15px',
+						border: '1px solid transparent',
+					}}
+					onMouseEnter={(e) => { if (!generating && !isLoading) (e.currentTarget as HTMLButtonElement).style.background = '#005bab' }}
+					onMouseLeave={(e) => { if (!generating && !isLoading) (e.currentTarget as HTMLButtonElement).style.background = '#0075de' }}
+				>
+					{isLoading && (
+						<div
+							className='absolute inset-0 transition-[width] duration-300 ease-out'
+							style={{ width: `${downloadProgress}%`, background: '#005bab' }}
+						/>
+					)}
+					<span className='relative flex items-center justify-center gap-2'>
+						{buttonText}
+						{!isLoading && !generating && <Sparkles size={15} />}
+					</span>
+				</button>
 			</div>
 
 			<AIMenuModal visible={showModal} streamedText={streamedText} generating={generating} onClose={() => setShowModal(false)} />

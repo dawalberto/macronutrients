@@ -2,20 +2,20 @@ import type { Translations } from './en'
 
 export const fr = {
 	// Dashboard
-	weight_kg: 'POIDS_KG',
-	height_cm: 'TAILLE_CM',
-	age_yrs: 'ÂGE_ANS',
+	weight_kg: 'POIDS KG',
+	height_cm: 'TAILLE CM',
+	age_yrs: 'ÂGE ANS',
 	male: 'HOMME',
 	female: 'FEMME',
 
 	// BMR Selector
-	bmr_equation: 'ÉQUATION_BMR',
+	bmr_equation: 'ÉQUATION BMR',
 	bmr_mifflin: 'Mifflin St Jeor',
 	bmr_harris: 'Revised Harris-Benedict',
 	bmr_katch: 'Katch-McArdle',
 
 	// Exercise Multiplier
-	exercise_multiplier: 'MULTIPLICATEUR_EXERCICE',
+	exercise_multiplier: 'MULTIPLICATEUR EXERCICE',
 	exercise_sedentary: 'Sédentaire',
 	exercise_lightly: 'Légèrement actif',
 	exercise_moderately: 'Modérément actif',
@@ -29,7 +29,7 @@ export const fr = {
 	goal_definition: 'Définition',
 
 	// LBM Selector
-	lbm_formula: 'FORMULE_MMC',
+	lbm_formula: 'FORMULE MMC',
 	lbm_boer: 'Boer',
 	lbm_james: 'James',
 	lbm_hume: 'Hume',
@@ -37,17 +37,17 @@ export const fr = {
 	lbm_placeholder: 'MMC en Kg',
 
 	// Additional Settings
-	advanced_settings: 'PARAMÈTRES_AVANCÉS',
+	advanced_settings: 'PARAMÈTRES AVANCÉS',
 
 	// Chart
-	daily_caloric_quota: '◉ QUOTA_CALORIQUE_JOURNALIER',
+	daily_caloric_quota: '◉ QUOTA CALORIQUE JOURNALIER',
 	chart_carbs: (n: number) => `${n}G GLUCIDES`,
 	chart_fats: (n: number) => `${n}G LIPIDES`,
 	chart_prot: (n: number) => `${n}G PROTÉINES`,
 	chart_title: (kcal: number) => `${kcal} KCAL / JOUR`,
 
 	// AI Modal
-	ai_interpretation: 'INTERPRÉTATION_IA',
+	ai_interpretation: 'INTERPRÉTATION IA',
 	ai_interpreting: 'INTERPRÉTATION...',
 	ai_streaming: 'DIFFUSION...',
 
@@ -58,19 +58,19 @@ export const fr = {
 	ai_unavailable_mobile: 'BUREAU UNIQUEMENT',
 
 	// Header
-	page_title: 'MACRO_CALC',
-	system_status: 'STATUT: OPTIMAL // MOTEUR_NUTRITION_BRUTALISTE',
+	page_title: 'MacroCalc',
+	system_status: 'STATUT: OPTIMAL // MOTEUR NUTRITION BRUTALISTE',
 
 	// Footer / Nav
 	footer_info_link: 'INFO // FORMULES & DÉFINITIONS →',
 	select_language: 'LANGUE',
 
 	// Info page header/nav
-	reference_manual: 'MANUEL_RÉFÉRENCE // FORMULES & DÉFINITIONS',
-	back_to_calculator: '← RETOUR_CALCULATEUR',
+	reference_manual: 'MANUEL RÉFÉRENCE // FORMULES & DÉFINITIONS',
+	back_to_calculator: '← RETOUR CALCULATEUR',
 
 	// Info page — Module 01: LBM
-	info_module_01: 'MODULE_01',
+	info_module_01: 'MODULE 01',
 	info_lbm_title: 'MMC — MASSE MAIGRE CORPORELLE',
 	info_lbm_desc:
 		"Votre poids moins la graisse corporelle. Elle comprend les muscles, les os, les organes et l'eau. La MMC est la base de tous les objectifs de macros — pas le poids total — car le tissu adipeux a une activité métabolique minimale et n'a pas besoin de protéines ou de glucides pour être entretenu.",
@@ -80,7 +80,7 @@ export const fr = {
 	info_lbm_manual_desc: 'Entrez votre MMC directement si vous avez une mesure de composition corporelle (DEXA, BodPod, etc.).',
 
 	// Info page — Module 02: BMR
-	info_module_02: 'MODULE_02',
+	info_module_02: 'MODULE 02',
 	info_bmr_title: 'BMR — MÉTABOLISME DE BASE',
 	info_bmr_desc:
 		"Calories que votre corps brûle au repos complet — juste pour maintenir les organes en fonctionnement. C'est le plancher de vos besoins énergétiques. Tout ce qui dépasse provient de l'activité physique.",
@@ -90,7 +90,7 @@ export const fr = {
 	info_bmr_katch_note: "Utilise la MMC au lieu du poids total — plus précis lorsque la composition corporelle est connue. Neutre au genre.",
 
 	// Info page — Module 03: TDEE
-	info_module_03: 'MODULE_03',
+	info_module_03: 'MODULE 03',
 	info_tdee_title: 'TDEE — DÉPENSE ÉNERGÉTIQUE JOURNALIÈRE TOTALE',
 	info_tdee_desc: "Votre brûlure calorique quotidienne réelle. Calculée comme le BMR multiplié par un facteur d'activité qui tient compte de l'exercice et du mode de vie.",
 	info_tdee_formula: 'TDEE = BMR × multiplicateur_activité',
@@ -101,7 +101,7 @@ export const fr = {
 	info_tdee_extremely_desc: '× 1.9 — travail physique ou 2×/jour',
 
 	// Info page — Module 04: Goals
-	info_module_04: 'MODULE_04',
+	info_module_04: 'MODULE 04',
 	info_goals_title: 'OBJECTIFS — CIBLES CALORIQUES',
 	info_goal_maintain_formula: 'Calories = TDEE',
 	info_goal_maintain_desc: 'Maintenir le poids actuel. Répartition équilibrée des macros pour soutenir l\'activité et la composition corporelle.',
@@ -111,7 +111,7 @@ export const fr = {
 	info_goal_definition_desc: 'Déficit modéré pour la perte de graisse. Les protéines sont augmentées pour préserver la masse musculaire. Les glucides complètent les calories restantes.',
 
 	// Info page — Module 05: Macros
-	info_module_05: 'MODULE_05',
+	info_module_05: 'MODULE 05',
 	info_macros_title: 'MACRONUTRIMENTS — DISTRIBUTION',
 	info_macros_desc:
 		'Les grammes de chaque macro sont définis par kg de MMC (pas le poids total). Les glucides complètent toujours les calories restantes après avoir comptabilisé les protéines et les lipides.',

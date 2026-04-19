@@ -28,21 +28,26 @@ export const LBMSelector = () => {
 				{t.lbm_formula}
 			</label>
 			<div className='flex gap-2'>
-				<div className={clsx('chamfered bg-obsidian relative p-0.5', showManualLBMInput ? 'w-3/5' : 'w-full')}>
-					<select id='LBMFormula' name='LBMFormula' defaultValue={lbm.formula} onChange={handleLBMFormulaChange} className='form-select'>
-						<option value={LBMFormula.BOER}>{t.lbm_boer}</option>
-						<option value={LBMFormula.JAMES}>{t.lbm_james}</option>
-						<option value={LBMFormula.HUME}>{t.lbm_hume}</option>
-						<option value={LBMFormula.MANUAL}>{t.lbm_manual}</option>
-					</select>
-				</div>
+				<select
+					id='LBMFormula'
+					name='LBMFormula'
+					defaultValue={lbm.formula}
+					onChange={handleLBMFormulaChange}
+					className={clsx('form-select', showManualLBMInput ? 'w-3/5' : 'w-full')}
+				>
+					<option value={LBMFormula.BOER}>{t.lbm_boer}</option>
+					<option value={LBMFormula.JAMES}>{t.lbm_james}</option>
+					<option value={LBMFormula.HUME}>{t.lbm_hume}</option>
+					<option value={LBMFormula.MANUAL}>{t.lbm_manual}</option>
+				</select>
 				<input
 					type='number'
 					name='manualLBMInput'
 					onChange={handleManualLBMInputChange}
 					defaultValue={lbm.lbmKg}
 					placeholder={t.lbm_placeholder}
-					className={clsx('border-2 border-slate-brutalist bg-[#0A0A0A] p-2 font-mono text-sm text-white outline-0', showManualLBMInput ? 'block w-2/5' : 'hidden')}
+					className={clsx('rounded text-sm font-medium text-[rgba(0,0,0,0.9)] outline-none', showManualLBMInput ? 'block w-2/5' : 'hidden')}
+					style={{ border: '1px solid #dddddd', padding: '6px 10px', background: '#fff' }}
 				/>
 			</div>
 		</div>

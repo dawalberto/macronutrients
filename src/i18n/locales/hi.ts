@@ -2,20 +2,20 @@ import type { Translations } from './en'
 
 export const hi = {
 	// Dashboard
-	weight_kg: 'वज़न_KG',
-	height_cm: 'ऊंचाई_CM',
-	age_yrs: 'उम्र_वर्ष',
+	weight_kg: 'वज़न KG',
+	height_cm: 'ऊंचाई CM',
+	age_yrs: 'उम्र वर्ष',
 	male: 'पुरुष',
 	female: 'महिला',
 
 	// BMR Selector
-	bmr_equation: 'BMR_सूत्र',
+	bmr_equation: 'BMR सूत्र',
 	bmr_mifflin: 'Mifflin St Jeor',
 	bmr_harris: 'Revised Harris-Benedict',
 	bmr_katch: 'Katch-McArdle',
 
 	// Exercise Multiplier
-	exercise_multiplier: 'व्यायाम_गुणक',
+	exercise_multiplier: 'व्यायाम गुणक',
 	exercise_sedentary: 'निष्क्रिय',
 	exercise_lightly: 'हल्का सक्रिय',
 	exercise_moderately: 'मध्यम सक्रिय',
@@ -29,7 +29,7 @@ export const hi = {
 	goal_definition: 'परिभाषा',
 
 	// LBM Selector
-	lbm_formula: 'LBM_सूत्र',
+	lbm_formula: 'LBM सूत्र',
 	lbm_boer: 'Boer',
 	lbm_james: 'James',
 	lbm_hume: 'Hume',
@@ -37,17 +37,17 @@ export const hi = {
 	lbm_placeholder: 'LBM किलोग्राम में',
 
 	// Additional Settings
-	advanced_settings: 'उन्नत_सेटिंग',
+	advanced_settings: 'उन्नत सेटिंग',
 
 	// Chart
-	daily_caloric_quota: '◉ दैनिक_कैलोरी_कोटा',
+	daily_caloric_quota: '◉ दैनिक कैलोरी कोटा',
 	chart_carbs: (n: number) => `${n}ग्रा कार्ब्स`,
 	chart_fats: (n: number) => `${n}ग्रा वसा`,
 	chart_prot: (n: number) => `${n}ग्रा प्रोटीन`,
 	chart_title: (kcal: number) => `${kcal} कैलोरी / दिन`,
 
 	// AI Modal
-	ai_interpretation: 'AI_व्याख्या',
+	ai_interpretation: 'AI व्याख्या',
 	ai_interpreting: 'व्याख्या हो रही है...',
 	ai_streaming: 'स्ट्रीमिंग...',
 
@@ -58,19 +58,19 @@ export const hi = {
 	ai_unavailable_mobile: 'केवल डेस्कटॉप',
 
 	// Header
-	page_title: 'MACRO_CALC',
-	system_status: 'सिस्टम_स्थिति: सर्वोत्तम // पोषण_इंजन',
+	page_title: 'MacroCalc',
+	system_status: 'सिस्टम स्थिति: सर्वोत्तम // पोषण इंजन',
 
 	// Footer / Nav
 	footer_info_link: 'जानकारी // सूत्र और परिभाषाएं →',
 	select_language: 'भाषा',
 
 	// Info page header/nav
-	reference_manual: 'संदर्भ_मैनुअल // सूत्र और परिभाषाएं',
+	reference_manual: 'संदर्भ मैनुअल // सूत्र और परिभाषाएं',
 	back_to_calculator: '← कैलकुलेटर पर वापस',
 
 	// Info page — Module 01: LBM
-	info_module_01: 'मॉड्यूल_01',
+	info_module_01: 'मॉड्यूल 01',
 	info_lbm_title: 'LBM — दुबला शरीर द्रव्यमान',
 	info_lbm_desc:
 		'आपका वज़न शरीर की चर्बी घटाकर। इसमें मांसपेशियां, हड्डियां, अंग और पानी शामिल हैं। LBM सभी मैक्रो लक्ष्यों का आधार है — कुल शरीर वज़न का नहीं — क्योंकि वसा ऊतक की चयापचय गतिविधि न्यूनतम होती है।',
@@ -80,7 +80,7 @@ export const hi = {
 	info_lbm_manual_desc: 'यदि आपके पास शरीर संरचना माप (DEXA, BodPod, आदि) है तो सीधे LBM दर्ज करें।',
 
 	// Info page — Module 02: BMR
-	info_module_02: 'मॉड्यूल_02',
+	info_module_02: 'मॉड्यूल 02',
 	info_bmr_title: 'BMR — बेसल मेटाबोलिक रेट',
 	info_bmr_desc: 'आपका शरीर पूर्ण आराम की स्थिति में जितनी कैलोरी जलाता है — केवल अंगों को चालू रखने के लिए। यह आपकी ऊर्जा जरूरतों का न्यूनतम स्तर है।',
 	info_bmr_mifflin_note: 'W = वज़न (kg), H = ऊंचाई (cm), A = उम्र (वर्ष)। सामान्य जनसंख्या के लिए सर्वोत्तम सटीकता।',
@@ -89,7 +89,7 @@ export const hi = {
 	info_bmr_katch_note: 'कुल वज़न के बजाय LBM का उपयोग करता है — जब शरीर संरचना ज्ञात हो तो अधिक सटीक। लिंग-तटस्थ।',
 
 	// Info page — Module 03: TDEE
-	info_module_03: 'मॉड्यूल_03',
+	info_module_03: 'मॉड्यूल 03',
 	info_tdee_title: 'TDEE — कुल दैनिक ऊर्जा व्यय',
 	info_tdee_desc: 'आपकी वास्तविक दैनिक कैलोरी खपत। BMR को एक गतिविधि कारक से गुणा करके गणना की जाती है।',
 	info_tdee_formula: 'TDEE = BMR × गतिविधि_गुणक',
@@ -100,7 +100,7 @@ export const hi = {
 	info_tdee_extremely_desc: '× 1.9 — शारीरिक काम या दिन में 2 बार',
 
 	// Info page — Module 04: Goals
-	info_module_04: 'मॉड्यूल_04',
+	info_module_04: 'मॉड्यूल 04',
 	info_goals_title: 'लक्ष्य — कैलोरी लक्ष्य',
 	info_goal_maintain_formula: 'कैलोरी = TDEE',
 	info_goal_maintain_desc: 'वर्तमान वज़न बनाए रखें। गतिविधि और शरीर संरचना का समर्थन करने के लिए संतुलित मैक्रो वितरण।',
@@ -110,7 +110,7 @@ export const hi = {
 	info_goal_definition_desc: 'वसा हानि के लिए मध्यम कमी। मांसपेशियों की रक्षा के लिए प्रोटीन बढ़ाया जाता है। कार्ब्स शेष कैलोरी भरते हैं।',
 
 	// Info page — Module 05: Macros
-	info_module_05: 'मॉड्यूल_05',
+	info_module_05: 'मॉड्यूल 05',
 	info_macros_title: 'मैक्रोन्यूट्रिएंट्स — वितरण',
 	info_macros_desc: 'प्रत्येक मैक्रो के ग्राम LBM के प्रति किलोग्राम (कुल वज़न नहीं) के आधार पर निर्धारित होते हैं। प्रोटीन और वसा के बाद कार्ब्स हमेशा शेष कैलोरी भरते हैं।',
 	info_protein_targets: 'प्रोटीन लक्ष्य (प्रति किलो LBM)',
