@@ -11,7 +11,19 @@
       "Bash(find /Users/dawalberto/Code/macronutrients/src -type f \\\\\\( -name \"*.tsx\" -o -name \"*.ts\" \\\\\\) -exec wc -l {} +)",
       "Bash(grep -E \"\\\\.\\(tsx?|astro|css\\)$\")",
       "Bash(npx prettier:*)",
-      "Bash(grep -E \"\\\\.\\(ts|tsx|astro|css\\)$\")"
+      "Bash(grep -E \"\\\\.\\(ts|tsx|astro|css\\)$\")",
+      "Bash(openspec instructions *)",
+      "Bash(openspec status *)",
+      "Bash(python3 -)",
+      "Bash(npx tsc *)",
+      "Bash(curl -sI \"https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct/resolve/main/config.json\")",
+      "Bash(curl -sI \"https://huggingface.co/onnx-community/SmolLM-135M-Instruct-v0.2/resolve/main/config.json\")",
+      "Bash(curl -sI \"https://huggingface.co/Xenova/Qwen2.5-0.5B-Instruct/resolve/main/config.json\")",
+      "Bash(curl -s \"https://huggingface.co/api/models/HuggingFaceTB/SmolLM2-135M-Instruct?full=true\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); files=[s['rfilename'] for s in d.get\\('siblings',[]\\)]; print\\('\\\\n'.join\\(f for f in files if 'onnx' in f.lower\\(\\) or f.endswith\\('.json'\\)\\)\\)\")",
+      "Bash(curl -s \"https://huggingface.co/api/models?search=SmolLM2-135M-Instruct&filter=onnx&limit=10\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(m.get\\('id'\\)\\) for m in d]\")",
+      "Bash(curl -sI \"https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct/resolve/main/onnx/model_q4.onnx\")"
     ]
   }
 }

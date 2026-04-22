@@ -1,6 +1,6 @@
 export enum AIWorkerInbound {
 	CHECK_AVAILABILITY = 'CHECK_AVAILABILITY',
-	GENERATE_MENU = 'GENERATE_MENU',
+	GENERATE_TIPS = 'GENERATE_TIPS',
 }
 
 export enum AIWorkerOutbound {
@@ -13,7 +13,9 @@ export enum AIWorkerOutbound {
 
 export type AIDevice = 'webgpu' | 'wasm'
 
-export type AIInboundMessage = { type: AIWorkerInbound.CHECK_AVAILABILITY } | { type: AIWorkerInbound.GENERATE_MENU; prompt: string; systemPrompt?: string }
+export type AIInboundMessage =
+	| { type: AIWorkerInbound.CHECK_AVAILABILITY }
+	| { type: AIWorkerInbound.GENERATE_TIPS; prompt: string; systemPrompt?: string }
 
 export type AIOutboundMessage =
 	| { type: AIWorkerOutbound.STATUS; model: string; device: AIDevice }

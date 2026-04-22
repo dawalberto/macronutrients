@@ -3,7 +3,6 @@ import { AIWorkerInbound, AIWorkerOutbound, type AIOutboundMessage } from '../ty
 
 type AIWorkerState = {
 	available: boolean | null
-	isMobile: boolean
 	downloading: boolean
 	downloadProgress: number
 	generating: boolean
@@ -13,16 +12,11 @@ type AIWorkerState = {
 
 const INITIAL_STATE: AIWorkerState = {
 	available: null,
-	isMobile: false,
 	downloading: false,
 	downloadProgress: 0,
 	generating: false,
 	streamedText: '',
 	error: null,
-}
-
-function isMobileDevice(): boolean {
-	return typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0
 }
 
 export function useAIWorker() {
@@ -31,11 +25,6 @@ export function useAIWorker() {
 	const fileProgressRef = useRef<Map<string, number>>(new Map())
 
 	useEffect(() => {
-		if (isMobileDevice()) {
-			setState((prev) => ({ ...prev, available: false, isMobile: true }))
-			return
-		}
-
 		const worker = new Worker(new URL('../workers/ai-worker.ts', import.meta.url), { type: 'module' })
 		workerRef.current = worker
 
@@ -84,7 +73,11 @@ export function useAIWorker() {
 	const generate = useCallback((systemPrompt: string, userPrompt?: string) => {
 		if (!workerRef.current) return
 		setState((prev) => ({ ...prev, generating: true, streamedText: '', error: null }))
-		workerRef.current.postMessage({ type: AIWorkerInbound.GENERATE_MENU, prompt: userPrompt ?? systemPrompt, systemPrompt: userPrompt ? systemPrompt : undefined })
+		workerRef.current.postMessage({
+			type: AIWorkerInbound.GENERATE_TIPS,
+			prompt: userPrompt ?? systemPrompt,
+			systemPrompt: userPrompt ? systemPrompt : undefined,
+		})
 	}, [])
 
 	return { ...state, generate }

@@ -1,18 +1,15 @@
 /// <reference lib="webworker" />
 
-import { env, pipeline, TextStreamer, type TextGenerationPipeline } from '@huggingface/transformers';
-import { AIWorkerInbound, AIWorkerOutbound, type AIDevice, type AIInboundMessage, type AIOutboundMessage } from '../types';
+import { env, pipeline, TextStreamer, type TextGenerationPipeline } from '@huggingface/transformers'
+import { AIWorkerInbound, AIWorkerOutbound, type AIDevice, type AIInboundMessage, type AIOutboundMessage } from '../types'
 
 function send(msg: AIOutboundMessage) {
 	self.postMessage(msg)
 }
 
-const MODELS = {
-	full: 'onnx-community/Qwen2.5-0.5B-Instruct',
-	lite: 'onnx-community/SmolLM2-135M-Instruct',
-} as const
+const MODEL = 'HuggingFaceTB/SmolLM2-135M-Instruct'
 
-type Dtype = 'q4f16' | 'q4' | 'auto' | 'fp32' | 'fp16' | 'q8' | 'int8' | 'uint8' | 'bnb4'
+const MAX_NEW_TOKENS = 256
 
 async function detectDevice(): Promise<AIDevice> {
 	try {
@@ -24,30 +21,10 @@ async function detectDevice(): Promise<AIDevice> {
 	}
 }
 
-// Mobile devices use the lite model regardless of reported memory — mobile WebGPU/WASM can't
-// handle Qwen 0.5B even when deviceMemory reports 4 GB.
-// q4f16 requires WebGPU; always fall back to q4 on WASM to avoid garbled/corrupted output.
-function selectModel(): { model: string; dtype: Dtype; maxNewTokens: number } {
-	const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory
-	const mobile = navigator.maxTouchPoints > 0
-
-	if (mobile) {
-		if (memory === undefined || memory >= 2) return { model: MODELS.lite, dtype: 'q4', maxNewTokens: 300 }
-		throw new Error('Insufficient device memory for AI generation.')
-	}
-
-	if (memory === undefined || memory >= 4) {
-		return { model: MODELS.full, dtype: 'q4', maxNewTokens: 1024 }
-	}
-	if (memory >= 2) return { model: MODELS.lite, dtype: 'q4', maxNewTokens: 400 }
-	throw new Error('Insufficient device memory for AI generation.')
-}
-
 env.allowLocalModels = false
 env.useBrowserCache = true
 
 let pipe: TextGenerationPipeline | null = null
-let maxNewTokens = 1024
 
 self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 	const { type } = e.data
@@ -55,11 +32,9 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 	if (type === AIWorkerInbound.CHECK_AVAILABILITY) {
 		try {
 			const device = await detectDevice()
-			const { model, dtype, maxNewTokens: tokenLimit } = selectModel()
-			maxNewTokens = tokenLimit
 
-			pipe = (await pipeline('text-generation', model, {
-				dtype,
+			pipe = (await pipeline('text-generation', MODEL, {
+				dtype: 'q4',
 				device,
 				progress_callback: (info: { status: string; file?: string; progress?: number }) => {
 					if (info.status === 'progress') {
@@ -72,7 +47,7 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 				},
 			})) as TextGenerationPipeline
 
-			send({ type: AIWorkerOutbound.STATUS, model, device })
+			send({ type: AIWorkerOutbound.STATUS, model: MODEL, device })
 		} catch (err) {
 			send({
 				type: AIWorkerOutbound.ERROR,
@@ -82,7 +57,7 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 		return
 	}
 
-	if (type === AIWorkerInbound.GENERATE_MENU) {
+	if (type === AIWorkerInbound.GENERATE_TIPS) {
 		const { prompt, systemPrompt } = e.data
 		try {
 			if (!pipe) {
@@ -98,15 +73,18 @@ self.onmessage = async (e: MessageEvent<AIInboundMessage>) => {
 			})
 
 			const messages = systemPrompt
-				? [{ role: 'system', content: systemPrompt }, { role: 'user', content: prompt }]
+				? [
+						{ role: 'system', content: systemPrompt },
+						{ role: 'user', content: prompt },
+					]
 				: [{ role: 'user', content: prompt }]
 
 			await pipe(messages, {
-				max_new_tokens: maxNewTokens,
+				max_new_tokens: MAX_NEW_TOKENS,
 				do_sample: true,
-				temperature: 0.4,
+				temperature: 0.7,
 				top_p: 0.9,
-				repetition_penalty: 1.3,
+				repetition_penalty: 1.1,
 				streamer,
 			})
 

@@ -1,15 +1,13 @@
 import { $userAttributes } from '@store/user-attributes'
-import { calculateMacros } from '@utils/macro-functions'
 import { useStore } from '@nanostores/react'
 import { useTranslations } from '@i18n/index'
-import { Goal } from 'src/types'
 import { Sparkles } from 'lucide-react'
 import { useState } from 'react'
 import { AIMenuModal } from './AIMenuModal'
 import { useAIWorker } from '../hooks/useAIWorker'
 
-export const InterpretResults = () => {
-	const attrs = useStore($userAttributes)
+export const GenerateTipsAI = () => {
+	const { goal } = useStore($userAttributes)
 	const t = useTranslations()
 	const { available, downloading, downloadProgress, generating, streamedText, generate } = useAIWorker()
 	const [showModal, setShowModal] = useState(false)
@@ -20,35 +18,15 @@ export const InterpretResults = () => {
 	const handleClick = () => {
 		if (generating || downloading) return
 
-		const { genre, age, weight, height, lbm, bmrAndExercise, goal } = attrs
-		const { proteinGrams, fatGrams, carbGrams, kcalPerDay } = calculateMacros(goal, lbm, bmrAndExercise)
-		const maintenanceKcal = Math.round(bmrAndExercise.kcalPerDayToMaintain)
-		const difference = Math.abs(kcalPerDay - maintenanceKcal)
-		const label = goal === Goal.DEFINITION ? 'Deficit' : goal === Goal.SURPLUS ? 'Surplus' : 'Balance'
-
-		const systemPrompt = t.ai_interpret_system_prompt
-		const userPrompt = t.ai_interpret_user_prompt(
-			genre,
-			age,
-			weight,
-			height,
-			bmrAndExercise.exerciseMultiplier,
-			goal,
-			maintenanceKcal,
-			kcalPerDay,
-			difference,
-			label,
-			proteinGrams,
-			carbGrams,
-			fatGrams,
-		)
+		const systemPrompt = t.ai_tips_system_prompt
+		const userPrompt = t.ai_tips_user_prompt(goal)
 
 		generate(systemPrompt, userPrompt)
 		setShowModal(true)
 	}
 
 	const isLoading = downloading
-	const buttonText = isLoading ? t.loading_ai(downloadProgress) : generating ? t.interpreting : t.interpret_results
+	const buttonText = isLoading ? t.loading_ai(downloadProgress) : generating ? t.generating_tips : t.generate_tips
 
 	return (
 		<>
@@ -64,8 +42,12 @@ export const InterpretResults = () => {
 						fontSize: '15px',
 						border: '1px solid transparent',
 					}}
-					onMouseEnter={(e) => { if (!generating && !isLoading) (e.currentTarget as HTMLButtonElement).style.background = '#005bab' }}
-					onMouseLeave={(e) => { if (!generating && !isLoading) (e.currentTarget as HTMLButtonElement).style.background = '#0075de' }}
+					onMouseEnter={(e) => {
+						if (!generating && !isLoading) (e.currentTarget as HTMLButtonElement).style.background = '#005bab'
+					}}
+					onMouseLeave={(e) => {
+						if (!generating && !isLoading) (e.currentTarget as HTMLButtonElement).style.background = '#0075de'
+					}}
 				>
 					{isLoading && (
 						<div
