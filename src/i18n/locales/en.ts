@@ -46,6 +46,7 @@ export const en = {
 
 	// AI Modal
 	ai_streaming: 'STREAMING...',
+	translating_tips: 'TRANSLATING...',
 	ai_tips_title: 'AI TIPS',
 
 	// AI Buttons (GenerateTipsAI)
@@ -145,11 +146,6 @@ export const en = {
 	seo_faq_goals_q: 'What are the calorie adjustments for each goal?',
 	seo_faq_goals_a:
 		'Maintain keeps calories at TDEE for weight stability. Surplus adds +300 kcal to TDEE to support muscle growth. Definition subtracts −300 kcal from TDEE for moderate fat loss (estimated ~0.5 kg/week per 500 kcal deficit).',
-
-	// AI prompts — GenerateTipsAI
-	ai_tips_system_prompt: `You are a nutritionist. Output ONLY a numbered list of 5 short tips. Your response MUST start with "1." — no greeting, no introduction, no extra text before or after the list.`,
-
-	ai_tips_user_prompt: (goal: string) => `Goal: ${goal}. List 5 nutrition tips:`,
 }
 
 export type Translations = typeof en

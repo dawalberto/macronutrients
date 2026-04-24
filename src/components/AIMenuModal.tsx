@@ -8,6 +8,8 @@ type AIMenuModalProps = {
 	visible: boolean
 	streamedText: string
 	generating: boolean
+	translating: boolean
+	translatedText: string | null
 	onClose: () => void
 }
 
@@ -20,32 +22,34 @@ function stripPreamble(text: string): string {
 	return text.slice(start).trimStart()
 }
 
-export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMenuModalProps) => {
+export const AIMenuModal = ({ visible, streamedText, generating, translating, translatedText, onClose }: AIMenuModalProps) => {
 	const contentRef = useRef<HTMLDivElement>(null)
 	const t = useTranslations()
-	const displayText = stripPreamble(streamedText)
+	const displayText = translatedText !== null ? translatedText : stripPreamble(streamedText)
 
 	useEffect(() => {
 		if (contentRef.current) {
 			contentRef.current.scrollTop = contentRef.current.scrollHeight
 		}
-	}, [streamedText])
+	}, [streamedText, translatedText])
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'Escape' && !generating) onClose()
+			if (e.key === 'Escape' && !generating && !translating) onClose()
 		}
 		if (visible) document.addEventListener('keydown', handleKeyDown)
 		return () => document.removeEventListener('keydown', handleKeyDown)
-	}, [visible, generating, onClose])
+	}, [visible, generating, translating, onClose])
 
 	if (!visible) return null
+
+	const isActive = generating || translating
 
 	return (
 		<div
 			className='fixed inset-0 z-50 flex items-center justify-center p-4'
 			style={{ background: 'rgba(0,0,0,0.4)' }}
-			onClick={generating ? undefined : onClose}
+			onClick={isActive ? undefined : onClose}
 		>
 			<div
 				className='flex max-h-[80vh] w-full max-w-xl flex-col bg-white'
@@ -63,7 +67,7 @@ export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMe
 					<button
 						type='button'
 						onClick={onClose}
-						disabled={generating}
+						disabled={isActive}
 						className='text-warm-gray-300 hover:bg-warm-white hover:text-warm-gray-500 cursor-pointer rounded p-1 transition-colors disabled:cursor-not-allowed disabled:opacity-30'
 					>
 						<X size={16} />
@@ -90,6 +94,16 @@ export const AIMenuModal = ({ visible, streamedText, generating, onClose }: AIMe
 						<div className='text-warm-gray-300 flex items-center gap-2 text-xs'>
 							<div className='h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500' />
 							{t.ai_streaming}
+						</div>
+					</div>
+				)}
+
+				{/* Translating indicator */}
+				{translating && (
+					<div className='px-6 py-3' style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}>
+						<div className='text-warm-gray-300 flex items-center gap-2 text-xs'>
+							<div className='h-1.5 w-1.5 animate-pulse rounded-full bg-amber-500' />
+							{t.translating_tips}
 						</div>
 					</div>
 				)}

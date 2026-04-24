@@ -19,9 +19,9 @@ export const AppHeader = () => {
 			<div className='mt-2 flex items-center justify-between'>
 				<p style={{ fontSize: '14px', color: '#615d59', fontWeight: 400 }}>{t.system_status}</p>
 				<div className='flex items-center gap-1.5'>
-					<div className='h-2 w-2 rounded-full animate-pulse bg-emerald-500' />
-					<div className='h-2 w-2 rounded-full bg-warm-gray-300' />
-					<div className='h-2 w-2 rounded-full bg-warm-gray-300' />
+					<div className='h-2 w-2 animate-pulse rounded-full bg-emerald-500' />
+					<div className='bg-warm-gray-300 h-2 w-2 rounded-full' />
+					<div className='bg-warm-gray-300 h-2 w-2 rounded-full' />
 				</div>
 			</div>
 		</header>

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AIWorkerInbound, AIWorkerOutbound, type AIOutboundMessage } from '../types'
+import type { Locale } from '@store/locale'
 
 type AIWorkerState = {
 	available: boolean | null
@@ -7,6 +8,8 @@ type AIWorkerState = {
 	downloadProgress: number
 	generating: boolean
 	streamedText: string
+	translating: boolean
+	translatedText: string | null
 	error: string | null
 }
 
@@ -16,6 +19,8 @@ const INITIAL_STATE: AIWorkerState = {
 	downloadProgress: 0,
 	generating: false,
 	streamedText: '',
+	translating: false,
+	translatedText: null,
 	error: null,
 }
 
@@ -37,15 +42,26 @@ export function useAIWorker() {
 					break
 
 				case AIWorkerOutbound.DOWNLOADING: {
-					fileProgressRef.current.set(msg.file, msg.progress)
+					fileProgressRef.current.set(`${msg.model}:${msg.file}`, msg.progress)
 					const values = [...fileProgressRef.current.values()]
-					const aggregate = Math.round(values.reduce((sum, v) => sum + v, 0) / values.length)
+					const aggregate = Math.min(100, Math.max(0, Math.round(values.reduce((sum, v) => sum + v, 0) / values.length)))
 					setState((prev) => ({ ...prev, downloading: true, downloadProgress: aggregate }))
 					break
 				}
 
+				case AIWorkerOutbound.MODEL_READY:
+					break
+
 				case AIWorkerOutbound.TOKEN:
 					setState((prev) => ({ ...prev, streamedText: prev.streamedText + msg.token }))
+					break
+
+				case AIWorkerOutbound.TRANSLATING:
+					setState((prev) => ({ ...prev, translating: true }))
+					break
+
+				case AIWorkerOutbound.TRANSLATED:
+					setState((prev) => ({ ...prev, translatedText: msg.text, translating: false }))
 					break
 
 				case AIWorkerOutbound.DONE:
@@ -70,13 +86,13 @@ export function useAIWorker() {
 		}
 	}, [])
 
-	const generate = useCallback((systemPrompt: string, userPrompt?: string) => {
+	const generate = useCallback((goal: string, locale: Locale) => {
 		if (!workerRef.current) return
-		setState((prev) => ({ ...prev, generating: true, streamedText: '', error: null }))
+		setState((prev) => ({ ...prev, generating: true, translating: false, translatedText: null, streamedText: '', error: null }))
 		workerRef.current.postMessage({
 			type: AIWorkerInbound.GENERATE_TIPS,
-			prompt: userPrompt ?? systemPrompt,
-			systemPrompt: userPrompt ? systemPrompt : undefined,
+			goal,
+			locale,
 		})
 	}, [])
 

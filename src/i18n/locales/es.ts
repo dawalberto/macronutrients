@@ -48,6 +48,7 @@ export const es = {
 
 	// AI Modal
 	ai_streaming: 'TRANSMITIENDO...',
+	translating_tips: 'TRADUCIENDO...',
 	ai_tips_title: 'CONSEJOS IA',
 
 	// AI Buttons (GenerateTipsAI)
@@ -120,21 +121,6 @@ export const es = {
 	info_fat_targets: 'OBJETIVOS DE GRASA',
 	info_carbs_label: 'CARBOHIDRATOS',
 	info_carbs_formula: 'Resto = (kcal_total − kcal_proteína − kcal_grasa) / 4',
-
-	// AI prompts — GenerateTipsAI
-	ai_tips_system_prompt: `Eres un nutricionista. Escribe exactamente 5 consejos cortos en español. Usa este formato:
-1. [consejo]
-2. [consejo]
-3. [consejo]
-4. [consejo]
-5. [consejo]
-Solo lista numerada. Sin introducción. Sin preguntas. Sin advertencias.`,
-
-	ai_tips_user_prompt: (goal: string) => {
-		const goalMap: Record<string, string> = { Maintain: 'Mantener', Surplus: 'Superávit', Definition: 'Definición' }
-		const label = goalMap[goal] ?? goal
-		return `Objetivo: ${label}. Lista 5 consejos de nutrición:`
-	},
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Calculadora de Macronutrientes Gratis',

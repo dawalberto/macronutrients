@@ -48,6 +48,7 @@ export const hi = {
 
 	// AI Modal
 	ai_streaming: 'स्ट्रीमिंग...',
+	translating_tips: 'अनुवाद हो रहा है...',
 	ai_tips_title: 'AI सुझाव',
 
 	// AI Buttons (GenerateTipsAI)
@@ -117,21 +118,6 @@ export const hi = {
 	info_fat_targets: 'वसा लक्ष्य',
 	info_carbs_label: 'कार्ब्स',
 	info_carbs_formula: 'शेष = (कुल_kcal − प्रोटीन_kcal − वसा_kcal) / 4',
-
-	// AI prompts — GenerateTipsAI
-	ai_tips_system_prompt: `आप एक पोषण विशेषज्ञ हैं। हिंदी में ठीक 5 छोटे सुझाव लिखें। इस प्रारूप का उपयोग करें:
-1. [सुझाव]
-2. [सुझाव]
-3. [सुझाव]
-4. [सुझाव]
-5. [सुझाव]
-केवल क्रमांकित सूची। कोई परिचय नहीं। कोई प्रश्न नहीं।`,
-
-	ai_tips_user_prompt: (goal: string) => {
-		const goalMap: Record<string, string> = { Maintain: 'बनाए रखें', Surplus: 'अधिशेष', Definition: 'परिभाषा' }
-		const label = goalMap[goal] ?? goal
-		return `लक्ष्य: ${label}। 5 पोषण सुझाव:`
-	},
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — मुफ़्त मैक्रोन्यूट्रिएंट कैलकुलेटर',

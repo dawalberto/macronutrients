@@ -48,6 +48,7 @@ export const fr = {
 
 	// AI Modal
 	ai_streaming: 'DIFFUSION...',
+	translating_tips: 'TRADUCTION EN COURS...',
 	ai_tips_title: 'CONSEILS IA',
 
 	// AI Buttons (GenerateTipsAI)
@@ -120,21 +121,6 @@ export const fr = {
 	info_fat_targets: 'OBJECTIFS LIPIDES',
 	info_carbs_label: 'GLUCIDES',
 	info_carbs_formula: 'Reste = (kcal_total − kcal_protéines − kcal_lipides) / 4',
-
-	// AI prompts — GenerateTipsAI
-	ai_tips_system_prompt: `Vous êtes un nutritionniste. Écrivez exactement 5 conseils courts en français. Utilisez ce format :
-1. [conseil]
-2. [conseil]
-3. [conseil]
-4. [conseil]
-5. [conseil]
-Seulement liste numérotée. Sans introduction. Sans questions. Sans avertissements.`,
-
-	ai_tips_user_prompt: (goal: string) => {
-		const goalMap: Record<string, string> = { Maintain: 'Maintien', Surplus: 'Surplus', Definition: 'Définition' }
-		const label = goalMap[goal] ?? goal
-		return `Objectif : ${label}. Listez 5 conseils de nutrition :`
-	},
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Calculateur de Macronutriments Gratuit',

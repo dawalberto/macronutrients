@@ -108,15 +108,7 @@ const faqSchema =
 
 <!-- Canonical + hreflang -->
 <link rel='canonical' href={canonicalUrl} />
-{
-	LOCALES.map((loc) => (
-		<link
-			rel='alternate'
-			hreflang={loc}
-			href={`${SITE}${BASE}/${loc}${pageSlug}`}
-		/>
-	))
-}
+{LOCALES.map((loc) => <link rel='alternate' hreflang={loc} href={`${SITE}${BASE}/${loc}${pageSlug}`} />)}
 <link rel='alternate' hreflang='x-default' href={`${SITE}${BASE}/en${pageSlug}`} />
 
 <!-- Open Graph -->

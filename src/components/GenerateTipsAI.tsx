@@ -1,4 +1,5 @@
 import { $userAttributes } from '@store/user-attributes'
+import { $locale } from '@store/locale'
 import { useStore } from '@nanostores/react'
 import { useTranslations } from '@i18n/index'
 import { Sparkles } from 'lucide-react'
@@ -8,8 +9,9 @@ import { useAIWorker } from '../hooks/useAIWorker'
 
 export const GenerateTipsAI = () => {
 	const { goal } = useStore($userAttributes)
+	const locale = useStore($locale)
 	const t = useTranslations()
-	const { available, downloading, downloadProgress, generating, streamedText, generate } = useAIWorker()
+	const { available, downloading, downloadProgress, generating, streamedText, translating, translatedText, generate } = useAIWorker()
 	const [showModal, setShowModal] = useState(false)
 
 	if (available === false) return null
@@ -18,10 +20,7 @@ export const GenerateTipsAI = () => {
 	const handleClick = () => {
 		if (generating || downloading) return
 
-		const systemPrompt = t.ai_tips_system_prompt
-		const userPrompt = t.ai_tips_user_prompt(goal)
-
-		generate(systemPrompt, userPrompt)
+		generate(goal, locale)
 		setShowModal(true)
 	}
 
@@ -62,7 +61,14 @@ export const GenerateTipsAI = () => {
 				</button>
 			</div>
 
-			<AIMenuModal visible={showModal} streamedText={streamedText} generating={generating} onClose={() => setShowModal(false)} />
+			<AIMenuModal
+				visible={showModal}
+				streamedText={streamedText}
+				generating={generating}
+				translating={translating}
+				translatedText={translatedText}
+				onClose={() => setShowModal(false)}
+			/>
 		</>
 	)
 }

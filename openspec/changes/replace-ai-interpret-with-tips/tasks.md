@@ -50,7 +50,7 @@
   - `generating_tips: 'GENERATING TIPS...'`
   - `ai_tips_system_prompt`: a single string that reads as an expert nutritionist, requires exactly 5 concise tips, Markdown list, English, no questions, no disclaimers about doctors. Cap at ~80 words.
   - `ai_tips_user_prompt: (goal: Goal) => string` — imports `Goal` from `src/types`, returns a short English message naming the localized/English goal word and asking for 5 tips tailored to it. Example body: `"Goal: ${goal}. Give me 5 short nutrition and fitness tips for this goal, as a Markdown list."`
-- [x] 7.2 Add the same 5 keys to `src/i18n/locales/es.ts`, with Spanish translations. The system prompt must be written *in Spanish* (not "respond in Spanish" written in English) to bias the 135M model toward Spanish output. `ai_tips_user_prompt(goal)` formats the goal word in Spanish (e.g. map `Goal.MAINTAIN → "Mantener"`, `Goal.SURPLUS → "Superávit"`, `Goal.DEFINITION → "Definición"`).
+- [x] 7.2 Add the same 5 keys to `src/i18n/locales/es.ts`, with Spanish translations. The system prompt must be written _in Spanish_ (not "respond in Spanish" written in English) to bias the 135M model toward Spanish output. `ai_tips_user_prompt(goal)` formats the goal word in Spanish (e.g. map `Goal.MAINTAIN → "Mantener"`, `Goal.SURPLUS → "Superávit"`, `Goal.DEFINITION → "Definición"`).
 - [x] 7.3 Add the same 5 keys to `src/i18n/locales/fr.ts`, in French, with a French-mapped goal label.
 - [x] 7.4 Add the same 5 keys to `src/i18n/locales/hi.ts`, in Hindi (Devanagari), with a Hindi-mapped goal label.
 - [x] 7.5 Add the same 5 keys to `src/i18n/locales/zh.ts`, in Simplified Chinese, with a Chinese-mapped goal label.

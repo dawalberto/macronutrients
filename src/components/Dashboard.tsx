@@ -62,7 +62,7 @@ export const Dashboard = () => {
 						min='0'
 						max='200'
 						onChange={handleUserAttributeChange}
-						className='w-20 rounded text-right text-sm font-medium text-[rgba(0,0,0,0.9)] [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+						className='w-20 [appearance:textfield] rounded text-right text-sm font-medium text-[rgba(0,0,0,0.9)] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
 						style={{ border: '1px solid #dddddd', padding: '4px 8px', background: '#fff', outline: 'none' }}
 					/>
 				</div>
@@ -80,7 +80,7 @@ export const Dashboard = () => {
 						min='0'
 						max='250'
 						onChange={handleUserAttributeChange}
-						className='w-20 rounded text-right text-sm font-medium text-[rgba(0,0,0,0.9)] [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+						className='w-20 [appearance:textfield] rounded text-right text-sm font-medium text-[rgba(0,0,0,0.9)] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
 						style={{ border: '1px solid #dddddd', padding: '4px 8px', background: '#fff', outline: 'none' }}
 					/>
 				</div>
@@ -98,7 +98,7 @@ export const Dashboard = () => {
 						min='0'
 						max='100'
 						onChange={handleUserAttributeChange}
-						className='w-20 rounded text-right text-sm font-medium text-[rgba(0,0,0,0.9)] [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+						className='w-20 [appearance:textfield] rounded text-right text-sm font-medium text-[rgba(0,0,0,0.9)] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
 						style={{ border: '1px solid #dddddd', padding: '4px 8px', background: '#fff', outline: 'none' }}
 					/>
 				</div>

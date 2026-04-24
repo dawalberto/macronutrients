@@ -48,6 +48,7 @@ export const zh = {
 
 	// AI Modal
 	ai_streaming: '流式输出...',
+	translating_tips: '翻译中...',
 	ai_tips_title: 'AI 建议',
 
 	// AI Buttons (GenerateTipsAI)
@@ -115,21 +116,6 @@ export const zh = {
 	info_fat_targets: '脂肪目标',
 	info_carbs_label: '碳水化合物',
 	info_carbs_formula: '剩余 = (总热量 − 蛋白质热量 − 脂肪热量) / 4',
-
-	// AI prompts — GenerateTipsAI
-	ai_tips_system_prompt: `你是营养师。用中文写恰好5条简短建议。使用以下格式：
-1. [建议]
-2. [建议]
-3. [建议]
-4. [建议]
-5. [建议]
-只有编号列表。没有介绍。没有问题。没有警告。`,
-
-	ai_tips_user_prompt: (goal: string) => {
-		const goalMap: Record<string, string> = { Maintain: '维持', Surplus: '增肌', Definition: '减脂' }
-		const label = goalMap[goal] ?? goal
-		return `目标：${label}。列出5条营养建议：`
-	},
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — 免费宏量营养素计算器',

@@ -17,9 +17,11 @@ We want to re-enable the feature on **every device** by radically shrinking both
 ## Capabilities
 
 ### New Capabilities
+
 - `ai-tips-generation`: In-browser generation of 5 goal-based nutrition & fitness tips, streamed as Markdown in the user's locale, running on any device via the smallest viable ONNX-quantized LLM.
 
 ### Modified Capabilities
+
 <!-- None. No existing `openspec/specs/` capability covers the prior interpret-results behavior, so this is a clean new capability that fully supersedes the removed InterpretResults component. -->
 
 ## Impact
