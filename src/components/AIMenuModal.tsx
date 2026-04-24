@@ -26,6 +26,7 @@ export const AIMenuModal = ({ visible, streamedText, generating, translating, tr
 	const contentRef = useRef<HTMLDivElement>(null)
 	const t = useTranslations()
 	const displayText = translatedText !== null ? translatedText : stripPreamble(streamedText)
+	const isActive = generating || translating
 
 	useEffect(() => {
 		if (contentRef.current) {
@@ -35,15 +36,13 @@ export const AIMenuModal = ({ visible, streamedText, generating, translating, tr
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'Escape' && !generating && !translating) onClose()
+			if (e.key === 'Escape' && !isActive) onClose()
 		}
 		if (visible) document.addEventListener('keydown', handleKeyDown)
 		return () => document.removeEventListener('keydown', handleKeyDown)
-	}, [visible, generating, translating, onClose])
+	}, [visible, isActive, onClose])
 
 	if (!visible) return null
-
-	const isActive = generating || translating
 
 	return (
 		<div

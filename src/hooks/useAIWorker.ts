@@ -50,6 +50,13 @@ export function useAIWorker() {
 				}
 
 				case AIWorkerOutbound.MODEL_READY:
+					// Translator loads happen post-STATUS (no STATUS follows); close the download phase here.
+					if (msg.model === 'translator') {
+						for (const key of [...fileProgressRef.current.keys()]) {
+							if (key.startsWith('translator:')) fileProgressRef.current.delete(key)
+						}
+						setState((prev) => ({ ...prev, downloading: false, downloadProgress: 100 }))
+					}
 					break
 
 				case AIWorkerOutbound.TOKEN:
@@ -89,12 +96,17 @@ export function useAIWorker() {
 	const generate = useCallback((goal: string, locale: Locale) => {
 		if (!workerRef.current) return
 		setState((prev) => ({ ...prev, generating: true, translating: false, translatedText: null, streamedText: '', error: null }))
-		workerRef.current.postMessage({
-			type: AIWorkerInbound.GENERATE_TIPS,
-			goal,
-			locale,
-		})
+		workerRef.current.postMessage({ type: AIWorkerInbound.GENERATE_TIPS, goal, locale })
 	}, [])
 
-	return { ...state, generate }
+	const loadTranslator = useCallback((locale: Locale) => {
+		if (!workerRef.current) return
+		// Reset translator file progress so old generator entries don't skew the new download bar.
+		for (const key of [...fileProgressRef.current.keys()]) {
+			if (key.startsWith('translator:')) fileProgressRef.current.delete(key)
+		}
+		workerRef.current.postMessage({ type: AIWorkerInbound.LOAD_TRANSLATOR, locale })
+	}, [])
+
+	return { ...state, generate, loadTranslator }
 }

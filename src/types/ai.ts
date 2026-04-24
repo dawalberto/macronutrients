@@ -5,6 +5,7 @@ export type AIModelKind = 'generator' | 'translator'
 export enum AIWorkerInbound {
 	CHECK_AVAILABILITY = 'CHECK_AVAILABILITY',
 	GENERATE_TIPS = 'GENERATE_TIPS',
+	LOAD_TRANSLATOR = 'LOAD_TRANSLATOR',
 }
 
 export enum AIWorkerOutbound {
@@ -20,7 +21,10 @@ export enum AIWorkerOutbound {
 
 export type AIDevice = 'webgpu' | 'wasm'
 
-export type AIInboundMessage = { type: AIWorkerInbound.CHECK_AVAILABILITY } | { type: AIWorkerInbound.GENERATE_TIPS; goal: string; locale: Locale }
+export type AIInboundMessage =
+	| { type: AIWorkerInbound.CHECK_AVAILABILITY }
+	| { type: AIWorkerInbound.GENERATE_TIPS; goal: string; locale: Locale }
+	| { type: AIWorkerInbound.LOAD_TRANSLATOR; locale: Locale }
 
 export type AIOutboundMessage =
 	| { type: AIWorkerOutbound.STATUS; model: string; device: AIDevice }
