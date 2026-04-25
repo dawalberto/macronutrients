@@ -24,7 +24,7 @@ const SITE = 'https://macrocalc.fit'
 		<script is:inline define:vars={{ BASE, SUPPORTED }}>
 			const nav = navigator.language.split('-')[0]
 			const stored = localStorage.getItem('macrocalc-locale')
-			const locale = (SUPPORTED.includes(stored) ? stored : SUPPORTED.includes(nav) ? nav : 'en')
+			const locale = SUPPORTED.includes(stored) ? stored : SUPPORTED.includes(nav) ? nav : 'en'
 			window.location.replace(`${BASE}/${locale}/`)
 		</script>
 	</body>

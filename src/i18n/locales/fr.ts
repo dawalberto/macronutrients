@@ -47,15 +47,14 @@ export const fr = {
 	chart_title: (kcal: number) => `${kcal} KCAL / JOUR`,
 
 	// AI Modal
-	ai_interpretation: 'INTERPRÉTATION IA',
-	ai_interpreting: 'INTERPRÉTATION...',
 	ai_streaming: 'DIFFUSION...',
+	translating_tips: 'TRADUCTION EN COURS...',
+	ai_tips_title: 'CONSEILS IA',
 
-	// AI Buttons (InterpretResults)
-	interpret_results: 'INTERPRÉTER RÉSULTATS',
-	interpreting: 'INTERPRÉTATION...',
+	// AI Buttons (GenerateTipsAI)
+	generate_tips: 'GÉNÉRER CONSEILS',
+	generating_tips: 'GÉNÉRATION CONSEILS...',
 	loading_ai: (pct: number) => `CHARGEMENT MODÈLE IA... ${pct}%`,
-	ai_unavailable_mobile: 'BUREAU UNIQUEMENT',
 
 	// Header
 	page_title: 'MacroCalc',
@@ -87,14 +86,15 @@ export const fr = {
 	info_bmr_mifflin_note: 'W = poids (kg), H = taille (cm), A = âge (ans). Meilleure précision pour la population générale.',
 	info_bmr_harris_note: 'Formule classique révisée par Roza & Shizgal (1984). Estimations légèrement supérieures à Mifflin.',
 	info_bmr_katch_label: 'KATCH-MCARDLE (DÉFAUT)',
-	info_bmr_katch_note: "Utilise la MMC au lieu du poids total — plus précis lorsque la composition corporelle est connue. Neutre au genre.",
+	info_bmr_katch_note: 'Utilise la MMC au lieu du poids total — plus précis lorsque la composition corporelle est connue. Neutre au genre.',
 
 	// Info page — Module 03: TDEE
 	info_module_03: 'MODULE 03',
 	info_tdee_title: 'TDEE — DÉPENSE ÉNERGÉTIQUE JOURNALIÈRE TOTALE',
-	info_tdee_desc: "Votre brûlure calorique quotidienne réelle. Calculée comme le BMR multiplié par un facteur d'activité qui tient compte de l'exercice et du mode de vie.",
+	info_tdee_desc:
+		"Votre brûlure calorique quotidienne réelle. Calculée comme le BMR multiplié par un facteur d'activité qui tient compte de l'exercice et du mode de vie.",
 	info_tdee_formula: 'TDEE = BMR × multiplicateur_activité',
-	info_tdee_sedentary_desc: '× 1.2 — travail de bureau, pas d\'exercice',
+	info_tdee_sedentary_desc: "× 1.2 — travail de bureau, pas d'exercice",
 	info_tdee_lightly_desc: '× 1.375 — 1–3 jours/semaine',
 	info_tdee_moderately_desc: '× 1.55 — 3–5 jours/semaine',
 	info_tdee_very_desc: '× 1.725 — 6–7 jours/semaine',
@@ -104,11 +104,13 @@ export const fr = {
 	info_module_04: 'MODULE 04',
 	info_goals_title: 'OBJECTIFS — CIBLES CALORIQUES',
 	info_goal_maintain_formula: 'Calories = TDEE',
-	info_goal_maintain_desc: 'Maintenir le poids actuel. Répartition équilibrée des macros pour soutenir l\'activité et la composition corporelle.',
+	info_goal_maintain_desc: "Maintenir le poids actuel. Répartition équilibrée des macros pour soutenir l'activité et la composition corporelle.",
 	info_goal_surplus_formula: 'Calories = TDEE + 300 kcal',
-	info_goal_surplus_desc: 'Surplus calorique modéré pour soutenir la prise de muscle. Plus de glucides pour l\'entraînement ; lipides à 25% des calories totales.',
+	info_goal_surplus_desc:
+		"Surplus calorique modéré pour soutenir la prise de muscle. Plus de glucides pour l'entraînement ; lipides à 25% des calories totales.",
 	info_goal_definition_formula: 'Calories = TDEE − 300 kcal',
-	info_goal_definition_desc: 'Déficit modéré pour la perte de graisse. Les protéines sont augmentées pour préserver la masse musculaire. Les glucides complètent les calories restantes.',
+	info_goal_definition_desc:
+		'Déficit modéré pour la perte de graisse. Les protéines sont augmentées pour préserver la masse musculaire. Les glucides complètent les calories restantes.',
 
 	// Info page — Module 05: Macros
 	info_module_05: 'MODULE 05',
@@ -119,42 +121,6 @@ export const fr = {
 	info_fat_targets: 'OBJECTIFS LIPIDES',
 	info_carbs_label: 'GLUCIDES',
 	info_carbs_formula: 'Reste = (kcal_total − kcal_protéines − kcal_lipides) / 4',
-
-	// AI prompts — InterpretResults
-	ai_interpret_system_prompt: `Vous êtes un assistant nutritionnel concis. Votre seule tâche consiste à interpréter les données caloriques d'un utilisateur et à expliquer en 2 à 3 phrases leur signification pratique.
-
-Règles strictes :
-- Maximum 3 phrases.
-- Ne posez pas de questions.
-- Ne donnez pas de conseils supplémentaires et ne mentionnez pas de médecins ou de professionnels de santé.
-- Utilisez un langage simple et direct.
-- Si l'objectif est un déficit calorique, mentionnez la perte de poids estimée (environ 0,5 kg/semaine pour un déficit de 500 kcal).
-- Si l'objectif est un surplus calorique, mentionnez la prise de poids estimée.
-- Si l'objectif est le maintien du poids, confirmez l'équilibre.
-- Répondez en français.`,
-
-	ai_interpret_user_prompt: (
-		genre: string,
-		age: number,
-		weight: number,
-		height: number,
-		activityLevel: string,
-		goal: string,
-		maintenanceKcal: number,
-		targetKcal: number,
-		diff: number,
-		label: string,
-		proteins: number,
-		carbs: number,
-		fats: number,
-	) =>
-		`Utilisateur : ${genre}, ${age} ans, ${weight} kg, ${height} cm, ${activityLevel} niveau d'activité.
-Objectif : ${goal}.
-Apport calorique de maintien : ${maintenanceKcal} kcal.
-Apport calorique cible : ${targetKcal} kcal.
-${label} : ${diff} kcal.
-Protéines : ${proteins} g | Glucides : ${carbs} g | Lipides : ${fats} g.
-Interprétez ces résultats.`,
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Calculateur de Macronutriments Gratuit',
@@ -176,12 +142,12 @@ Interprétez ces résultats.`,
 	seo_faq_bmr_q: "Qu'est-ce que le Métabolisme de Base (BMR) ?",
 	seo_faq_bmr_a:
 		'Le BMR est le nombre de calories brûlées au repos complet. MacroCalc supporte trois équations : Mifflin-St Jeor, Harris-Benedict Révisé et Katch-McArdle (plus précis quand la composition corporelle est connue).',
-	seo_faq_tdee_q: "Comment est calculée la Dépense Énergétique Totale Journalière (TDEE) ?",
+	seo_faq_tdee_q: 'Comment est calculée la Dépense Énergétique Totale Journalière (TDEE) ?',
 	seo_faq_tdee_a:
-		'TDEE = BMR × multiplicateur d\'activité. Sédentaire (×1.2), Légèrement actif (×1.375), Modérément actif (×1.55), Très actif (×1.725), Extrêmement actif (×1.9).',
+		"TDEE = BMR × multiplicateur d'activité. Sédentaire (×1.2), Légèrement actif (×1.375), Modérément actif (×1.55), Très actif (×1.725), Extrêmement actif (×1.9).",
 	seo_faq_macros_q: 'Comment MacroCalc distribue-t-il protéines, glucides et lipides ?',
 	seo_faq_macros_a:
-		'Protéines et lipides sont fixés en g/kg de LBM selon l\'objectif. Les glucides complètent les calories restantes. Maintien : 1.8 g protéine/kg, 1.0 g lipides/kg. Surplus : 2.0 g protéine, lipides à 25%. Définition : 2.5 g protéine, 0.9 g lipides/kg.',
+		"Protéines et lipides sont fixés en g/kg de LBM selon l'objectif. Les glucides complètent les calories restantes. Maintien : 1.8 g protéine/kg, 1.0 g lipides/kg. Surplus : 2.0 g protéine, lipides à 25%. Définition : 2.5 g protéine, 0.9 g lipides/kg.",
 	seo_faq_goals_q: 'Quels sont les ajustements caloriques pour chaque objectif ?',
 	seo_faq_goals_a:
 		'Maintien : calories = TDEE. Surplus : TDEE +300 kcal pour la prise de muscle. Définition : TDEE −300 kcal pour une perte de graisse modérée (environ 0.5 kg/semaine par 500 kcal de déficit).',

@@ -25,7 +25,7 @@ export const AdditionalSettings = () => {
 				className='flex w-full cursor-pointer items-center justify-between px-0 py-2 transition-colors'
 				style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}
 			>
-				<span className='text-sm font-medium text-warm-gray-500'>{t.advanced_settings}</span>
+				<span className='text-warm-gray-500 text-sm font-medium'>{t.advanced_settings}</span>
 				<ChevronDown
 					size={15}
 					className='text-warm-gray-300 transition-transform duration-300'

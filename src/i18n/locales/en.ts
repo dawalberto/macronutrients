@@ -45,15 +45,14 @@ export const en = {
 	chart_title: (kcal: number) => `${kcal} KCAL / DAY`,
 
 	// AI Modal
-	ai_interpretation: 'AI INTERPRETATION',
-	ai_interpreting: 'INTERPRETING...',
 	ai_streaming: 'STREAMING...',
+	translating_tips: 'TRANSLATING...',
+	ai_tips_title: 'AI TIPS',
 
-	// AI Buttons (InterpretResults)
-	interpret_results: 'INTERPRET RESULTS',
-	interpreting: 'INTERPRETING...',
+	// AI Buttons (GenerateTipsAI)
+	generate_tips: 'GENERATE TIPS',
+	generating_tips: 'GENERATING TIPS...',
 	loading_ai: (pct: number) => `LOADING AI MODEL... ${pct}%`,
-	ai_unavailable_mobile: 'DESKTOP ONLY',
 
 	// Header
 	page_title: 'MacroCalc',
@@ -111,7 +110,8 @@ export const en = {
 	// Info page — Module 05: Macros
 	info_module_05: 'MODULE 05',
 	info_macros_title: 'MACRONUTRIENTS — DISTRIBUTION',
-	info_macros_desc: 'Grams of each macro are set per kg of LBM (not total weight). Carbs always fill the remaining calories after protein and fat are accounted for.',
+	info_macros_desc:
+		'Grams of each macro are set per kg of LBM (not total weight). Carbs always fill the remaining calories after protein and fat are accounted for.',
 	info_protein_targets: 'PROTEIN TARGETS (per kg LBM)',
 	info_fat_targets: 'FAT TARGETS',
 	info_carbs_label: 'CARBS',
@@ -146,43 +146,6 @@ export const en = {
 	seo_faq_goals_q: 'What are the calorie adjustments for each goal?',
 	seo_faq_goals_a:
 		'Maintain keeps calories at TDEE for weight stability. Surplus adds +300 kcal to TDEE to support muscle growth. Definition subtracts −300 kcal from TDEE for moderate fat loss (estimated ~0.5 kg/week per 500 kcal deficit).',
-
-	// AI prompts — InterpretResults
-	ai_interpret_system_prompt: `You are a concise nutrition assistant. Your only task is to interpret a user's caloric data and explain in 2-3 sentences what it means in practice.
-
-Strict rules:
-- Maximum 3 sentences.
-- Do not ask questions.
-- Do not give additional advice or mention doctors or medical professionals.
-- Use friendly and direct language.
-- If the goal is a deficit, mention the estimated weight loss (~0.5kg/week per 500kcal deficit).
-- If the goal is a surplus, mention the estimated weight gain.
-- If the goal is maintenance, confirm the balance.
-- Respond in English.`,
-
-	ai_interpret_user_prompt: (
-		genre: string,
-		age: number,
-		weight: number,
-		height: number,
-		activityLevel: string,
-		goal: string,
-		maintenanceKcal: number,
-		targetKcal: number,
-		diff: number,
-		label: string,
-		proteins: number,
-		carbs: number,
-		fats: number,
-	) =>
-		`User: ${genre}, ${age} years old, ${weight}kg, ${height}cm, ${activityLevel} activity level.
-Goal: ${goal}.
-Maintenance calories: ${maintenanceKcal} kcal.
-Target calories: ${targetKcal} kcal.
-${label}: ${diff} kcal.
-Proteins: ${proteins}g | Carbohydrates: ${carbs}g | Fats: ${fats}g.
-
-Interpret these results.`,
 }
 
 export type Translations = typeof en

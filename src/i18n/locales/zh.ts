@@ -47,15 +47,14 @@ export const zh = {
 	chart_title: (kcal: number) => `${kcal} 千卡 / 天`,
 
 	// AI Modal
-	ai_interpretation: 'AI 解读',
-	ai_interpreting: '解读中...',
 	ai_streaming: '流式输出...',
+	translating_tips: '翻译中...',
+	ai_tips_title: 'AI 建议',
 
-	// AI Buttons (InterpretResults)
-	interpret_results: '解读结果',
-	interpreting: '解读中...',
+	// AI Buttons (GenerateTipsAI)
+	generate_tips: '生成建议',
+	generating_tips: '正在生成建议...',
 	loading_ai: (pct: number) => `加载AI模型... ${pct}%`,
-	ai_unavailable_mobile: '仅限桌面端',
 
 	// Header
 	page_title: 'MacroCalc',
@@ -72,7 +71,8 @@ export const zh = {
 	// Info page — Module 01: LBM
 	info_module_01: '模块 01',
 	info_lbm_title: 'LBM — 去脂体重',
-	info_lbm_desc: '您的体重减去体脂。包括肌肉、骨骼、器官和水分。LBM是所有宏量营养素目标的基础——而非总体重——因为脂肪组织的代谢活性极低，不需要蛋白质或碳水化合物来维持。',
+	info_lbm_desc:
+		'您的体重减去体脂。包括肌肉、骨骼、器官和水分。LBM是所有宏量营养素目标的基础——而非总体重——因为脂肪组织的代谢活性极低，不需要蛋白质或碳水化合物来维持。',
 	info_lbm_boer_label: 'BOER（默认）',
 	info_lbm_boer_note: 'W = 体重（kg），H = 身高（cm）',
 	info_lbm_james_note: '对肥胖者可能低估LBM。',
@@ -117,62 +117,30 @@ export const zh = {
 	info_carbs_label: '碳水化合物',
 	info_carbs_formula: '剩余 = (总热量 − 蛋白质热量 − 脂肪热量) / 4',
 
-	// AI prompts — InterpretResults
-	ai_interpret_system_prompt: `您是一位简洁明了的营养助手。您的任务是解读用户的卡路里数据，并用2-3句话解释其实际意义。
-
-严格规则：
-- 最多3句话。
-- 不要提问。
-- 不要提供额外建议或提及医生或其他医疗专业人士。
-- 使用友好简洁的语言。
-- 如果目标是热量缺口，请说明预计减重幅度（每减少500千卡热量，每周减重约0.5公斤）。
-- 如果目标是热量盈余，请说明预计增重幅度。
-- 如果目标是维持体重，请确认热量摄入是否平衡。
-- 请用普通话（简体中文）回复。`,
-
-	ai_interpret_user_prompt: (
-		genre: string,
-		age: number,
-		weight: number,
-		height: number,
-		activityLevel: string,
-		goal: string,
-		maintenanceKcal: number,
-		targetKcal: number,
-		diff: number,
-		label: string,
-		proteins: number,
-		carbs: number,
-		fats: number,
-	) =>
-		`用户：${genre}，${age} 岁，${weight} 公斤，${height} 厘米，${activityLevel} 活动水平。
-
-目标：${goal}。
-维持热量：${maintenanceKcal} 千卡。
-目标热量：${targetKcal} 千卡。
-${label}：${diff} 千卡。
-蛋白质：${proteins} 克 | 碳水化合物：${carbs} 克 | 脂肪：${fats} 克。
-解读这些结果。`,
-
 	// SEO — Home
 	seo_home_title: 'MacroCalc — 免费宏量营养素计算器',
-	seo_home_description: '根据您的体重、身高、年龄、活动水平和目标，计算每日蛋白质、碳水化合物和脂肪摄入目标。使用Katch-McArdle基础代谢率和去脂体重公式。',
+	seo_home_description:
+		'根据您的体重、身高、年龄、活动水平和目标，计算每日蛋白质、碳水化合物和脂肪摄入目标。使用Katch-McArdle基础代谢率和去脂体重公式。',
 	seo_home_keywords: '宏量营养素计算器, 宏计算器, 蛋白质计算器, TDEE计算器, 基础代谢率计算器, 去脂体重, 减肥卡路里, 增肌宏量',
 	seo_og_tagline: '精准宏量目标。免费。无需注册。',
 
 	// SEO — Info
 	seo_info_title: '公式与定义 — MacroCalc参考手册',
-	seo_info_description: 'LBM（去脂体重）、BMR（基础代谢率）、TDEE及宏量营养素公式详解。Boer、James、Hume、Mifflin-St Jeor、Harris-Benedict、Katch-McArdle。',
+	seo_info_description:
+		'LBM（去脂体重）、BMR（基础代谢率）、TDEE及宏量营养素公式详解。Boer、James、Hume、Mifflin-St Jeor、Harris-Benedict、Katch-McArdle。',
 
 	// SEO — FAQ
 	seo_faq_lbm_q: '什么是去脂体重（LBM），为什么它对宏量计算很重要？',
-	seo_faq_lbm_a: '去脂体重是您的总体重减去体脂——包括肌肉、骨骼、器官和水分。MacroCalc以LBM为基础计算所有宏量目标，因为脂肪组织几乎不需要蛋白质或碳水化合物来维持，从而提供更精准的目标。',
+	seo_faq_lbm_a:
+		'去脂体重是您的总体重减去体脂——包括肌肉、骨骼、器官和水分。MacroCalc以LBM为基础计算所有宏量目标，因为脂肪组织几乎不需要蛋白质或碳水化合物来维持，从而提供更精准的目标。',
 	seo_faq_bmr_q: '什么是基础代谢率（BMR）？',
-	seo_faq_bmr_a: 'BMR是身体在完全静息状态下消耗的卡路里数量。MacroCalc支持三种公式：Mifflin-St Jeor（适合普通人群）、修订版Harris-Benedict，以及Katch-McArdle（已知体成分时最精准，使用LBM）。',
+	seo_faq_bmr_a:
+		'BMR是身体在完全静息状态下消耗的卡路里数量。MacroCalc支持三种公式：Mifflin-St Jeor（适合普通人群）、修订版Harris-Benedict，以及Katch-McArdle（已知体成分时最精准，使用LBM）。',
 	seo_faq_tdee_q: '每日总能量消耗（TDEE）如何计算？',
 	seo_faq_tdee_a: 'TDEE = BMR × 活动系数。久坐（×1.2）、轻度活动（×1.375）、中度活动（×1.55）、高度活动（×1.725）、极度活动（×1.9）。',
 	seo_faq_macros_q: 'MacroCalc如何分配蛋白质、碳水化合物和脂肪？',
-	seo_faq_macros_a: '蛋白质和脂肪按每公斤LBM的克数设定。碳水化合物填补剩余卡路里。维持：1.8g蛋白质/kg LBM，1.0g脂肪/kg。增肌：2.0g蛋白质，脂肪占总热量25%。减脂：2.5g蛋白质，0.9g脂肪/kg。',
+	seo_faq_macros_a:
+		'蛋白质和脂肪按每公斤LBM的克数设定。碳水化合物填补剩余卡路里。维持：1.8g蛋白质/kg LBM，1.0g脂肪/kg。增肌：2.0g蛋白质，脂肪占总热量25%。减脂：2.5g蛋白质，0.9g脂肪/kg。',
 	seo_faq_goals_q: '每个目标的卡路里调整是多少？',
 	seo_faq_goals_a: '维持：卡路里 = TDEE。增肌：TDEE +300千卡支持肌肉生长。减脂：TDEE −300千卡实现适度脂肪减少（每500千卡热量差约减重0.5公斤/周）。',
 } satisfies Translations

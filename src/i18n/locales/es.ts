@@ -47,15 +47,14 @@ export const es = {
 	chart_title: (kcal: number) => `${kcal} KCAL / DÍA`,
 
 	// AI Modal
-	ai_interpretation: 'INTERPRETACIÓN IA',
-	ai_interpreting: 'INTERPRETANDO...',
 	ai_streaming: 'TRANSMITIENDO...',
+	translating_tips: 'TRADUCIENDO...',
+	ai_tips_title: 'CONSEJOS IA',
 
-	// AI Buttons (InterpretResults)
-	interpret_results: 'INTERPRETAR RESULTADOS',
-	interpreting: 'INTERPRETANDO...',
+	// AI Buttons (GenerateTipsAI)
+	generate_tips: 'GENERAR CONSEJOS',
+	generating_tips: 'GENERANDO CONSEJOS...',
 	loading_ai: (pct: number) => `CARGANDO MODELO IA... ${pct}%`,
-	ai_unavailable_mobile: 'SOLO ESCRITORIO',
 
 	// Header
 	page_title: 'MacroCalc',
@@ -92,7 +91,8 @@ export const es = {
 	// Info page — Module 03: TDEE
 	info_module_03: 'MÓDULO 03',
 	info_tdee_title: 'TDEE — GASTO ENERGÉTICO DIARIO TOTAL',
-	info_tdee_desc: 'Tu quema real de calorías diarias. Calculada como el BMR multiplicado por un factor de actividad que tiene en cuenta el ejercicio y el estilo de vida.',
+	info_tdee_desc:
+		'Tu quema real de calorías diarias. Calculada como el BMR multiplicado por un factor de actividad que tiene en cuenta el ejercicio y el estilo de vida.',
 	info_tdee_formula: 'TDEE = BMR × multiplicador_actividad',
 	info_tdee_sedentary_desc: '× 1.2 — trabajo de escritorio, sin ejercicio',
 	info_tdee_lightly_desc: '× 1.375 — 1–3 días/semana',
@@ -106,9 +106,11 @@ export const es = {
 	info_goal_maintain_formula: 'Calorías = TDEE',
 	info_goal_maintain_desc: 'Mantener el peso actual. Distribución equilibrada de macros para apoyar la actividad y la composición corporal.',
 	info_goal_surplus_formula: 'Calorías = TDEE + 300 kcal',
-	info_goal_surplus_desc: 'Superávit calórico moderado para apoyar el crecimiento muscular. Más carbohidratos para el entrenamiento; grasa al 25% de las calorías totales.',
+	info_goal_surplus_desc:
+		'Superávit calórico moderado para apoyar el crecimiento muscular. Más carbohidratos para el entrenamiento; grasa al 25% de las calorías totales.',
 	info_goal_definition_formula: 'Calorías = TDEE − 300 kcal',
-	info_goal_definition_desc: 'Déficit moderado para la pérdida de grasa. La proteína aumenta para preservar la masa muscular. Los carbohidratos completan las calorías restantes.',
+	info_goal_definition_desc:
+		'Déficit moderado para la pérdida de grasa. La proteína aumenta para preservar la masa muscular. Los carbohidratos completan las calorías restantes.',
 
 	// Info page — Module 05: Macros
 	info_module_05: 'MÓDULO 05',
@@ -119,43 +121,6 @@ export const es = {
 	info_fat_targets: 'OBJETIVOS DE GRASA',
 	info_carbs_label: 'CARBOHIDRATOS',
 	info_carbs_formula: 'Resto = (kcal_total − kcal_proteína − kcal_grasa) / 4',
-
-	// AI prompts — InterpretResults
-	ai_interpret_system_prompt: `Eres un asistente de nutrición conciso. Tu única tarea es interpretar los datos calóricos de un usuario y explicar en 2-3 frases su significado práctico.
-
-Reglas estrictas:
-- Máximo 3 frases.
-- No hagas preguntas.
-- No des consejos adicionales ni menciones a médicos o profesionales de la salud.
-- Usa un lenguaje amigable y directo.
-- Si el objetivo es un déficit calórico, menciona la pérdida de peso estimada (~0.5 kg/semana por cada 500 kcal de déficit).
-- Si el objetivo es un superávit calórico, menciona el aumento de peso estimado.
-- Si el objetivo es el mantenimiento, confirma el balance.
-- Responde en español.`,
-
-	ai_interpret_user_prompt: (
-		genre: string,
-		age: number,
-		weight: number,
-		height: number,
-		activityLevel: string,
-		goal: string,
-		maintenanceKcal: number,
-		targetKcal: number,
-		diff: number,
-		label: string,
-		proteins: number,
-		carbs: number,
-		fats: number,
-	) =>
-		`Usuario: ${genre}, ${age} años, ${weight} kg, ${height} cm, ${activityLevel} nivel de actividad.
-Objetivo: ${goal}.
-Calorías de mantenimiento: ${maintenanceKcal} kcal.
-Calorías objetivo: ${targetKcal} kcal.
-${label}: ${diff} kcal.
-Proteínas: ${proteins} g | Carbohidratos: ${carbs} g | Grasas: ${fats} g.
-
-Interpreta estos resultados.`,
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Calculadora de Macronutrientes Gratis',

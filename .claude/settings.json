@@ -1,7 +1,5 @@
 {
   "permissions": {
-    "additionalDirectories": [
-      "/Users/dawalberto/Code/macronutrients/src/pages"
-    ]
+    "additionalDirectories": ["/Users/dawalberto/Code/macronutrients/src/pages"]
   }
 }

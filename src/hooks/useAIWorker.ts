@@ -1,28 +1,27 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AIWorkerInbound, AIWorkerOutbound, type AIOutboundMessage } from '../types'
+import type { Locale } from '@store/locale'
 
 type AIWorkerState = {
 	available: boolean | null
-	isMobile: boolean
 	downloading: boolean
 	downloadProgress: number
 	generating: boolean
 	streamedText: string
+	translating: boolean
+	translatedText: string | null
 	error: string | null
 }
 
 const INITIAL_STATE: AIWorkerState = {
 	available: null,
-	isMobile: false,
 	downloading: false,
 	downloadProgress: 0,
 	generating: false,
 	streamedText: '',
+	translating: false,
+	translatedText: null,
 	error: null,
-}
-
-function isMobileDevice(): boolean {
-	return typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0
 }
 
 export function useAIWorker() {
@@ -31,11 +30,6 @@ export function useAIWorker() {
 	const fileProgressRef = useRef<Map<string, number>>(new Map())
 
 	useEffect(() => {
-		if (isMobileDevice()) {
-			setState((prev) => ({ ...prev, available: false, isMobile: true }))
-			return
-		}
-
 		const worker = new Worker(new URL('../workers/ai-worker.ts', import.meta.url), { type: 'module' })
 		workerRef.current = worker
 
@@ -48,15 +42,33 @@ export function useAIWorker() {
 					break
 
 				case AIWorkerOutbound.DOWNLOADING: {
-					fileProgressRef.current.set(msg.file, msg.progress)
+					fileProgressRef.current.set(`${msg.model}:${msg.file}`, msg.progress)
 					const values = [...fileProgressRef.current.values()]
-					const aggregate = Math.round(values.reduce((sum, v) => sum + v, 0) / values.length)
+					const aggregate = Math.min(100, Math.max(0, Math.round(values.reduce((sum, v) => sum + v, 0) / values.length)))
 					setState((prev) => ({ ...prev, downloading: true, downloadProgress: aggregate }))
 					break
 				}
 
+				case AIWorkerOutbound.MODEL_READY:
+					// Translator loads happen post-STATUS (no STATUS follows); close the download phase here.
+					if (msg.model === 'translator') {
+						for (const key of [...fileProgressRef.current.keys()]) {
+							if (key.startsWith('translator:')) fileProgressRef.current.delete(key)
+						}
+						setState((prev) => ({ ...prev, downloading: false, downloadProgress: 100 }))
+					}
+					break
+
 				case AIWorkerOutbound.TOKEN:
 					setState((prev) => ({ ...prev, streamedText: prev.streamedText + msg.token }))
+					break
+
+				case AIWorkerOutbound.TRANSLATING:
+					setState((prev) => ({ ...prev, translating: true }))
+					break
+
+				case AIWorkerOutbound.TRANSLATED:
+					setState((prev) => ({ ...prev, translatedText: msg.text, translating: false }))
 					break
 
 				case AIWorkerOutbound.DONE:
@@ -81,11 +93,20 @@ export function useAIWorker() {
 		}
 	}, [])
 
-	const generate = useCallback((systemPrompt: string, userPrompt?: string) => {
+	const generate = useCallback((goal: string, locale: Locale) => {
 		if (!workerRef.current) return
-		setState((prev) => ({ ...prev, generating: true, streamedText: '', error: null }))
-		workerRef.current.postMessage({ type: AIWorkerInbound.GENERATE_MENU, prompt: userPrompt ?? systemPrompt, systemPrompt: userPrompt ? systemPrompt : undefined })
+		setState((prev) => ({ ...prev, generating: true, translating: false, translatedText: null, streamedText: '', error: null }))
+		workerRef.current.postMessage({ type: AIWorkerInbound.GENERATE_TIPS, goal, locale })
 	}, [])
 
-	return { ...state, generate }
+	const loadTranslator = useCallback((locale: Locale) => {
+		if (!workerRef.current) return
+		// Reset translator file progress so old generator entries don't skew the new download bar.
+		for (const key of [...fileProgressRef.current.keys()]) {
+			if (key.startsWith('translator:')) fileProgressRef.current.delete(key)
+		}
+		workerRef.current.postMessage({ type: AIWorkerInbound.LOAD_TRANSLATOR, locale })
+	}, [])
+
+	return { ...state, generate, loadTranslator }
 }
