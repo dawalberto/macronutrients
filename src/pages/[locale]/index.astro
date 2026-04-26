@@ -2,6 +2,7 @@
 import { AdditionalSettings } from '@components/AdditionalSettings'
 import { AppHeader } from '@components/AppHeader'
 import ChartMacros from '@components/ChartMacros.astro'
+import { ContentReveal } from '@components/ContentReveal'
 import { Dashboard } from '@components/Dashboard'
 import { ExerciseMultiplier } from '@components/ExerciseMultiplier'
 import { GenerateTipsAI } from '@components/GenerateTipsAI'
@@ -43,54 +44,57 @@ const BASE = ''
 	</head>
 	<body class='min-h-screen bg-white text-[rgba(0,0,0,0.95)]'>
 		<div class='mx-auto w-full max-w-xl px-4 py-8 md:px-8 md:py-12'>
-			<AppHeader client:only='react' />
+			<div id='app-content' style='opacity: 0; transition: opacity 0.15s ease'>
+				<AppHeader client:only='react' />
 
-			<div class='flex flex-col gap-8'>
-				<Dashboard client:only='react' />
-				<ExerciseMultiplier client:only='react' />
-				<GoalSelector client:only='react' />
-				<ChartMacros />
-				<GenerateTipsAI client:only='react' />
-				<AdditionalSettings client:only='react' />
+				<div class='flex flex-col gap-8'>
+					<Dashboard client:only='react' />
+					<ExerciseMultiplier client:only='react' />
+					<GoalSelector client:only='react' />
+					<ChartMacros />
+					<GenerateTipsAI client:only='react' />
+					<AdditionalSettings client:only='react' />
+				</div>
+
+				<!-- Static SEO content: H1 + description visible to crawlers -->
+				<section class='mt-12 pt-8' style='border-top: 1px solid rgba(0,0,0,0.1)'>
+					<h1 class='sr-only'>{t.seo_home_title}</h1>
+					<p class='text-warm-gray-300 mb-6 text-xs'>{t.seo_home_description}</p>
+
+					<!-- FAQ: visible + feeds JSON-LD -->
+					<div class='space-y-2'>
+						{
+							[
+								{ q: t.seo_faq_lbm_q, a: t.seo_faq_lbm_a },
+								{ q: t.seo_faq_bmr_q, a: t.seo_faq_bmr_a },
+								{ q: t.seo_faq_tdee_q, a: t.seo_faq_tdee_a },
+								{ q: t.seo_faq_macros_q, a: t.seo_faq_macros_a },
+								{ q: t.seo_faq_goals_q, a: t.seo_faq_goals_a },
+							].map(({ q, a }) => (
+								<details class='border-l-2 border-[rgba(0,0,0,0.08)] pl-3'>
+									<summary class='text-warm-gray-500 cursor-pointer text-xs font-medium transition-colors hover:text-[rgba(0,0,0,0.95)]'>
+										{q}
+									</summary>
+									<p class='text-warm-gray-300 mt-1 text-xs leading-relaxed'>{a}</p>
+								</details>
+							))
+						}
+					</div>
+				</section>
+
+				<footer class='mt-12 py-8' style='border-top: 1px solid rgba(0,0,0,0.1)'>
+					<nav class='mb-6 flex justify-center'>
+						<a href={`${BASE}/${locale}/info`} class='text-warm-gray-500 hover:text-notion-blue text-sm font-medium transition-colors'>
+							{t.footer_info_link}
+						</a>
+					</nav>
+					<div class='mb-6 flex justify-center'>
+						<LanguageSelector client:only='react' />
+					</div>
+					<p class='text-warm-gray-300 text-center text-xs'>MacroCalc · Metric System</p>
+				</footer>
 			</div>
-
-			<!-- Static SEO content: H1 + description visible to crawlers -->
-			<section class='mt-12 pt-8' style='border-top: 1px solid rgba(0,0,0,0.1)'>
-				<h1 class='sr-only'>{t.seo_home_title}</h1>
-				<p class='text-warm-gray-300 mb-6 text-xs'>{t.seo_home_description}</p>
-
-				<!-- FAQ: visible + feeds JSON-LD -->
-				<div class='space-y-2'>
-					{
-						[
-							{ q: t.seo_faq_lbm_q, a: t.seo_faq_lbm_a },
-							{ q: t.seo_faq_bmr_q, a: t.seo_faq_bmr_a },
-							{ q: t.seo_faq_tdee_q, a: t.seo_faq_tdee_a },
-							{ q: t.seo_faq_macros_q, a: t.seo_faq_macros_a },
-							{ q: t.seo_faq_goals_q, a: t.seo_faq_goals_a },
-						].map(({ q, a }) => (
-							<details class='border-l-2 border-[rgba(0,0,0,0.08)] pl-3'>
-								<summary class='text-warm-gray-500 cursor-pointer text-xs font-medium transition-colors hover:text-[rgba(0,0,0,0.95)]'>
-									{q}
-								</summary>
-								<p class='text-warm-gray-300 mt-1 text-xs leading-relaxed'>{a}</p>
-							</details>
-						))
-					}
-				</div>
-			</section>
-
-			<footer class='mt-12 py-8' style='border-top: 1px solid rgba(0,0,0,0.1)'>
-				<nav class='mb-6 flex justify-center'>
-					<a href={`${BASE}/${locale}/info`} class='text-warm-gray-500 hover:text-notion-blue text-sm font-medium transition-colors'>
-						{t.footer_info_link}
-					</a>
-				</nav>
-				<div class='mb-6 flex justify-center'>
-					<LanguageSelector client:only='react' />
-				</div>
-				<p class='text-warm-gray-300 text-center text-xs'>MacroCalc · Metric System</p>
-			</footer>
+			<ContentReveal client:only='react' />
 		</div>
 
 		<script is:inline define:vars={{ locale }}>
