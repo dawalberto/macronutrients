@@ -47,6 +47,8 @@ listenKeys($userAttributes, ['weight', 'height', 'genre'], () => {
 	calculateAndUpdateLBM({})
 })
 
-listenKeys($userAttributes, ['weight', 'height', 'genre', 'age', 'lbm'], () => {
+// Only listen to 'age' and 'lbm': weight/height/genre changes cascade through LBM first,
+// so BMR always reads the fresh lbm value and runs only once per slider event instead of twice.
+listenKeys($userAttributes, ['age', 'lbm'], () => {
 	calculateAndUpdateBMR({})
 })

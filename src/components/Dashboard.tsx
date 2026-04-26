@@ -2,13 +2,14 @@ import { useTranslations } from '@i18n/index'
 import { useStore } from '@nanostores/react'
 import { $updateUserAge, $updateUserGenre, $updateUserHeight, $updateUserWeight, $userAttributes } from '@store/user-attributes'
 import { clsx } from 'clsx'
+import { useCallback } from 'react'
 import { Genre, UserAttributesNamesDashboard } from 'src/types'
 
 export const Dashboard = () => {
 	const { weight, height, age, genre } = useStore($userAttributes)
 	const t = useTranslations()
 
-	const handleUserAttributeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleUserAttributeChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
 		const attribute = event.target.name as UserAttributesNamesDashboard
 		const value = parseInt(event.target.value)
 
@@ -23,7 +24,7 @@ export const Dashboard = () => {
 				$updateUserAge(value)
 				return
 		}
-	}
+	}, [])
 
 	return (
 		<div className='flex w-full flex-col gap-8'>
@@ -31,7 +32,7 @@ export const Dashboard = () => {
 			<div className='flex w-full gap-2 rounded-md p-1' style={{ background: '#f6f5f4', border: '1px solid rgba(0,0,0,0.08)' }}>
 				<button
 					onClick={() => $updateUserGenre(Genre.MALE)}
-					className={clsx('flex flex-1 items-center justify-center gap-1.5 rounded py-2 text-sm font-medium transition-all', {
+					className={clsx('flex flex-1 items-center justify-center gap-1.5 rounded py-2 text-sm font-medium transition-[background-color,box-shadow,color]', {
 						'bg-white text-[rgba(0,0,0,0.95)] shadow-sm': genre === Genre.MALE,
 						'text-warm-gray-500 hover:text-[rgba(0,0,0,0.95)]': genre !== Genre.MALE,
 					})}
@@ -41,7 +42,7 @@ export const Dashboard = () => {
 				</button>
 				<button
 					onClick={() => $updateUserGenre(Genre.FEMALE)}
-					className={clsx('flex flex-1 items-center justify-center gap-1.5 rounded py-2 text-sm font-medium transition-all', {
+					className={clsx('flex flex-1 items-center justify-center gap-1.5 rounded py-2 text-sm font-medium transition-[background-color,box-shadow,color]', {
 						'bg-white text-[rgba(0,0,0,0.95)] shadow-sm': genre === Genre.FEMALE,
 						'text-warm-gray-500 hover:text-[rgba(0,0,0,0.95)]': genre !== Genre.FEMALE,
 					})}
