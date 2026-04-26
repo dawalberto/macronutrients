@@ -50,9 +50,10 @@ export const hi = {
 	ai_streaming: 'स्ट्रीमिंग...',
 	translating_tips: 'अनुवाद हो रहा है...',
 	ai_tips_title: 'AI सुझाव',
+	ai_disclaimer: 'AI द्वारा उत्पन्न परिणाम हमेशा सटीक नहीं हो सकते।',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: 'सुझाव उत्पन्न करें',
+	generate_tips: 'सुझाव',
 	generating_tips: 'सुझाव उत्पन्न हो रहे हैं...',
 	loading_ai: (pct: number) => `AI मॉडल लोड हो रहा है... ${pct}%`,
 
@@ -63,6 +64,9 @@ export const hi = {
 	// Footer / Nav
 	footer_info_link: 'जानकारी // सूत्र और परिभाषाएं →',
 	select_language: 'भाषा',
+	footer_metric_system: 'मेट्रिक प्रणाली',
+	footer_built_with: 'बनाया',
+	footer_built_by: 'द्वारा',
 
 	// Info page header/nav
 	reference_manual: 'संदर्भ मैनुअल // सूत्र और परिभाषाएं',
@@ -118,6 +122,12 @@ export const hi = {
 	info_fat_targets: 'वसा लक्ष्य',
 	info_carbs_label: 'कार्ब्स',
 	info_carbs_formula: 'शेष = (कुल_kcal − प्रोटीन_kcal − वसा_kcal) / 4',
+
+	// Info page — FAQ & macro names
+	info_faq_title: 'अक्सर पूछे जाने वाले प्रश्न',
+	info_macro_protein: 'प्रोटीन',
+	info_macro_carbohydrates: 'कार्बोहाइड्रेट',
+	info_macro_fat: 'वसा',
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — मुफ़्त मैक्रोन्यूट्रिएंट कैलकुलेटर',

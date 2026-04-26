@@ -50,9 +50,10 @@ export const zh = {
 	ai_streaming: '流式输出...',
 	translating_tips: '翻译中...',
 	ai_tips_title: 'AI 建议',
+	ai_disclaimer: 'AI 生成的结果不一定总是准确的。',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: '生成建议',
+	generate_tips: '建议',
 	generating_tips: '正在生成建议...',
 	loading_ai: (pct: number) => `加载AI模型... ${pct}%`,
 
@@ -63,6 +64,9 @@ export const zh = {
 	// Footer / Nav
 	footer_info_link: '信息 // 公式与定义 →',
 	select_language: '语言',
+	footer_metric_system: '公制单位',
+	footer_built_with: '构建',
+	footer_built_by: '由',
 
 	// Info page header/nav
 	reference_manual: '参考手册 // 公式与定义',
@@ -116,6 +120,12 @@ export const zh = {
 	info_fat_targets: '脂肪目标',
 	info_carbs_label: '碳水化合物',
 	info_carbs_formula: '剩余 = (总热量 − 蛋白质热量 − 脂肪热量) / 4',
+
+	// Info page — FAQ & macro names
+	info_faq_title: '常见问题',
+	info_macro_protein: '蛋白质',
+	info_macro_carbohydrates: '碳水化合物',
+	info_macro_fat: '脂肪',
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — 免费宏量营养素计算器',

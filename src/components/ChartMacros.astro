@@ -21,25 +21,31 @@
 
 	const chart = new Chart(chartElement, chartConfiguration)
 
-	function updateChart() {
-		const { bmrAndExercise, lbm, goal } = $userAttributes.get()
-		const t = getTranslations()
-		const { proteinGrams, fatGrams, carbGrams, kcalPerDay } = calculateMacros(goal, lbm, bmrAndExercise)
+	let pendingFrame: number | null = null
+	function scheduleChartUpdate() {
+		if (pendingFrame !== null) cancelAnimationFrame(pendingFrame)
+		pendingFrame = requestAnimationFrame(() => {
+			pendingFrame = null
+			const { bmrAndExercise, lbm, goal } = $userAttributes.get()
+			const t = getTranslations()
+			const { proteinGrams, fatGrams, carbGrams, kcalPerDay } = calculateMacros(goal, lbm, bmrAndExercise)
 
-		chart.data.labels = getLabels(carbGrams, fatGrams, proteinGrams, t)
-		if (chart.options.plugins?.title?.text) {
-			chart.options.plugins.title.text = getChartTitle(kcalPerDay, t)
-		}
-		if (chart.data.datasets[0]?.data) {
-			chart.data.datasets[0].data = [carbGrams * 4, fatGrams * 9, proteinGrams * 4]
-		}
-		if (chartLabelEl) {
-			chartLabelEl.textContent = t.daily_caloric_quota
-		}
+			chart.data.labels = getLabels(carbGrams, fatGrams, proteinGrams, t)
+			if (chart.options.plugins?.title?.text) {
+				chart.options.plugins.title.text = getChartTitle(kcalPerDay, t)
+			}
+			if (chart.data.datasets[0]?.data) {
+				chart.data.datasets[0].data = [carbGrams * 4, fatGrams * 9, proteinGrams * 4]
+			}
+			if (chartLabelEl) {
+				chartLabelEl.textContent = t.daily_caloric_quota
+			}
 
-		chart.update()
+			chart.update()
+		})
 	}
 
-	listenKeys($userAttributes, ['goal', 'lbm', 'bmrAndExercise'], updateChart)
-	$locale.listen(updateChart)
+	listenKeys($userAttributes, ['goal', 'lbm', 'bmrAndExercise'], scheduleChartUpdate)
+	$locale.listen(scheduleChartUpdate)
+	scheduleChartUpdate()
 </script>

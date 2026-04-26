@@ -48,9 +48,10 @@ export const en = {
 	ai_streaming: 'STREAMING...',
 	translating_tips: 'TRANSLATING...',
 	ai_tips_title: 'AI TIPS',
+	ai_disclaimer: 'AI-generated results may not always be accurate.',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: 'GENERATE TIPS',
+	generate_tips: 'TIPS',
 	generating_tips: 'GENERATING TIPS...',
 	loading_ai: (pct: number) => `LOADING AI MODEL... ${pct}%`,
 
@@ -61,6 +62,9 @@ export const en = {
 	// Footer / Nav
 	footer_info_link: 'INFO // FORMULAS & DEFINITIONS →',
 	select_language: 'LANGUAGE',
+	footer_metric_system: 'Metric System',
+	footer_built_with: 'Built with',
+	footer_built_by: 'by',
 
 	// Info page header/nav
 	reference_manual: 'REFERENCE MANUAL // FORMULAS & DEFINITIONS',
@@ -116,6 +120,12 @@ export const en = {
 	info_fat_targets: 'FAT TARGETS',
 	info_carbs_label: 'CARBS',
 	info_carbs_formula: 'Remainder = (total_kcal − protein_kcal − fat_kcal) / 4',
+
+	// Info page — FAQ & macro names
+	info_faq_title: 'FREQUENTLY ASKED QUESTIONS',
+	info_macro_protein: 'PROTEIN',
+	info_macro_carbohydrates: 'CARBOHYDRATES',
+	info_macro_fat: 'FAT',
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Free Macronutrient Calculator',

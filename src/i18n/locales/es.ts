@@ -50,9 +50,10 @@ export const es = {
 	ai_streaming: 'TRANSMITIENDO...',
 	translating_tips: 'TRADUCIENDO...',
 	ai_tips_title: 'CONSEJOS IA',
+	ai_disclaimer: 'Los resultados generados por IA pueden no ser siempre precisos.',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: 'GENERAR CONSEJOS',
+	generate_tips: 'CONSEJOS',
 	generating_tips: 'GENERANDO CONSEJOS...',
 	loading_ai: (pct: number) => `CARGANDO MODELO IA... ${pct}%`,
 
@@ -63,6 +64,9 @@ export const es = {
 	// Footer / Nav
 	footer_info_link: 'INFO // FÓRMULAS Y DEFINICIONES →',
 	select_language: 'IDIOMA',
+	footer_metric_system: 'Sistema Métrico',
+	footer_built_with: 'Hecho con',
+	footer_built_by: 'por',
 
 	// Info page header/nav
 	reference_manual: 'MANUAL REFERENCIA // FÓRMULAS Y DEFINICIONES',
@@ -121,6 +125,12 @@ export const es = {
 	info_fat_targets: 'OBJETIVOS DE GRASA',
 	info_carbs_label: 'CARBOHIDRATOS',
 	info_carbs_formula: 'Resto = (kcal_total − kcal_proteína − kcal_grasa) / 4',
+
+	// Info page — FAQ & macro names
+	info_faq_title: 'PREGUNTAS FRECUENTES',
+	info_macro_protein: 'PROTEÍNA',
+	info_macro_carbohydrates: 'CARBOHIDRATOS',
+	info_macro_fat: 'GRASAS',
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Calculadora de Macronutrientes Gratis',

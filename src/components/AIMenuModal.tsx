@@ -106,6 +106,11 @@ export const AIMenuModal = ({ visible, streamedText, generating, translating, tr
 						</div>
 					</div>
 				)}
+
+				{/* Disclaimer */}
+				<div className='px-6 py-2.5' style={{ borderTop: '1px solid rgba(0,0,0,0.08)', background: 'rgba(251,191,36,0.08)' }}>
+					<p style={{ fontSize: '11px', color: 'rgba(120,90,0,0.7)', letterSpacing: '0.01em' }}>⚠ {t.ai_disclaimer}</p>
+				</div>
 			</div>
 		</div>
 	)

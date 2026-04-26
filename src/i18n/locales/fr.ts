@@ -50,9 +50,10 @@ export const fr = {
 	ai_streaming: 'DIFFUSION...',
 	translating_tips: 'TRADUCTION EN COURS...',
 	ai_tips_title: 'CONSEILS IA',
+	ai_disclaimer: "Les résultats générés par l'IA peuvent ne pas toujours être précis.",
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: 'GÉNÉRER CONSEILS',
+	generate_tips: 'CONSEILS',
 	generating_tips: 'GÉNÉRATION CONSEILS...',
 	loading_ai: (pct: number) => `CHARGEMENT MODÈLE IA... ${pct}%`,
 
@@ -63,6 +64,9 @@ export const fr = {
 	// Footer / Nav
 	footer_info_link: 'INFO // FORMULES & DÉFINITIONS →',
 	select_language: 'LANGUE',
+	footer_metric_system: 'Système Métrique',
+	footer_built_with: 'Créé avec',
+	footer_built_by: 'par',
 
 	// Info page header/nav
 	reference_manual: 'MANUEL RÉFÉRENCE // FORMULES & DÉFINITIONS',
@@ -121,6 +125,12 @@ export const fr = {
 	info_fat_targets: 'OBJECTIFS LIPIDES',
 	info_carbs_label: 'GLUCIDES',
 	info_carbs_formula: 'Reste = (kcal_total − kcal_protéines − kcal_lipides) / 4',
+
+	// Info page — FAQ & macro names
+	info_faq_title: 'FOIRE AUX QUESTIONS',
+	info_macro_protein: 'PROTÉINES',
+	info_macro_carbohydrates: 'GLUCIDES',
+	info_macro_fat: 'LIPIDES',
 
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Calculateur de Macronutriments Gratuit',
