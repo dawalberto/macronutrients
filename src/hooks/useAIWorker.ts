@@ -1,6 +1,6 @@
+import type { Locale } from '@store/locale'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AIWorkerInbound, AIWorkerOutbound, type AIOutboundMessage } from '../types'
-import type { Locale } from '@store/locale'
 
 type AIWorkerState = {
 	available: boolean | null
@@ -30,6 +30,17 @@ export function useAIWorker() {
 	const fileProgressRef = useRef<Map<string, number>>(new Map())
 
 	useEffect(() => {
+		const isMobileBrowser = () => {
+			const uaData = (navigator as Navigator & { userAgentData?: { mobile?: boolean } }).userAgentData?.mobile
+			if (typeof uaData === 'boolean') return uaData
+			return /Mobi|Android|iPhone|iPad|Tablet|Mobile/i.test(navigator.userAgent)
+		}
+
+		if (isMobileBrowser()) {
+			setState((prev) => ({ ...prev, available: false }))
+			return
+		}
+
 		const worker = new Worker(new URL('../workers/ai-worker.ts', import.meta.url), { type: 'module' })
 		workerRef.current = worker
 
