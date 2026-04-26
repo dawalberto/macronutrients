@@ -4,7 +4,7 @@ export const AppHeader = () => {
 	const t = useTranslations()
 
 	return (
-		<header className='mb-10 pb-6' style={{ borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
+		<header className='mb-10 flex items-center justify-between pb-6' style={{ borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
 			<h1
 				style={{
 					fontSize: '26px',
@@ -16,13 +16,10 @@ export const AppHeader = () => {
 			>
 				{t.page_title}
 			</h1>
-			<div className='mt-2 flex items-center justify-between'>
-				<p style={{ fontSize: '14px', color: '#615d59', fontWeight: 400 }}>{t.system_status}</p>
-				<div className='flex items-center gap-1.5'>
-					<div className='h-2 w-2 animate-pulse rounded-full bg-emerald-500' />
-					<div className='bg-warm-gray-300 h-2 w-2 rounded-full' />
-					<div className='bg-warm-gray-300 h-2 w-2 rounded-full' />
-				</div>
+			<div className='flex items-center gap-1.5'>
+				<div className='h-2 w-2 animate-pulse rounded-full bg-emerald-500' />
+				<div className='bg-warm-gray-300 h-2 w-2 rounded-full' />
+				<div className='bg-warm-gray-300 h-2 w-2 rounded-full' />
 			</div>
 		</header>
 	)
