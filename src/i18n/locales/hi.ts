@@ -50,6 +50,7 @@ export const hi = {
 	ai_streaming: 'स्ट्रीमिंग...',
 	translating_tips: 'अनुवाद हो रहा है...',
 	ai_tips_title: 'AI सुझाव',
+	ai_disclaimer: 'AI द्वारा उत्पन्न परिणाम हमेशा सटीक नहीं हो सकते।',
 
 	// AI Buttons (GenerateTipsAI)
 	generate_tips: 'सुझाव',

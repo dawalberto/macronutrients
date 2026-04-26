@@ -48,6 +48,7 @@ export const en = {
 	ai_streaming: 'STREAMING...',
 	translating_tips: 'TRANSLATING...',
 	ai_tips_title: 'AI TIPS',
+	ai_disclaimer: 'AI-generated results may not always be accurate.',
 
 	// AI Buttons (GenerateTipsAI)
 	generate_tips: 'TIPS',

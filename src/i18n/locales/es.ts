@@ -50,6 +50,7 @@ export const es = {
 	ai_streaming: 'TRANSMITIENDO...',
 	translating_tips: 'TRADUCIENDO...',
 	ai_tips_title: 'CONSEJOS IA',
+	ai_disclaimer: 'Los resultados generados por IA pueden no ser siempre precisos.',
 
 	// AI Buttons (GenerateTipsAI)
 	generate_tips: 'CONSEJOS',
