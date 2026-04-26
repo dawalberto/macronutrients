@@ -50,9 +50,10 @@ export const zh = {
 	ai_streaming: '流式输出...',
 	translating_tips: '翻译中...',
 	ai_tips_title: 'AI 建议',
+	ai_disclaimer: 'AI 生成的结果不一定总是准确的。',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: '生成建议',
+	generate_tips: '建议',
 	generating_tips: '正在生成建议...',
 	loading_ai: (pct: number) => `加载AI模型... ${pct}%`,
 

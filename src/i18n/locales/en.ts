@@ -48,9 +48,10 @@ export const en = {
 	ai_streaming: 'STREAMING...',
 	translating_tips: 'TRANSLATING...',
 	ai_tips_title: 'AI TIPS',
+	ai_disclaimer: 'AI-generated results may not always be accurate.',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: 'GENERATE TIPS',
+	generate_tips: 'TIPS',
 	generating_tips: 'GENERATING TIPS...',
 	loading_ai: (pct: number) => `LOADING AI MODEL... ${pct}%`,
 

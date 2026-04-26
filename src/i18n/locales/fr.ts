@@ -50,9 +50,10 @@ export const fr = {
 	ai_streaming: 'DIFFUSION...',
 	translating_tips: 'TRADUCTION EN COURS...',
 	ai_tips_title: 'CONSEILS IA',
+	ai_disclaimer: "Les résultats générés par l'IA peuvent ne pas toujours être précis.",
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: 'GÉNÉRER CONSEILS',
+	generate_tips: 'CONSEILS',
 	generating_tips: 'GÉNÉRATION CONSEILS...',
 	loading_ai: (pct: number) => `CHARGEMENT MODÈLE IA... ${pct}%`,
 

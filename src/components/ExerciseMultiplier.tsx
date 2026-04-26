@@ -1,9 +1,11 @@
-import { defaultExerciseMultiplier } from '@lib/defaults'
+import { useStore } from '@nanostores/react'
+import { $userAttributes } from '@store/user-attributes'
 import { useTranslations } from '@i18n/index'
 import { calculateAndUpdateBMR } from '@utils/bmr-functions'
 import { ExerciseMultiplier as EM } from 'src/types'
 
 export const ExerciseMultiplier = () => {
+	const { bmrAndExercise } = useStore($userAttributes)
 	const t = useTranslations()
 
 	const handleExerciseMultiplierChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -19,7 +21,7 @@ export const ExerciseMultiplier = () => {
 			<select
 				id='exerciseMultiplier'
 				name='exerciseMultiplier'
-				defaultValue={defaultExerciseMultiplier}
+				defaultValue={bmrAndExercise.exerciseMultiplier}
 				onChange={handleExerciseMultiplierChange}
 				className='form-select'
 			>
