@@ -119,6 +119,12 @@ export const hi = {
 	info_carbs_label: 'कार्ब्स',
 	info_carbs_formula: 'शेष = (कुल_kcal − प्रोटीन_kcal − वसा_kcal) / 4',
 
+	// Info page — FAQ & macro names
+	info_faq_title: 'अक्सर पूछे जाने वाले प्रश्न',
+	info_macro_protein: 'प्रोटीन',
+	info_macro_carbohydrates: 'कार्बोहाइड्रेट',
+	info_macro_fat: 'वसा',
+
 	// SEO — Home
 	seo_home_title: 'MacroCalc — मुफ़्त मैक्रोन्यूट्रिएंट कैलकुलेटर',
 	seo_home_description:

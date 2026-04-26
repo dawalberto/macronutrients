@@ -117,6 +117,12 @@ export const en = {
 	info_carbs_label: 'CARBS',
 	info_carbs_formula: 'Remainder = (total_kcal − protein_kcal − fat_kcal) / 4',
 
+	// Info page — FAQ & macro names
+	info_faq_title: 'FREQUENTLY ASKED QUESTIONS',
+	info_macro_protein: 'PROTEIN',
+	info_macro_carbohydrates: 'CARBOHYDRATES',
+	info_macro_fat: 'FAT',
+
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Free Macronutrient Calculator',
 	seo_home_description:

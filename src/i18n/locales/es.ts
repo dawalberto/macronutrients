@@ -122,6 +122,12 @@ export const es = {
 	info_carbs_label: 'CARBOHIDRATOS',
 	info_carbs_formula: 'Resto = (kcal_total − kcal_proteína − kcal_grasa) / 4',
 
+	// Info page — FAQ & macro names
+	info_faq_title: 'PREGUNTAS FRECUENTES',
+	info_macro_protein: 'PROTEÍNA',
+	info_macro_carbohydrates: 'CARBOHIDRATOS',
+	info_macro_fat: 'GRASAS',
+
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Calculadora de Macronutrientes Gratis',
 	seo_home_description:

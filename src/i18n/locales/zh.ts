@@ -117,6 +117,12 @@ export const zh = {
 	info_carbs_label: '碳水化合物',
 	info_carbs_formula: '剩余 = (总热量 − 蛋白质热量 − 脂肪热量) / 4',
 
+	// Info page — FAQ & macro names
+	info_faq_title: '常见问题',
+	info_macro_protein: '蛋白质',
+	info_macro_carbohydrates: '碳水化合物',
+	info_macro_fat: '脂肪',
+
 	// SEO — Home
 	seo_home_title: 'MacroCalc — 免费宏量营养素计算器',
 	seo_home_description:

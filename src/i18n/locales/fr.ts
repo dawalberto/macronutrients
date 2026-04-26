@@ -122,6 +122,12 @@ export const fr = {
 	info_carbs_label: 'GLUCIDES',
 	info_carbs_formula: 'Reste = (kcal_total − kcal_protéines − kcal_lipides) / 4',
 
+	// Info page — FAQ & macro names
+	info_faq_title: 'FOIRE AUX QUESTIONS',
+	info_macro_protein: 'PROTÉINES',
+	info_macro_carbohydrates: 'GLUCIDES',
+	info_macro_fat: 'LIPIDES',
+
 	// SEO — Home
 	seo_home_title: 'MacroCalc — Calculateur de Macronutriments Gratuit',
 	seo_home_description:
