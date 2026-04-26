@@ -63,6 +63,9 @@ export const es = {
 	// Footer / Nav
 	footer_info_link: 'INFO // FÓRMULAS Y DEFINICIONES →',
 	select_language: 'IDIOMA',
+	footer_metric_system: 'Sistema Métrico',
+	footer_built_with: 'Hecho con',
+	footer_built_by: 'por',
 
 	// Info page header/nav
 	reference_manual: 'MANUAL REFERENCIA // FÓRMULAS Y DEFINICIONES',

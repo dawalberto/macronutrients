@@ -1,6 +1,6 @@
 ---
 import { getTranslationsFor } from '@i18n/index'
-import { LanguageSelector } from './LanguageSelector'
+import AppFooter from './AppFooter.astro'
 import type { Locale } from '@store/locale'
 
 interface Props {
@@ -246,12 +246,4 @@ const BASE = ''
 	</section>
 </div>
 
-<footer class='mt-8 border-t-2 border-dashed border-[#4A4A4A] py-12'>
-	<div class='mb-6 flex justify-center'>
-		<LanguageSelector client:only='react' />
-	</div>
-	<div class='space-y-2 text-center text-[clamp(10px,1.1vw,12px)] opacity-55'>
-		<p>DATA_RECONSTRUCTED // UNIT_SYSTEM: METRIC // SOURCE: MIFFLIN-ST_JEOR_REVISED</p>
-		<p class='tracking-[0.2em]'>01010111 01001000 01000101 01000001 01010100</p>
-	</div>
-</footer>
+<AppFooter locale={locale} page='info' />

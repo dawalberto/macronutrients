@@ -1,0 +1,44 @@
+---
+import { Heart } from 'lucide-react'
+import { LanguageSelector } from './LanguageSelector'
+import { getTranslationsFor } from '@i18n/index'
+import type { Locale } from '@store/locale'
+import { version } from '../../package.json'
+
+interface Props {
+	locale: Locale
+	page: 'home' | 'info'
+}
+
+const { locale, page } = Astro.props
+const t = getTranslationsFor(locale)
+const BASE = ''
+
+const navHref = page === 'home' ? `${BASE}/${locale}/info` : `${BASE}/${locale}`
+const navLabel = page === 'home' ? t.footer_info_link : t.back_to_calculator
+---
+
+<footer class='mt-12 py-8' style='border-top: 1px solid rgba(0,0,0,0.1)'>
+	<nav class='mb-6 flex justify-center'>
+		<a href={navHref} class='text-warm-gray-500 hover:text-notion-blue text-sm font-medium transition-colors'>
+			{navLabel}
+		</a>
+	</nav>
+	<div class='mb-6 flex justify-center'>
+		<LanguageSelector client:only='react' />
+	</div>
+	<p class='text-warm-gray-300 text-center text-xs'>MacroCalc · {t.footer_metric_system} · v{version}</p>
+	<p class='text-warm-gray-300 mt-2 flex items-center justify-center gap-1 text-center text-xs'>
+		{t.footer_built_with}
+		<Heart size={12} class='text-warm-gray-300 inline' strokeWidth={1.5} />
+		{t.footer_built_by}{' '}
+		<a
+			href='https://thisisalberto.dev/'
+			target='_blank'
+			rel='noopener noreferrer'
+			class='hover:text-notion-blue underline underline-offset-2 transition-colors'
+		>
+			Alberto
+		</a>
+	</p>
+</footer>

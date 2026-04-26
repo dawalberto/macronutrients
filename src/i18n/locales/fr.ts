@@ -63,6 +63,9 @@ export const fr = {
 	// Footer / Nav
 	footer_info_link: 'INFO // FORMULES & DÉFINITIONS →',
 	select_language: 'LANGUE',
+	footer_metric_system: 'Système Métrique',
+	footer_built_with: 'Créé avec',
+	footer_built_by: 'par',
 
 	// Info page header/nav
 	reference_manual: 'MANUEL RÉFÉRENCE // FORMULES & DÉFINITIONS',

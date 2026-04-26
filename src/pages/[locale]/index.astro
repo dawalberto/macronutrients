@@ -7,7 +7,7 @@ import { Dashboard } from '@components/Dashboard'
 import { ExerciseMultiplier } from '@components/ExerciseMultiplier'
 import { GenerateTipsAI } from '@components/GenerateTipsAI'
 import { GoalSelector } from '@components/GoalSelector'
-import { LanguageSelector } from '@components/LanguageSelector'
+import AppFooter from '@components/AppFooter.astro'
 import GoogleAnalytics from '@components/GoogleAnalytics.astro'
 import SEO from '@components/SEO.astro'
 import { getTranslationsFor } from '@i18n/index'
@@ -82,17 +82,7 @@ const BASE = ''
 					</div>
 				</section>
 
-				<footer class='mt-12 py-8' style='border-top: 1px solid rgba(0,0,0,0.1)'>
-					<nav class='mb-6 flex justify-center'>
-						<a href={`${BASE}/${locale}/info`} class='text-warm-gray-500 hover:text-notion-blue text-sm font-medium transition-colors'>
-							{t.footer_info_link}
-						</a>
-					</nav>
-					<div class='mb-6 flex justify-center'>
-						<LanguageSelector client:only='react' />
-					</div>
-					<p class='text-warm-gray-300 text-center text-xs'>MacroCalc · Metric System</p>
-				</footer>
+				<AppFooter locale={locale} page='home' />
 			</div>
 			<ContentReveal client:only='react' />
 		</div>

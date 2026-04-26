@@ -63,6 +63,9 @@ export const zh = {
 	// Footer / Nav
 	footer_info_link: '信息 // 公式与定义 →',
 	select_language: '语言',
+	footer_metric_system: '公制单位',
+	footer_built_with: '构建',
+	footer_built_by: '由',
 
 	// Info page header/nav
 	reference_manual: '参考手册 // 公式与定义',
