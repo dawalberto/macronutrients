@@ -52,7 +52,7 @@ export const es = {
 	ai_tips_title: 'CONSEJOS IA',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: 'GENERAR CONSEJOS',
+	generate_tips: 'CONSEJOS',
 	generating_tips: 'GENERANDO CONSEJOS...',
 	loading_ai: (pct: number) => `CARGANDO MODELO IA... ${pct}%`,
 

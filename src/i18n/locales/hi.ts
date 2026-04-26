@@ -52,7 +52,7 @@ export const hi = {
 	ai_tips_title: 'AI सुझाव',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: 'सुझाव उत्पन्न करें',
+	generate_tips: 'सुझाव',
 	generating_tips: 'सुझाव उत्पन्न हो रहे हैं...',
 	loading_ai: (pct: number) => `AI मॉडल लोड हो रहा है... ${pct}%`,
 

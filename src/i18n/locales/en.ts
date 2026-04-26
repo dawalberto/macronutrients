@@ -50,7 +50,7 @@ export const en = {
 	ai_tips_title: 'AI TIPS',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: 'GENERATE TIPS',
+	generate_tips: 'TIPS',
 	generating_tips: 'GENERATING TIPS...',
 	loading_ai: (pct: number) => `LOADING AI MODEL... ${pct}%`,
 

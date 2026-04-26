@@ -52,7 +52,7 @@ export const zh = {
 	ai_tips_title: 'AI 建议',
 
 	// AI Buttons (GenerateTipsAI)
-	generate_tips: '生成建议',
+	generate_tips: '建议',
 	generating_tips: '正在生成建议...',
 	loading_ai: (pct: number) => `加载AI模型... ${pct}%`,
 
