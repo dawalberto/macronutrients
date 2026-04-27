@@ -1,9 +1,24 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Geist Sans";
+  src: url("/fonts/geist-sans-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/geist-mono-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans:
-    "Inter", -apple-system, system-ui, "Segoe UI", Helvetica,
-    "Apple Color Emoji", Arial, "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-sans: "Geist Sans", -apple-system, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --color-notion-blue: #0075de;
   --color-notion-blue-active: #005bab;
   --color-warm-white: #f6f5f4;
@@ -17,7 +32,13 @@
 
 @layer base {
   body {
-    @apply bg-white font-sans text-[rgba(0,0,0,0.95)];
+    @apply antialiased bg-white font-sans text-[rgba(0,0,0,0.95)];
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      font-variation-settings: "wght" 380;
+    }
   }
 }
 
