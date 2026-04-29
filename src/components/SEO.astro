@@ -104,7 +104,8 @@ const faqSchema =
 {page === 'home' && <meta name='keywords' content={t.seo_home_keywords} />}
 <meta name='author' content='Alberto García Sola' />
 <meta name='robots' content='index, follow, max-image-preview:large' />
-<meta name='theme-color' content='#0A0A0A' />
+<meta name='theme-color' content='#ffffff' media='(prefers-color-scheme: light)' />
+<meta name='theme-color' content='#ffffff' media='(prefers-color-scheme: dark)' />
 
 <!-- Canonical + hreflang -->
 <link rel='canonical' href={canonicalUrl} />

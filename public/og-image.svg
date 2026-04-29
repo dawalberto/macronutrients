@@ -1,12 +1,84 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'>
-  <rect width='1200' height='630' fill='#0A0A0A'/>
-  <rect x='0' y='0' width='1200' height='8' fill='#E5E5E5'/>
-  <rect x='0' y='622' width='1200' height='8' fill='#E5E5E5'/>
-  <rect x='0' y='0' width='8' height='630' fill='#E5E5E5'/>
-  <rect x='1192' y='0' width='8' height='630' fill='#E5E5E5'/>
-  <text x='80' y='200' font-family='monospace' font-size='96' font-weight='900' fill='#E5E5E5' font-style='italic'>MACRO_CALC</text>
-  <text x='80' y='310' font-family='monospace' font-size='36' fill='#6B7280'>V1.0 // BRUTALIST NUTRITION ENGINE</text>
-  <text x='80' y='420' font-family='monospace' font-size='28' fill='#E5E5E5'>Precision macro targets.</text>
-  <text x='80' y='460' font-family='monospace' font-size='28' fill='#E5E5E5'>Free. No sign-up.</text>
-  <text x='80' y='560' font-family='monospace' font-size='20' fill='#4B5563'>macrocalc.fit</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      .sans { font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
+      .mono { font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#ffffff"/>
+
+  <!-- Subtle warm panel on the right (Notion-style accent) -->
+  <rect x="720" y="0" width="480" height="630" fill="#f6f5f4"/>
+  <rect x="720" y="0" width="1" height="630" fill="rgba(0,0,0,0.06)"/>
+
+  <!-- Mark + brand row -->
+  <g transform="translate(80 88)">
+    <rect x="0" y="0" width="56" height="56" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.10)"/>
+    <g transform="translate(28 28) rotate(-90)" fill="none" stroke-width="6.6">
+      <circle r="14" stroke="#0075de" stroke-dasharray="25.55 62.43" stroke-dashoffset="0"/>
+      <circle r="14" stroke="#10b981" stroke-dasharray="38.32 49.66" stroke-dashoffset="-26.53"/>
+      <circle r="14" stroke="#f59e0b" stroke-dasharray="21.31 66.67" stroke-dashoffset="-65.83"/>
+    </g>
+    <text x="76" y="36" class="sans" font-size="22" font-weight="600" fill="#31302e" letter-spacing="-0.2">MacroCalc</text>
+  </g>
+
+  <!-- Headline -->
+  <text x="80" y="260" class="sans" font-size="88" font-weight="700" fill="#31302e" letter-spacing="-2.4">Macronutrient</text>
+  <text x="80" y="348" class="sans" font-size="88" font-weight="700" fill="#31302e" letter-spacing="-2.4">Calculator.</text>
+
+  <!-- Subhead -->
+  <text x="80" y="412" class="sans" font-size="26" font-weight="400" fill="#615d59" letter-spacing="-0.3">Precision protein, carb &amp; fat targets — based on your</text>
+  <text x="80" y="446" class="sans" font-size="26" font-weight="400" fill="#615d59" letter-spacing="-0.3">body composition and goals.</text>
+
+  <!-- Macro legend (left side) -->
+  <g class="sans" font-size="13" font-weight="600" letter-spacing="0.3">
+    <g transform="translate(80 498)">
+      <circle cx="6" cy="6" r="6" fill="#0075de"/>
+      <text x="22" y="11" fill="#31302e">PROTEIN</text>
+      <text x="93" y="11" class="mono" font-size="13" font-weight="500" fill="#615d59" letter-spacing="0">30%</text>
+    </g>
+    <g transform="translate(220 498)">
+      <circle cx="6" cy="6" r="6" fill="#10b981"/>
+      <text x="22" y="11" fill="#31302e">CARBS</text>
+      <text x="83" y="11" class="mono" font-size="13" font-weight="500" fill="#615d59" letter-spacing="0">45%</text>
+    </g>
+    <g transform="translate(350 498)">
+      <circle cx="6" cy="6" r="6" fill="#f59e0b"/>
+      <text x="22" y="11" fill="#31302e">FAT</text>
+      <text x="63" y="11" class="mono" font-size="13" font-weight="500" fill="#615d59" letter-spacing="0">25%</text>
+    </g>
+  </g>
+
+  <!-- Badges row -->
+  <g transform="translate(80 538)">
+    <rect width="92" height="32" rx="6" fill="#f2f9ff"/>
+    <text x="46" y="22" text-anchor="middle" class="sans" font-size="13" font-weight="600" fill="#097fe8" letter-spacing="0.3">FREE</text>
+  </g>
+  <g transform="translate(184 538)">
+    <rect width="138" height="32" rx="6" fill="#f6f5f4"/>
+    <text x="69" y="22" text-anchor="middle" class="sans" font-size="13" font-weight="600" fill="#615d59" letter-spacing="0.3">NO SIGN-UP</text>
+  </g>
+  <g transform="translate(334 538)">
+    <rect width="148" height="32" rx="6" fill="#f6f5f4"/>
+    <text x="74" y="22" text-anchor="middle" class="sans" font-size="13" font-weight="600" fill="#615d59" letter-spacing="0.3">5 LANGUAGES</text>
+  </g>
+
+  <!-- Footer URL -->
+  <text x="80" y="600" class="mono" font-size="18" fill="#a39e98">macrocalc.fit</text>
+
+  <!-- Big donut on right panel (clean, no labels) -->
+  <g transform="translate(960 315) rotate(-90)" fill="none" stroke-width="56">
+    <circle r="142" stroke="#0075de" stroke-dasharray="258.78 633.40" stroke-dashoffset="0"/>
+    <circle r="142" stroke="#10b981" stroke-dasharray="388.17 504.01" stroke-dashoffset="-268.78"/>
+    <circle r="142" stroke="#f59e0b" stroke-dasharray="215.65 676.53" stroke-dashoffset="-666.95"/>
+  </g>
+
+  <!-- Donut center caption -->
+  <g transform="translate(960 315)" text-anchor="middle">
+    <text y="-4" class="mono" font-size="14" fill="#a39e98" letter-spacing="0.6">DAILY</text>
+    <text y="22" class="sans" font-size="34" font-weight="700" fill="#31302e" letter-spacing="-0.6">2,150</text>
+    <text y="46" class="mono" font-size="13" fill="#615d59" letter-spacing="0.4">kcal</text>
+  </g>
 </svg>
