@@ -59,17 +59,17 @@ export const fr = {
 
 	// Header
 	page_title: 'MacroCalc',
-	system_status: 'STATUT: OPTIMAL // MOTEUR NUTRITION BRUTALISTE',
+	system_status: 'STATUT: OPTIMAL / MOTEUR NUTRITION BRUTALISTE',
 
 	// Footer / Nav
-	footer_info_link: 'INFO // FORMULES & DÉFINITIONS →',
+	footer_info_link: 'INFO / FORMULES & DÉFINITIONS →',
 	select_language: 'LANGUE',
 	footer_metric_system: 'Système Métrique',
 	footer_built_with: 'Créé avec',
 	footer_built_by: 'par',
 
 	// Info page header/nav
-	reference_manual: 'MANUEL RÉFÉRENCE // FORMULES & DÉFINITIONS',
+	reference_manual: 'MANUEL RÉFÉRENCE / FORMULES & DÉFINITIONS',
 	back_to_calculator: '← RETOUR CALCULATEUR',
 
 	// Info page — Module 01: LBM

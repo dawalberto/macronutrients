@@ -59,17 +59,17 @@ export const hi = {
 
 	// Header
 	page_title: 'MacroCalc',
-	system_status: 'सिस्टम स्थिति: सर्वोत्तम // पोषण इंजन',
+	system_status: 'सिस्टम स्थिति: सर्वोत्तम / पोषण इंजन',
 
 	// Footer / Nav
-	footer_info_link: 'जानकारी // सूत्र और परिभाषाएं →',
+	footer_info_link: 'जानकारी / सूत्र और परिभाषाएं →',
 	select_language: 'भाषा',
 	footer_metric_system: 'मेट्रिक प्रणाली',
 	footer_built_with: 'बनाया',
 	footer_built_by: 'द्वारा',
 
 	// Info page header/nav
-	reference_manual: 'संदर्भ मैनुअल // सूत्र और परिभाषाएं',
+	reference_manual: 'संदर्भ मैनुअल / सूत्र और परिभाषाएं',
 	back_to_calculator: '← कैलकुलेटर पर वापस',
 
 	// Info page — Module 01: LBM

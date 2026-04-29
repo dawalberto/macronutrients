@@ -59,17 +59,17 @@ export const zh = {
 
 	// Header
 	page_title: 'MacroCalc',
-	system_status: '系统状态: 最佳 // 营养计算引擎',
+	system_status: '系统状态: 最佳 / 营养计算引擎',
 
 	// Footer / Nav
-	footer_info_link: '信息 // 公式与定义 →',
+	footer_info_link: '信息 / 公式与定义 →',
 	select_language: '语言',
 	footer_metric_system: '公制单位',
 	footer_built_with: '构建',
 	footer_built_by: '由',
 
 	// Info page header/nav
-	reference_manual: '参考手册 // 公式与定义',
+	reference_manual: '参考手册 / 公式与定义',
 	back_to_calculator: '← 返回计算器',
 
 	// Info page — Module 01: LBM
