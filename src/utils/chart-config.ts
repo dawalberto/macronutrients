@@ -36,7 +36,7 @@ export const chartConfiguration: ChartConfiguration<'pie', number[], unknown> | 
 				font: {
 					size: 16,
 					weight: 'bold',
-					family: 'Inter, -apple-system, system-ui, sans-serif',
+					family: 'Geist Mono, ui-monospace, SFMono-Regular, monospace',
 				},
 			},
 			tooltip: {
@@ -49,7 +49,7 @@ export const chartConfiguration: ChartConfiguration<'pie', number[], unknown> | 
 				bodyFont: {
 					size: 13,
 					weight: 'bold',
-					family: 'Inter, -apple-system, system-ui, sans-serif',
+					family: 'Geist Mono, ui-monospace, SFMono-Regular, monospace',
 				},
 				backgroundColor: 'rgba(0,0,0,0.85)',
 				displayColors: false,
@@ -64,7 +64,7 @@ export const chartConfiguration: ChartConfiguration<'pie', number[], unknown> | 
 					font: {
 						weight: 'bold',
 						size: 13,
-						family: 'Inter, -apple-system, system-ui, sans-serif',
+						family: 'Geist Mono, ui-monospace, SFMono-Regular, monospace',
 					},
 				},
 			},

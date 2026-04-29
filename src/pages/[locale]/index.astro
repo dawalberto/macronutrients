@@ -8,8 +8,7 @@ import { ExerciseMultiplier } from '@components/ExerciseMultiplier'
 import { GenerateTipsAI } from '@components/GenerateTipsAI'
 import { GoalSelector } from '@components/GoalSelector'
 import AppFooter from '@components/AppFooter.astro'
-import GoogleAnalytics from '@components/GoogleAnalytics.astro'
-import SEO from '@components/SEO.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
 import { getTranslationsFor } from '@i18n/index'
 import '@styles/global.css'
 
@@ -25,70 +24,48 @@ export function getStaticPaths() {
 
 const { locale } = Astro.params as { locale: 'en' | 'es' | 'fr' | 'zh' | 'hi' }
 const t = getTranslationsFor(locale)
-
-const BASE = ''
 ---
 
-<html lang={locale}>
-	<head>
-		<meta charset='utf-8' />
-		<link rel='icon' type='image/svg+xml' href={`${BASE}/favicon.svg`} />
-		<meta name='viewport' content='width=device-width' />
-		<meta name='generator' content={Astro.generator} />
-		<link rel='preconnect' href='https://fonts.googleapis.com' />
-		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-		<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' rel='stylesheet' />
+<BaseLayout locale={locale} page='home' containerClass='px-4 py-8 md:px-8 md:py-12'>
+	<div id='app-content' style='opacity: 0; transition: opacity 0.15s ease'>
+		<AppHeader client:only='react' />
 
-		<SEO locale={locale} page='home' />
-		<GoogleAnalytics />
-	</head>
-	<body class='min-h-screen bg-white text-[rgba(0,0,0,0.95)]'>
-		<div class='mx-auto w-full max-w-xl px-4 py-8 md:px-8 md:py-12'>
-			<div id='app-content' style='opacity: 0; transition: opacity 0.15s ease'>
-				<AppHeader client:only='react' />
-
-				<div class='flex flex-col gap-8'>
-					<Dashboard client:only='react' />
-					<ExerciseMultiplier client:only='react' />
-					<GoalSelector client:only='react' />
-					<ChartMacros />
-					<GenerateTipsAI client:only='react' />
-					<AdditionalSettings client:only='react' />
-				</div>
-
-				<!-- Static SEO content: H1 + description visible to crawlers -->
-				<section class='mt-12 pt-8' style='border-top: 1px solid rgba(0,0,0,0.1)'>
-					<h1 class='sr-only'>{t.seo_home_title}</h1>
-					<p class='text-warm-gray-300 mb-6 text-xs'>{t.seo_home_description}</p>
-
-					<!-- FAQ: visible + feeds JSON-LD -->
-					<div class='space-y-2'>
-						{
-							[
-								{ q: t.seo_faq_lbm_q, a: t.seo_faq_lbm_a },
-								{ q: t.seo_faq_bmr_q, a: t.seo_faq_bmr_a },
-								{ q: t.seo_faq_tdee_q, a: t.seo_faq_tdee_a },
-								{ q: t.seo_faq_macros_q, a: t.seo_faq_macros_a },
-								{ q: t.seo_faq_goals_q, a: t.seo_faq_goals_a },
-							].map(({ q, a }) => (
-								<details class='border-l-2 border-[rgba(0,0,0,0.08)] pl-3'>
-									<summary class='text-warm-gray-500 cursor-pointer text-xs font-medium transition-colors hover:text-[rgba(0,0,0,0.95)]'>
-										{q}
-									</summary>
-									<p class='text-warm-gray-300 mt-1 text-xs leading-relaxed'>{a}</p>
-								</details>
-							))
-						}
-					</div>
-				</section>
-
-				<AppFooter locale={locale} page='home' />
-			</div>
-			<ContentReveal client:only='react' />
+		<div class='flex flex-col gap-8'>
+			<Dashboard client:only='react' />
+			<ExerciseMultiplier client:only='react' />
+			<GoalSelector client:only='react' />
+			<ChartMacros />
+			<GenerateTipsAI client:only='react' />
+			<AdditionalSettings client:only='react' />
 		</div>
 
-		<script is:inline define:vars={{ locale }}>
-			localStorage.setItem('macrocalc-locale', locale)
-		</script>
-	</body>
-</html>
+		<!-- Static SEO content: H1 + description visible to crawlers -->
+		<section class='mt-12 pt-8' style='border-top: 1px solid rgba(0,0,0,0.1)'>
+			<h1 class='sr-only'>{t.seo_home_title}</h1>
+			<p class='text-warm-gray-300 mb-6 text-xs'>{t.seo_home_description}</p>
+
+			<!-- FAQ: visible + feeds JSON-LD -->
+			<div class='space-y-2'>
+				{
+					[
+						{ q: t.seo_faq_lbm_q, a: t.seo_faq_lbm_a },
+						{ q: t.seo_faq_bmr_q, a: t.seo_faq_bmr_a },
+						{ q: t.seo_faq_tdee_q, a: t.seo_faq_tdee_a },
+						{ q: t.seo_faq_macros_q, a: t.seo_faq_macros_a },
+						{ q: t.seo_faq_goals_q, a: t.seo_faq_goals_a },
+					].map(({ q, a }) => (
+						<details class='border-l-2 border-[rgba(0,0,0,0.08)] pl-3'>
+							<summary class='text-warm-gray-500 cursor-pointer text-xs font-medium transition-colors hover:text-[rgba(0,0,0,0.95)]'>
+								{q}
+							</summary>
+							<p class='text-warm-gray-300 mt-1 text-xs leading-relaxed'>{a}</p>
+						</details>
+					))
+				}
+			</div>
+		</section>
+
+		<AppFooter locale={locale} page='home' />
+	</div>
+	<ContentReveal client:only='react' />
+</BaseLayout>

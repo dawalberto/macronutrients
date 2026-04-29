@@ -1,7 +1,8 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'>
-  <rect width='180' height='180' fill='#0A0A0A'/>
-  <rect x='8' y='8' width='164' height='164' fill='none' stroke='#E5E5E5' stroke-width='4'/>
-  <text x='90' y='70' font-family='monospace' font-size='28' font-weight='900' fill='#E5E5E5' text-anchor='middle' font-style='italic'>MC</text>
-  <text x='90' y='110' font-family='monospace' font-size='13' fill='#6B7280' text-anchor='middle'>MACRO</text>
-  <text x='90' y='130' font-family='monospace' font-size='13' fill='#6B7280' text-anchor='middle'>CALC</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+  <rect width="180" height="180" fill="#ffffff"/>
+  <g transform="translate(90 90) rotate(-90)" fill="none" stroke-width="22">
+    <circle r="47" stroke="#0075de" stroke-dasharray="85.64 209.67" stroke-dashoffset="0"/>
+    <circle r="47" stroke="#10b981" stroke-dasharray="128.46 166.85" stroke-dashoffset="-88.92"/>
+    <circle r="47" stroke="#f59e0b" stroke-dasharray="71.37 223.94" stroke-dashoffset="-220.66"/>
+  </g>
 </svg>

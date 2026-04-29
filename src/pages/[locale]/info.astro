@@ -1,7 +1,7 @@
 ---
+import { AppHeader } from '@components/AppHeader'
 import InfoModules from '@components/InfoModules.astro'
-import GoogleAnalytics from '@components/GoogleAnalytics.astro'
-import SEO from '@components/SEO.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
 import '@styles/global.css'
 
 export function getStaticPaths() {
@@ -15,30 +15,9 @@ export function getStaticPaths() {
 }
 
 const { locale } = Astro.params as { locale: 'en' | 'es' | 'fr' | 'zh' | 'hi' }
-
-const BASE = ''
 ---
 
-<html lang={locale}>
-	<head>
-		<meta charset='utf-8' />
-		<link rel='icon' type='image/svg+xml' href={`${BASE}/favicon.svg`} />
-		<meta name='viewport' content='width=device-width' />
-		<meta name='generator' content={Astro.generator} />
-		<link rel='preconnect' href='https://fonts.googleapis.com' />
-		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-		<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' rel='stylesheet' />
-
-		<SEO locale={locale} page='info' />
-		<GoogleAnalytics />
-	</head>
-	<body class='min-h-screen bg-white text-[rgba(0,0,0,0.95)]'>
-		<div class='mx-auto w-full max-w-xl p-4 md:p-8'>
-			<InfoModules locale={locale} />
-		</div>
-
-		<script is:inline define:vars={{ locale }}>
-			localStorage.setItem('macrocalc-locale', locale)
-		</script>
-	</body>
-</html>
+<BaseLayout locale={locale} page='info' containerClass='p-4 md:p-8'>
+	<AppHeader client:only='react' />
+	<InfoModules locale={locale} />
+</BaseLayout>

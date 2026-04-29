@@ -46,7 +46,7 @@ export const LBMSelector = () => {
 					onChange={handleManualLBMInputChange}
 					defaultValue={lbm.lbmKg}
 					placeholder={t.lbm_placeholder}
-					className={clsx('rounded text-sm font-medium text-[rgba(0,0,0,0.9)] outline-none', showManualLBMInput ? 'block w-2/5' : 'hidden')}
+					className={clsx('rounded text-sm font-mono font-medium text-[rgba(0,0,0,0.9)] outline-none', showManualLBMInput ? 'block w-2/5' : 'hidden')}
 					style={{ border: '1px solid #dddddd', padding: '6px 10px', background: '#fff' }}
 				/>
 			</div>

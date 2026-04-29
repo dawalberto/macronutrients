@@ -12,22 +12,10 @@ const t = getTranslationsFor(locale)
 const BASE = ''
 ---
 
-<header class='mb-8 border-b-8 border-[#4A4A4A] pb-4'>
-	<h1 class='text-4xl leading-none font-extrabold italic'>{t.page_title}</h1>
-	<div class='mt-1 flex items-center justify-between'>
-		<p class='text-[clamp(12px,1.3vw,14px)] opacity-75'>{t.reference_manual}</p>
-		<div class='flex gap-1'>
-			<div class='h-2 w-2 bg-emerald-500'></div>
-			<div class='bg-slate-brutalist h-2 w-2'></div>
-			<div class='bg-slate-brutalist h-2 w-2'></div>
-		</div>
-	</div>
-</header>
-
-<nav class='mb-8'>
+<nav class='mb-6'>
 	<a
 		href={`${BASE}/${locale}/`}
-		class='brutalist-border bg-obsidian inline-block px-4 py-2 text-[clamp(13px,1.5vw,15px)] font-bold text-gray-400 transition-all hover:border-gray-100 hover:text-gray-700'
+		class='brutalist-border bg-obsidian inline-block py-2 text-[clamp(13px,1.5vw,15px)] font-bold text-gray-400 transition-all hover:border-gray-100 hover:text-gray-700'
 	>
 		{t.back_to_calculator}
 	</a>
@@ -35,7 +23,7 @@ const BASE = ''
 
 <div class='flex flex-col gap-8'>
 	<!-- Module 01: LBM -->
-	<section class='brutalist-border bg-obsidian p-6'>
+	<section class='brutalist-border bg-obsidian p-2'>
 		<p class='mb-4 text-[clamp(13px,1.5vw,15px)] opacity-75'>◉ {t.info_module_01}</p>
 		<h2 class='mb-4 border-b-2 border-[#4A4A4A] pb-2 text-xl font-extrabold italic'>{t.info_lbm_title}</h2>
 
@@ -72,7 +60,7 @@ const BASE = ''
 	</section>
 
 	<!-- Module 02: BMR -->
-	<section class='brutalist-border bg-obsidian p-6'>
+	<section class='brutalist-border bg-obsidian p-2'>
 		<p class='mb-4 text-[clamp(13px,1.5vw,15px)] opacity-75'>◉ {t.info_module_02}</p>
 		<h2 class='mb-4 border-b-2 border-[#4A4A4A] pb-2 text-xl font-extrabold italic'>{t.info_bmr_title}</h2>
 
@@ -104,7 +92,7 @@ const BASE = ''
 	</section>
 
 	<!-- Module 03: TDEE -->
-	<section class='brutalist-border bg-obsidian p-6'>
+	<section class='brutalist-border bg-obsidian p-2'>
 		<p class='mb-4 text-[clamp(13px,1.5vw,15px)] opacity-75'>◉ {t.info_module_03}</p>
 		<h2 class='mb-4 border-b-2 border-[#4A4A4A] pb-2 text-xl font-extrabold italic'>{t.info_tdee_title}</h2>
 
@@ -138,7 +126,7 @@ const BASE = ''
 	</section>
 
 	<!-- Module 04: Goals -->
-	<section class='brutalist-border bg-obsidian p-6'>
+	<section class='brutalist-border bg-obsidian p-2'>
 		<p class='mb-4 text-[clamp(13px,1.5vw,15px)] opacity-75'>◉ {t.info_module_04}</p>
 		<h2 class='mb-4 border-b-2 border-[#4A4A4A] pb-2 text-xl font-extrabold italic'>{t.info_goals_title}</h2>
 
@@ -162,7 +150,7 @@ const BASE = ''
 	</section>
 
 	<!-- Module 05: Macronutrients -->
-	<section class='brutalist-border bg-obsidian p-6'>
+	<section class='brutalist-border bg-obsidian p-2'>
 		<p class='mb-4 text-[clamp(13px,1.5vw,15px)] opacity-75'>◉ {t.info_module_05}</p>
 		<h2 class='mb-4 border-b-2 border-[#4A4A4A] pb-2 text-xl font-extrabold italic'>{t.info_macros_title}</h2>
 
@@ -224,7 +212,7 @@ const BASE = ''
 	</section>
 
 	<!-- FAQ — visible content, also feeds JSON-LD FAQPage -->
-	<section class='brutalist-border bg-obsidian p-6'>
+	<section class='brutalist-border bg-obsidian p-2'>
 		<p class='mb-4 text-[clamp(13px,1.5vw,15px)] opacity-75'>◉ FAQ</p>
 		<h2 class='mb-6 border-b-2 border-[#4A4A4A] pb-2 text-xl font-extrabold italic'>{t.info_faq_title}</h2>
 		<div class='space-y-4'>

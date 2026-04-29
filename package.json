@@ -1,7 +1,7 @@
 {
   "name": "macrocalc",
   "type": "module",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -20,6 +20,7 @@
     "astro": "^6.1.2",
     "chart.js": "^4.5.1",
     "clsx": "^2.1.1",
+    "geist": "^1.7.0",
     "lucide-react": "^1.7.0",
     "nanostores": "^1.2.0",
     "react": "^19.2.4",
